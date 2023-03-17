@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ReferenceConfigurator.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="url" Type="(Web Service URL)" Scope="User">
+      <Value Profile="(Default)">https://oublkg.sharepoint.com/sites/Wissen-Projekte</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

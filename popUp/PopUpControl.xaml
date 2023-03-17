@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="ReferenceConfigurator.popUp.PopUpControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ReferenceConfigurator.popUp"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:templates="clr-namespace:ReferenceConfigurator.templates"
+             xmlns:views="clr-namespace:ReferenceConfigurator.views"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <DataTemplate DataType="{x:Type views:LanguageSelectionViewModel}">
+                <templates:LanguageSelectionControl />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type views:SearchViewModel}">
+                <templates:SearchControl />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type views:LayoutViewModel}">
+                <templates:LayoutControl />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type views:SelectedReferencesViewModel}">
+                <templates:SelectedReferencesControl />
+            </DataTemplate>
+
+
+            <ResourceDictionary.MergedDictionaries>
+                <hc:ThemeResources />
+                <ResourceDictionary Source="pack://application:,,,/Handycontrol;component/Themes/Basic/Colors/Light.xaml"/>
+                <hc:Theme />
+                <ResourceDictionary Source="pack://application:,,,/Handycontrol;component/Themes/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="155"/>
+            <ColumnDefinition Width="600"/>
+            <ColumnDefinition Width="600"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="600"/>
+        </Grid.RowDefinitions>
+        <templates:SideBarControl Grid.Column="0" Grid.Row="0" />
+        <ContentControl  Grid.Column="1" Content="{Binding MainContentViewModel}"/>
+        <ContentControl Grid.Column="2" Content="{Binding SelectedContentViewModel}"/>
+       
+    </Grid>
+
+</UserControl>

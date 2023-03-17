@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="ReferenceConfigurator.templates.SelectedReferencesControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ReferenceConfigurator.templates"
+             mc:Ignorable="d"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <hc:ThemeResources />
+                <ResourceDictionary Source="pack://application:,,,/Handycontrol;component/Themes/Basic/Colors/Light.xaml"/>
+                <hc:Theme />
+                <ResourceDictionary Source="pack://application:,,,/Handycontrol;component/Themes/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="500"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <ListView Grid.Row="0" ItemsSource="{Binding SelectedReferences}" Style="{StaticResource ListViewBaseStyle}" Background="Transparent" BorderThickness="0">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="100" Header="ProjectId" DisplayMemberBinding="{Binding ProjectId}"/>
+                    <GridViewColumn Width="200" Header="ProjectName" DisplayMemberBinding="{Binding ProjectName}"/>
+                    <GridViewColumn Width="250" Header="Branch" DisplayMemberBinding="{Binding Branch}"/>
+                </GridView>
+            </ListView.View>
+            <hc:Interaction.Triggers>
+                <hc:EventTrigger EventName="SelectionChanged">
+                    <hc:EventToCommand Command="{Binding SelectionChangedCommand}" PassEventArgsToCommand="True" />
+                </hc:EventTrigger>
+            </hc:Interaction.Triggers>
+        </ListView>
+        <Button Grid.Row="1" Style="{StaticResource ButtonPrimary}" Content="Create Slide" 
+                                Command="{Binding CreateSlideCommand}"/>
+    </Grid>
+   
+        
+</UserControl>
