@@ -5,5 +5,8 @@
     <Setting Name="url" Type="(Web Service URL)" Scope="User">
       <Value Profile="(Default)">https://oublkg.sharepoint.com/sites/Wissen-Projekte</Value>
     </Setting>
+    <Setting Name="template" Type="(Web Service URL)" Scope="User">
+      <Value Profile="(Default)">https://oublkg.sharepoint.com/sites/LandingPage/</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

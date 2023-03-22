@@ -20,7 +20,7 @@
 
     </UserControl.Resources>
     <hc:ScrollViewer>
-        <hc:CoverView Margin="27" Width="600" Height="800" ItemWidth="256" ItemHeight="144" ItemsSource="{Binding Layouts}">
+        <hc:CoverView Margin="27" ItemWidth="256" ItemHeight="144" ItemsSource="{Binding Layouts}">
             <hc:CoverView.ItemHeaderTemplate>
                 <DataTemplate>
                     <Image Source="{Binding imagePath}"/>

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ReferenceConfigurator.templates"
+             xmlns:proxy="clr-namespace:ReferenceConfigurator.views.utils"
              xmlns:hc="https://handyorg.github.io/handycontrol">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -13,41 +14,91 @@
                 <hc:Theme />
                 <ResourceDictionary Source="pack://application:,,,/Handycontrol;component/Themes/Theme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            <proxy:BindingProxy x:Key="ColumnListProxy" Data="{Binding}"/>
         </ResourceDictionary>
     </UserControl.Resources>
-    
-    <!--<hc:PropertyGrid Width="600" SelectedObject="{Binding SearchModel}">
-        <hc:Interaction.Triggers>
-            <hc:EventTrigger EventName="SelectedObjectChanged">
-                <hc:EventToCommand Command="{Binding SearchChangedCommand}" PassEventArgsToCommand="True" />
-            </hc:EventTrigger>
-        </hc:Interaction.Triggers>
-    </hc:PropertyGrid>-->
-    
-    
-    <!--checkcombobox-->
-    
-    
-    
+
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="32"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="600"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-            <hc:SearchBar Command="{Binding SearchChangedCommand}" 
+        <hc:SearchBar Command="{Binding SearchChangedCommand}" 
                       CommandParameter="{Binding Text,RelativeSource={RelativeSource Self}}"
                       hc:InfoElement.TitleWidth="120"
                       hc:InfoElement.Placeholder="Please enter search term"
                       hc:InfoElement.Title="General Search"
-                      hc:InfoElement.Necessary="True"
                       hc:InfoElement.TitlePlacement="Left"
                       Style="{StaticResource SearchBarExtendBaseStyle}"
                       Grid.Row="0"
                       />
-        <ListView ItemsSource="{Binding SearchResult}" Style="{StaticResource ListViewBaseStyle}" Grid.Row="1" Background="Transparent">
+        <hc:CheckComboBox Grid.Row="1"
+                          hc:InfoElement.TitleWidth="120"
+                          ItemsSource="{Binding ColumnList}" 
+                          hc:InfoElement.TitlePlacement="Left" 
+                          hc:InfoElement.Placeholder="Please select Columns to show from the drop down list" 
+                          hc:InfoElement.Title="Select Columns" 
+                          Style="{StaticResource CheckComboBoxPlus}" 
+                          Margin="0,8,0,0"
+                          DisplayMemberPath="Name" 
+                          SelectedValuePath="IsChecked"/>
+        <DataGrid HeadersVisibility="Column" 
+                  RowHeaderWidth="60" 
+                  AutoGenerateColumns="False" 
+                  ItemsSource="{Binding SearchResult}"
+                  Background="Transparent"
+                  Grid.Row="2"
+                  IsReadOnly="True">
+            <!--<DataGrid.RowHeaderTemplate>
+                <DataTemplate>
+                    <CheckBox IsChecked="{Binding IsSelected,RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
+                </DataTemplate>
+            </DataGrid.RowHeaderTemplate>-->
+            <DataGrid.Columns>
+                <DataGridTextColumn 
+                    Width="1*" 
+                    Visibility="{Binding Data.ColumnList[0].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                    Binding="{Binding ProjectId}" 
+                    Header="ProjectID"/>
+                <DataGridTemplateColumn Width="60" CanUserResize="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/question.png" Width="32" Height="32" Stretch="Uniform"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Width="1*" Visibility="Visible" Binding="{Binding ProjectName}" Header="Project Name"/>
+                <DataGridTextColumn Width="1*" Visibility="Hidden" Binding="{Binding Partner}" Header="Partner"/>
+                <DataGridTextColumn Width="1*" Visibility="Hidden" Binding="{Binding Branch}" Header="Branch"/>
+                <DataGridTextColumn Width="1*" Visibility="Hidden" Binding="{Binding Team}" Header="Team"/>
+                <DataGridTextColumn Width="1*" Visibility="Visible" Binding="{Binding Client}" Header="Client"/>
+                <DataGridTextColumn Width="1*" Visibility="Hidden" Binding="{Binding ProjectDescriptionDE}" Header="ProjectDescriptionDE"/>
+                <DataGridTextColumn Width="1*" Visibility="Hidden" Binding="{Binding Topic}" Header="Topic"/>
+                <DataGridTextColumn Width="1*" Visibility="Hidden" Binding="{Binding Subject}" Header="Subject"/>
+            </DataGrid.Columns>
+            <hc:Interaction.Triggers>
+                <hc:EventTrigger EventName="SelectionChanged">
+                    <hc:EventToCommand Command="{Binding SelectionChangedCommand}" PassEventArgsToCommand="True" />
+                </hc:EventTrigger>
+            </hc:Interaction.Triggers>
+        </DataGrid>
+    </Grid>
+
+
+</UserControl>
+    
+    
+<!--<ListView ItemsSource="{Binding SearchResult}" 
+                  Style="{StaticResource ListViewBaseStyle}" 
+                  Grid.Row="2" 
+                  Background="Transparent"
+                  Margin="0,8,0,0">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="100" Header="ProjectId" DisplayMemberBinding="{Binding ProjectId}"/>
@@ -60,8 +111,13 @@
                 <hc:EventToCommand Command="{Binding SelectionChangedCommand}" PassEventArgsToCommand="True" />
             </hc:EventTrigger>
         </hc:Interaction.Triggers>
-        </ListView>
-    </Grid>
-    
+        </ListView>-->
 
-</UserControl>
+<!--<hc:PropertyGrid Width="600" SelectedObject="{Binding SearchModel}">
+        <hc:Interaction.Triggers>
+            <hc:EventTrigger EventName="SelectedObjectChanged">
+                <hc:EventToCommand Command="{Binding SearchChangedCommand}" PassEventArgsToCommand="True" />
+            </hc:EventTrigger>
+        </hc:Interaction.Triggers>
+    </hc:PropertyGrid>-->
+

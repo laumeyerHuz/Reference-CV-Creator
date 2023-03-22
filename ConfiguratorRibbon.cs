@@ -55,10 +55,7 @@ namespace ReferenceConfigurator
                 ShowInTaskbar = false,
                 WindowStartupLocation = WindowStartupLocation.CenterOwner,
             };
-            var settings = new PopUpControl()
-            {
-
-            };
+            var settings = new PopUpControl();
             dialog.Content = settings;
             var interop = new WindowInteropHelper(dialog);
             interop.Owner = Process.GetCurrentProcess().MainWindowHandle;

@@ -25,14 +25,21 @@ namespace ReferenceConfigurator.views {
             Layouts = _layouts;
 
             SelectLayoutCommand = new RelayCommand<string>(SelectLayout);
-
+            prepareTemplate();
+            
             populate();
         }
 
+        private void prepareTemplate() {
+            Utils.downloadPowerpointTemplate();
+            Utils.SlidesToImage();
+
+        }
+
         private void populate() {
-            Layouts.Add(new LayoutModel("pack://application:,,,/ReferenceConfigurator;component/icons/powerpointTemplate/Folie1.PNG"));
-            Layouts.Add(new LayoutModel("pack://application:,,,/ReferenceConfigurator;component/icons/powerpointTemplate/Folie2.PNG"));
-            Layouts.Add(new LayoutModel("pack://application:,,,/ReferenceConfigurator;component/icons/powerpointTemplate/Folie3.PNG"));
+            Layouts.Add(new LayoutModel("C:/ProgramData/ReferenceConfigurator/slides/powerpointTemplate_0.png"));
+            Layouts.Add(new LayoutModel("C:/ProgramData/ReferenceConfigurator/slides/powerpointTemplate_1.png"));
+            Layouts.Add(new LayoutModel("C:/ProgramData/ReferenceConfigurator/slides/powerpointTemplate_2.png"));
         }
 
         private void SelectLayout(string layoutPath) {

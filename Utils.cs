@@ -1,7 +1,5 @@
 ﻿#nullable enable
 
-
-using Azure;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 using System;
@@ -84,22 +82,35 @@ namespace ReferenceConfigurator
         }
 
         public static void SlidesToImage() {
-            try {
-                Application pptApplication = new Application();
-                Presentation pptPresentation = pptApplication.Presentations
-                .Open("powerpointTemplate/powerpointTemplate.pptx", MsoTriState.msoFalse, MsoTriState.msoFalse
-                , MsoTriState.msoFalse);
+            string basePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+            var filePath = Path.Combine(basePath, "ReferenceConfigurator","powerpointTemplate");
+            string indexPath = Path.Combine(basePath, "ReferenceConfigurator/slides/");
+            if (File.Exists(indexPath)) { return; }
+            DirectoryInfo d = new DirectoryInfo(filePath);
+            System.IO.Directory.CreateDirectory(indexPath);
+            foreach (FileInfo file in d.GetFiles("*.pptx")) {
+                try {
+                    Application pptApplication = new Application();
+                    Presentation pptPresentation = pptApplication.Presentations
+                    .Open(file.FullName, MsoTriState.msoFalse, MsoTriState.msoFalse
+                    , MsoTriState.msoFalse);
 
-                string basePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-                string indexPath = Path.Combine(basePath, "ReferenceConfigurator/slides/");
+                    
 
-                for (int i = 0;i < pptPresentation.Slides.Count; i++) {
-                    pptPresentation.Slides[1].Export(indexPath +"slide" + i +".png", "png", 320, 240);
+                    for (int i = 0; i < pptPresentation.Slides.Count; i++) {
+                        string imagePath = indexPath + Path.GetFileNameWithoutExtension(file.Name) + "_"+ i+ ".png";
+                        pptPresentation.Slides[i+1].Export(imagePath, "png", 1920,1080);
+                    }
+                    pptPresentation.Close();
+
+                } catch (Exception e) {
+                    System.Diagnostics.Debug.WriteLine(e.ToString());
                 }
-                
-            } catch (Exception e) { 
-                System.Diagnostics.Debug.WriteLine(e.ToString());
             }
+        }
+
+        public static void downloadPowerpointTemplate() {
+            SharepointConnection.downloadPowerpointTemplates();
         }
     }
 }

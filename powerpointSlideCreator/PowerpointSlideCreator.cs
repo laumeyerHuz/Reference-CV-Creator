@@ -66,7 +66,7 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
             int count = 0;
             foreach (Shape s in slide.Shapes) {
                 System.Diagnostics.Debug.WriteLine($"{s.Name}");
-                if (s.Name.Contains("TextBox")) {
+                if (s.Name.Contains("TextBox") && count <_referenceModels.Count) {
                     s.TextFrame.TextRange.Text = _referenceModels[count].ProjectName;
                     count++;
                 }

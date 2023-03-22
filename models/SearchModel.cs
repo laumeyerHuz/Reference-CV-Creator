@@ -1,5 +1,4 @@
-﻿using Microsoft.Graph;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -28,9 +27,9 @@ namespace ReferenceConfigurator.models {
         public string Team { get; set; }
 
         [Category("Date")]
-        public Date Start { get; set; }
+        public string Start { get; set; }
         [Category("Date")]
-        public Date End { get; set; }
+        public string End { get; set; }
 
         [Category("Description")]
         public string Tag { get; set; }
