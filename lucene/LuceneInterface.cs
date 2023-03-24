@@ -28,34 +28,31 @@ namespace ReferenceConfigurator.lucene
         Analyzer _analyzer;
         const LuceneVersion AppLuceneVersion = LuceneVersion.LUCENE_48;
 
+        static string basePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+        static string indexPath = Path.Combine(basePath, "ReferenceConfigurator/index");
+        FSDirectory dir = FSDirectory.Open(indexPath);
+
 
         public LuceneInterface()
         {
             createIndexWriter();
+            _reader = DirectoryReader.Open(dir);
+            _searcher = new IndexSearcher(_reader);
         }
 
         private void createIndexWriter()
         {
-
-
-            string basePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-            string indexPath = Path.Combine(basePath, "ReferenceConfigurator/index");
-
-            FSDirectory dir = FSDirectory.Open(indexPath);
-
-            _analyzer = new StandardAnalyzer(AppLuceneVersion);
-
-            IndexWriterConfig indexConfig = new IndexWriterConfig(AppLuceneVersion, _analyzer);
-            _writer = new IndexWriter(dir, indexConfig);
             if (!DirectoryReader.IndexExists(dir))
             {
+
+                _analyzer = new StandardAnalyzer(AppLuceneVersion);
+                IndexWriterConfig indexConfig = new IndexWriterConfig(AppLuceneVersion, _analyzer);
+                _writer = new IndexWriter(dir, indexConfig);
+
                 ListItemCollection list = SharepointConnection.getSharepointList();
                 addSharepointToIndex(list);
+
             }
-
-
-            _reader = DirectoryReader.Open(dir);
-            _searcher = new IndexSearcher(_reader);
         }
 
         //Adding new columns: debug listitem and look in 
@@ -159,7 +156,17 @@ namespace ReferenceConfigurator.lucene
             }
             _writer.Flush(true,true);
             _writer.Commit();
-            _writer.Dispose();
+            try {
+                _writer.Dispose();
+                _analyzer.Dispose();
+            } catch (Exception e) {
+                System.Diagnostics.Debug.WriteLine(e.ToString());
+            } finally {
+                if (IndexWriter.IsLocked(dir)) {
+                    IndexWriter.Unlock(dir);
+                }
+            }
+            
         }
 
         private ReferenceModel getModelFromDoc(Document doc) {

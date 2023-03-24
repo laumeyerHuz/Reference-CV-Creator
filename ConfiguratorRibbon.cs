@@ -40,7 +40,6 @@ namespace ReferenceConfigurator
     public class ConfiguratorRibbon : Office.IRibbonExtensibility
     {
         private Office.IRibbonUI ribbon;
-        private int _projectID;
 
         public ConfiguratorRibbon()
         {
@@ -56,12 +55,12 @@ namespace ReferenceConfigurator
                 ShowInTaskbar = false,
                 WindowStartupLocation = WindowStartupLocation.CenterOwner,
             };
-            var settings = new PopUpControl();
-            dialog.Content = settings;
+            var content = new PopUpControl();
+            dialog.Content = content;
             var interop = new WindowInteropHelper(dialog);
             interop.Owner = Process.GetCurrentProcess().MainWindowHandle;
-            dialog.Show();
-
+            dialog.ShowDialog();
+            dialog.Close();
         }
 
         public Bitmap loadPopUpImage(Office.IRibbonControl control)
