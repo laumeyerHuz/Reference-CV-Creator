@@ -19,15 +19,15 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="500"/>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <ListView Grid.Row="0" ItemsSource="{Binding SelectedReferences}" Style="{StaticResource ListViewBaseStyle}" Background="Transparent" BorderThickness="0">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="100" Header="ProjectId" DisplayMemberBinding="{Binding ProjectId}"/>
-                    <GridViewColumn Width="200" Header="ProjectName" DisplayMemberBinding="{Binding ProjectName}"/>
-                    <GridViewColumn Width="250" Header="Branch" DisplayMemberBinding="{Binding Branch}"/>
+                    <GridViewColumn Width="Auto" Header="ProjectId" DisplayMemberBinding="{Binding ProjectId}"/>
+                    <GridViewColumn Width="Auto" Header="ProjectName" DisplayMemberBinding="{Binding ProjectName}"/>
+                    <GridViewColumn Width="Auto" Header="Branch" DisplayMemberBinding="{Binding Branch}"/>
                 </GridView>
             </ListView.View>
             <hc:Interaction.Triggers>
@@ -36,9 +36,11 @@
                 </hc:EventTrigger>
             </hc:Interaction.Triggers>
         </ListView>
-        <Button Grid.Row="1" Style="{StaticResource ButtonPrimary}" Content="Create Slide" 
-                                Command="{Binding CreateSlideCommand}"/>
+        <Button Grid.Row="1" 
+                Style="{StaticResource ButtonPrimary}" 
+                Content="Create Slide" 
+                Command="{Binding CreateSlideCommand}"
+                Margin="5,5,5,5"/>
     </Grid>
-   
-        
+
 </UserControl>

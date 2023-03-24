@@ -13,6 +13,7 @@ using System.Windows;
 using Office = Microsoft.Office.Core;
 using ReferenceConfigurator.popUp;
 using System.Diagnostics;
+using ReferenceConfigurator.utils;
 
 // TODO:  Follow these steps to enable the Ribbon (XML) item:
 

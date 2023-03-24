@@ -2,6 +2,7 @@
 
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
+using ReferenceConfigurator.models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,7 +14,7 @@ using System.Windows.Interop;
 using Office = Microsoft.Office.Core;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 
-namespace ReferenceConfigurator
+namespace ReferenceConfigurator.utils
 {
     public static class Utils
     {
@@ -81,11 +82,16 @@ namespace ReferenceConfigurator
             return node.Value.Value;
         }
 
-        public static void SlidesToImage() {
+        public static List<LayoutModel> SlidesToImage() {
+            List<LayoutModel> layoutModels = new List<LayoutModel>();
             string basePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
             var filePath = Path.Combine(basePath, "ReferenceConfigurator","powerpointTemplate");
             string indexPath = Path.Combine(basePath, "ReferenceConfigurator/slides/");
-            if (File.Exists(indexPath)) { return; }
+
+            //Todo make skippable if exist
+            //if (Directory.Exists(indexPath)) { return; }
+
+
             DirectoryInfo d = new DirectoryInfo(filePath);
             System.IO.Directory.CreateDirectory(indexPath);
             foreach (FileInfo file in d.GetFiles("*.pptx")) {
@@ -100,13 +106,17 @@ namespace ReferenceConfigurator
                     for (int i = 0; i < pptPresentation.Slides.Count; i++) {
                         string imagePath = indexPath + Path.GetFileNameWithoutExtension(file.Name) + "_"+ i+ ".png";
                         pptPresentation.Slides[i+1].Export(imagePath, "png", 1920,1080);
+                        layoutModels.Add(new LayoutModel(file.FullName, imagePath));
                     }
                     pptPresentation.Close();
+
+                    
 
                 } catch (Exception e) {
                     System.Diagnostics.Debug.WriteLine(e.ToString());
                 }
             }
+            return layoutModels;
         }
 
         public static void downloadPowerpointTemplate() {

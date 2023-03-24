@@ -7,7 +7,12 @@
              xmlns:hc="https://handyorg.github.io/handycontrol"
              xmlns:templates="clr-namespace:ReferenceConfigurator.templates"
              xmlns:views="clr-namespace:ReferenceConfigurator.views"
-             mc:Ignorable="d">
+             xmlns:utils="clr-namespace:ReferenceConfigurator.utils"
+             mc:Ignorable="d"
+             Height="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}, Converter={utils:RatioConverter}, ConverterParameter='0.9' }" 
+             Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={utils:RatioConverter}, ConverterParameter='0.9' }" 
+     
+             >
 
     <UserControl.Resources>
         <ResourceDictionary>
@@ -37,12 +42,12 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="155"/>
-            <ColumnDefinition Width="1200"/>
-            <ColumnDefinition Width="600"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="600"/>
+            <RowDefinition />
         </Grid.RowDefinitions>
         <templates:SideBarControl Grid.Column="0" Grid.Row="0" />
         <ContentControl  Grid.Column="1" Content="{Binding MainContentViewModel}"/>

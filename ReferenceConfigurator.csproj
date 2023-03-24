@@ -34,10 +34,10 @@
     <Nullable>enable</Nullable>
     <LangVersion>8.0</LangVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <PublishUrl>C:\Users\leonhard.laumeyer\Documents\projects\ReferenceConfigurator\executable\v0.1\</PublishUrl>
+    <PublishUrl>C:\Users\leonhard.laumeyer\Documents\projects\ReferenceConfigurator\executable\v0.2\</PublishUrl>
     <InstallUrl />
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>1.0.0.2</ApplicationVersion>
+    <ApplicationVersion>1.0.0.3</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -650,7 +650,8 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Utils.cs" />
+    <Compile Include="utils\RatioConverter.cs" />
+    <Compile Include="utils\Utils.cs" />
     <Compile Include="views\LanguageSelectionViewModel.cs" />
     <Compile Include="views\LayoutViewModel.cs" />
     <Compile Include="views\MainContentViewModel.cs" />
