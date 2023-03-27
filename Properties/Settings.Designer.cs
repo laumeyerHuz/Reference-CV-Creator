@@ -48,5 +48,18 @@ namespace ReferenceConfigurator.Properties {
                 this["template"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://oublkg.sharepoint.com/sites/ProposalFactory")]
+        public string onePager {
+            get {
+                return ((string)(this["onePager"]));
+            }
+            set {
+                this["onePager"] = value;
+            }
+        }
     }
 }

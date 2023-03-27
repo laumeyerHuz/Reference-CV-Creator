@@ -6,6 +6,7 @@ using System.IO;
 using System.Net;
 using System.Security;
 using System.Threading;
+using System.Windows.Navigation;
 
 namespace ReferenceConfigurator {
     class SharepointConnection {
@@ -32,14 +33,15 @@ namespace ReferenceConfigurator {
         public static void downloadPowerpointTemplates() {
             string basePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
             string folderPath = Path.Combine(basePath, "ReferenceConfigurator/powerpointTemplate");
-            if (System.IO.File.Exists(folderPath)) { return; }
+
+            if (System.IO.Directory.Exists(folderPath)) { return; }
+
             System.IO.Directory.CreateDirectory(folderPath);
+
             ClientContext ctx = Weblogin.GetWebLoginClientContext(Properties.Settings.Default.template, false);
             List list = ctx.Web.Lists.GetByTitle("Dokumente");
-
             ctx.Load(list);
             ctx.ExecuteQuery();
-
             FolderCollection fcol = list.RootFolder.Folders;
             ctx.Load(fcol);
             ctx.ExecuteQuery();
@@ -62,8 +64,50 @@ namespace ReferenceConfigurator {
                     }
                 }
             }
-
-
         }
+
+        public static string downloadOnePager(int id) {
+
+            string basePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+            string folderPath = Path.Combine(basePath, "ReferenceConfigurator/onePager");
+
+            System.IO.Directory.CreateDirectory(folderPath);
+
+            ClientContext ctx = Weblogin.GetWebLoginClientContext(Properties.Settings.Default.onePager, false);
+            List list = ctx.Web.Lists.GetByTitle("Dokumente");
+            ctx.Load(list);
+            ctx.ExecuteQuery();
+            FolderCollection fcol = list.RootFolder.Folders;
+            ctx.Load(fcol);
+            ctx.ExecuteQuery();
+            foreach(Folder first in fcol) {
+                if(first.Name == "General") {
+                    fcol = first.Folders;
+                    ctx.Load(fcol);
+                    ctx.ExecuteQuery();
+                    foreach (Folder second in fcol) {
+                        if(second.Name == "Project One Pager") {
+                            FileCollection fileCol = second.Files;
+                            ctx.Load(fileCol);
+                            ctx.ExecuteQuery();
+                            foreach(Microsoft.SharePoint.Client.File file in fileCol) {
+                                if(id.ToString() == file.Name.Split('_')[0]) {
+                                    var fileName = Path.Combine(basePath, "ReferenceConfigurator/onePager", (string)file.Name);
+                                    var localstream = System.IO.File.Open(fileName, System.IO.FileMode.Create);
+                                    var fileInfo = Microsoft.SharePoint.Client.File.OpenBinaryDirect(ctx, file.ServerRelativeUrl);
+                                    var spstream = fileInfo.Stream;
+                                    spstream.CopyTo(localstream);
+                                    spstream.Close();
+                                    localstream.Close();
+                                    return fileName;
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+            }
+            return "";
+        } 
     }
 }

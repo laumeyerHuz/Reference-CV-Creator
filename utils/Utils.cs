@@ -106,7 +106,7 @@ namespace ReferenceConfigurator.utils
                     for (int i = 0; i < pptPresentation.Slides.Count; i++) {
                         string imagePath = indexPath + Path.GetFileNameWithoutExtension(file.Name) + "_"+ i+ ".png";
                         pptPresentation.Slides[i+1].Export(imagePath, "png", 1920,1080);
-                        layoutModels.Add(new LayoutModel(file.FullName, imagePath));
+                        layoutModels.Add(new LayoutModel(file.FullName, imagePath, Path.GetFileNameWithoutExtension(file.Name)));
                     }
                     pptPresentation.Close();
 
@@ -121,6 +121,15 @@ namespace ReferenceConfigurator.utils
 
         public static void downloadPowerpointTemplate() {
             SharepointConnection.downloadPowerpointTemplates();
+        }
+
+        public static string getOnePager(int id) {
+            string fileName = SharepointConnection.downloadOnePager(id);
+            return fileName;
+        }
+
+        public static void removeOnePager(string file) {
+            File.Delete(file);
         }
     }
 }

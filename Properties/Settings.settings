@@ -8,5 +8,8 @@
     <Setting Name="template" Type="(Web Service URL)" Scope="User">
       <Value Profile="(Default)">https://oublkg.sharepoint.com/sites/LandingPage/</Value>
     </Setting>
+    <Setting Name="onePager" Type="(Web Service URL)" Scope="User">
+      <Value Profile="(Default)">https://oublkg.sharepoint.com/sites/ProposalFactory</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

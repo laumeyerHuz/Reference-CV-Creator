@@ -34,10 +34,10 @@
     <Nullable>enable</Nullable>
     <LangVersion>8.0</LangVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <PublishUrl>C:\Users\leonhard.laumeyer\Documents\projects\ReferenceConfigurator\executable\v0.2\</PublishUrl>
+    <PublishUrl>C:\Users\leonhard.laumeyer\Documents\projects\ReferenceConfigurator\executable\v0.4\</PublishUrl>
     <InstallUrl />
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>1.0.0.3</ApplicationVersion>
+    <ApplicationVersion>1.0.0.5</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -773,10 +773,11 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>ReferenceConfigurator_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>7E8B5F21FCC3D392D525CAFB480F899FBC7CA9DA</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>DD85999A4C3DD508544E166C91CB276906333CAF</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

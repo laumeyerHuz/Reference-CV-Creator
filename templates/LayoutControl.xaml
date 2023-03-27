@@ -19,7 +19,7 @@
 
     </UserControl.Resources>
     <hc:ScrollViewer UseLayoutRounding="True">
-        <hc:CoverView Margin="27" ItemWidth="256" ItemHeight="144" ItemsSource="{Binding Layouts}">
+        <hc:CoverView Margin="27" ItemWidth="256" ItemHeight="144" ItemsSource="{Binding Layouts}" ItemContentHeight="350">
             <hc:CoverView.ItemHeaderTemplate>
                 <DataTemplate>
                     <Image Source="{Binding imagePath}"
@@ -32,16 +32,26 @@
                 <DataTemplate>
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="240"/>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <Border Grid.Row="0" Margin="1" Height="240">
+                        <TextBlock Grid.Row="0" 
+                                   VerticalAlignment="Center" 
+                                   HorizontalAlignment="Center" 
+                                   Text="{Binding name}"
+                                   Style="{StaticResource TextBlockLargeBold}"/>
+                        <Border Grid.Row="1" Margin="5" Height="200">
                                 <Image Source="{Binding imagePath}"
                                         RenderOptions.BitmapScalingMode="HighQuality"
                                         RenderOptions.EdgeMode="Aliased"
                                        />
                             </Border>
-                        <Button Grid.Row="1" Style="{StaticResource ButtonPrimary}" Content="Select this Layout" 
+                        <Button Grid.Row="2" 
+                                Margin="5"
+                                hc:BorderElement.CornerRadius="15"
+                                Style="{StaticResource ButtonPrimary}" 
+                                Content="Select this Layout" 
                                 Command="{Binding Path = DataContext.SelectLayoutCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
                                 CommandParameter="{Binding imagePath}"/>
                     </Grid>
