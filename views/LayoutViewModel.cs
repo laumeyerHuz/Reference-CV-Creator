@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using ReferenceConfigurator.utils;
 
 namespace ReferenceConfigurator.views {
     public class LayoutViewModel : MainContentViewModel {
@@ -26,21 +27,13 @@ namespace ReferenceConfigurator.views {
 
             SelectLayoutCommand = new RelayCommand<string>(SelectLayout);
             prepareTemplate();
-            
-            populate();
         }
 
         private void prepareTemplate() {
             Utils.downloadPowerpointTemplate();
-            Utils.SlidesToImage();
-
+            Layouts = new ObservableCollection<LayoutModel>( Utils.SlidesToImage());
         }
 
-        private void populate() {
-            Layouts.Add(new LayoutModel("C:/ProgramData/ReferenceConfigurator/slides/powerpointTemplate_0.png"));
-            Layouts.Add(new LayoutModel("C:/ProgramData/ReferenceConfigurator/slides/powerpointTemplate_1.png"));
-            Layouts.Add(new LayoutModel("C:/ProgramData/ReferenceConfigurator/slides/powerpointTemplate_2.png"));
-        }
 
         private void SelectLayout(string layoutPath) {
             for(int i = 0; i < _layouts.Count; i++) {

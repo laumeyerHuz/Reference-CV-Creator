@@ -9,8 +9,21 @@ namespace ReferenceConfigurator.models {
 
         public string imagePath { get; set; }
 
-        public LayoutModel(string filePath) {
-            this.imagePath = filePath;
+        public string powerpointPath { get; set; }
+
+        public string name { get; set; }
+
+        public bool onePager;
+
+        public LayoutModel(string powerpointPath, string imagePath, string name) {
+            this.powerpointPath = powerpointPath;
+            this.imagePath = imagePath;
+            this.name = name;
+            if(name == "Project One Pager_Vorlage") {
+                onePager = true;
+            } else {
+                onePager = false;
+            }
         }
     }
 }

@@ -11,7 +11,7 @@
              mc:Ignorable="d"
              Height="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}, Converter={utils:RatioConverter}, ConverterParameter='0.9' }" 
              Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={utils:RatioConverter}, ConverterParameter='0.9' }" 
-     
+             
              >
 
     <UserControl.Resources>

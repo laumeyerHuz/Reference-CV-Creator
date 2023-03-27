@@ -73,7 +73,7 @@ namespace ReferenceConfigurator.views {
         public void createSlide() {
             PowerpointSlideCreator powerpointSlideCreator = new PowerpointSlideCreator();
             powerpointSlideCreator.addReferences(SelectedContentViewModel.getReferenceList());
-            powerpointSlideCreator.addLayoutIndex(Layout._layoutIndex);
+            powerpointSlideCreator.addLayoutModel(Layout.Layouts[Layout._layoutIndex]);
             powerpointSlideCreator.createSlide();
         }
 
