@@ -49,14 +49,13 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
             }
         }
 
-        private void addOnePagerExp() {
+        private void addOnePagers() {
             foreach (ReferenceModel model in _referenceModels) {
                 string filePath = Utils.getOnePager(model.ProjectId);
                 if (filePath == "") {
                     continue;
                 }
 
-                int sourceSlideRange = 0;
                 int targetSlideRange = Globals.ThisAddIn.Application.ActiveWindow.Presentation.Slides.Count;
                 PowerPoint.Presentation target;
                 PowerPoint.Presentation source;
@@ -65,7 +64,7 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                     target = Globals.ThisAddIn.Application.ActivePresentation;
                     source = Globals.ThisAddIn.Application.Presentations.Open(filePath, Office.MsoTriState.msoFalse, Office.MsoTriState.msoFalse, Office.MsoTriState.msoFalse);
 
-                    sourceSlideRange = source.Slides.Count + 1; //otherwise I was just getting the second to the last slide
+                    int sourceSlideRange = source.Slides.Count + 1;
 
                     for (int i = 1; i < sourceSlideRange; i++) {
                         source.Slides[i].Copy();
@@ -82,29 +81,6 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                 }
             }
         }
-
-        private void addOnePagers() {
-            //TODO maybe add cache
-            foreach (var model in _referenceModels) {
-                string filePath = Utils.getOnePager(model.ProjectId);
-                if(filePath == "") {
-                    return;
-                }
-                var presentation = Globals.ThisAddIn.Application.ActivePresentation;
-                var selectedSlidesNumbers = this.GetSelectedSlideNumbers(presentation);
-                var firstSelectedSlide = selectedSlidesNumbers[0];
-
-                // Insert slide from file.  Note that this step will NOT bring the theme
-                // from the slide file, only it's text.
-                presentation.Slides.InsertFromFile(filePath, firstSelectedSlide);
-
-                // Apply the theme of the newly inserted slide file.  Note that the new 
-                // slide gets inserted after selected slide, so add 1 to slide index
-                // to target new slide for theme.
-                presentation.Slides[firstSelectedSlide + 1].ApplyTheme(filePath);
-                updateSlideContent(presentation.Slides[firstSelectedSlide + 1]);
-            }
-        }   
 
         private int[] GetSelectedSlideNumbers(Presentation presentation) {
             var selectedSlides = new List<int>();
