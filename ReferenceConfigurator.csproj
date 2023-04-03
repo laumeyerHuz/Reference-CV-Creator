@@ -623,11 +623,17 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="ConfiguratorRibbon.cs" />
+    <Compile Include="mainWindow\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="models\CheckBoxModel.cs" />
     <Compile Include="models\LayoutModel.cs" />
     <Compile Include="models\SearchModel.cs" />
     <Compile Include="models\ReferenceModel.cs" />
     <Compile Include="powerpointSlideCreator\PowerpointSlideCreator.cs" />
+    <Compile Include="Propterties\DesignTimeResources.xaml.cs">
+      <DependentUpon>DesignTimeResources.xaml</DependentUpon>
+    </Compile>
     <Compile Include="templates\LanguageSelectionControl.xaml.cs">
       <DependentUpon>LanguageSelectionControl.xaml</DependentUpon>
     </Compile>
@@ -697,7 +703,6 @@
     <Resource Include="icons\powerpointTemplate\Folie1.PNG" />
     <Resource Include="icons\powerpointTemplate\Folie2.PNG" />
     <Resource Include="icons\powerpointTemplate\Folie3.PNG" />
-    <Content Include="resource\fabric-icons.ttf" />
     <None Include="ThisAddIn.Designer.xml">
       <DependentUpon>ThisAddIn.cs</DependentUpon>
     </None>
@@ -714,7 +719,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="resource\Style.xaml">
+    <Page Include="mainWindow\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Propterties\DesignTimeResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
