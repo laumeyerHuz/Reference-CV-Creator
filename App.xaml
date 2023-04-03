@@ -1,16 +1,32 @@
-﻿<Application x:Class="WpfApp1.App"
+﻿<Application x:Name="ReferenceConfigurator"
+             x:Class="ReferenceConfigurator.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:WpfApp1"
+             xmlns:templates="clr-namespace:ReferenceConfigurator.templates"
+             xmlns:views="clr-namespace:ReferenceConfigurator.views"
+             xmlns:utils="clr-namespace:ReferenceConfigurator.utils"
              xmlns:hc="https://handyorg.github.io/handycontrol">
+
     <Application.Resources>
         <ResourceDictionary>
+            <DataTemplate DataType="{x:Type views:LanguageSelectionViewModel}">
+                <templates:LanguageSelectionControl />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type views:SearchViewModel}">
+                <templates:SearchControl />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type views:LayoutViewModel}">
+                <templates:LayoutControl />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type views:SelectedReferencesViewModel}">
+                <templates:SelectedReferencesControl />
+            </DataTemplate>
+
+
             <ResourceDictionary.MergedDictionaries>
-                <hc:ThemeResources/>
-                <ResourceDictionary Source="pack://application:,,,/Handycontrol;component/Themes/Basic/Colors/Dark.xaml"/>
-                <hc:Theme />
-                <ResourceDictionary Source="pack://application:,,,/Handycontrol;component/Themes/Theme.xaml"/>
-                <ResourceDictionary Source="/resource/Style.xaml"/>
+                <hc:ThemeResources RequestedTheme="Light"/>
+                <hc:Theme/>
+                <!-- Other merged dictionaries here -->
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -13,15 +13,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ReferenceConfigurator
-{
+namespace ReferenceConfigurator {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : UserControl
-    {
-        public App()
-        {
+    public partial class App : Application {
+        public App() {
+            InitializeComponent();
         }
     }
 }

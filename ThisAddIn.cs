@@ -15,7 +15,9 @@ namespace ReferenceConfigurator {
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e) {
-
+            if (System.Windows.Application.Current != null) {
+                System.Windows.Application.Current.Shutdown();
+            }
         }
 
         protected override Microsoft.Office.Core.IRibbonExtensibility CreateRibbonExtensibilityObject() {

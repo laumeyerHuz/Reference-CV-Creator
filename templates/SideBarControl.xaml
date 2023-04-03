@@ -12,7 +12,6 @@
             <ResourceDictionary.MergedDictionaries>
                 <hc:ThemeResources/>
                 <hc:Theme/>
-                <ResourceDictionary Source="../resource/Style.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -50,27 +49,27 @@
             </hc:SideMenuItem.Icon>
             <hc:SideMenuItem Header="Work Items">
                 <hc:SideMenuItem.Icon>
-                    <TextBlock Text="&#xf314;" Style="{StaticResource TextBlockFabricIcons}"/>
+                    <TextBlock Text="&#xf314;"/>
                 </hc:SideMenuItem.Icon>
             </hc:SideMenuItem>
             <hc:SideMenuItem Header="Boards">
                 <hc:SideMenuItem.Icon>
-                    <TextBlock Text="&#xf444;" Style="{StaticResource TextBlockFabricIcons}"/>
+                    <TextBlock Text="&#xf444;"/>
                 </hc:SideMenuItem.Icon>
             </hc:SideMenuItem>
             <hc:SideMenuItem Header="Backlogs">
                 <hc:SideMenuItem.Icon>
-                    <TextBlock Text="&#xf6bf;" Style="{StaticResource TextBlockFabricIcons}"/>
+                    <TextBlock Text="&#xf6bf;"/>
                 </hc:SideMenuItem.Icon>
             </hc:SideMenuItem>
             <hc:SideMenuItem Header="Sprints">
                 <hc:SideMenuItem.Icon>
-                    <TextBlock Text="&#xf3b0;" Style="{StaticResource TextBlockFabricIcons}"/>
+                    <TextBlock Text="&#xf3b0;"/>
                 </hc:SideMenuItem.Icon>
             </hc:SideMenuItem>
             <hc:SideMenuItem Header="Queries">
                 <hc:SideMenuItem.Icon>
-                    <TextBlock Text="&#xf2b8;" Style="{StaticResource TextBlockFabricIcons}"/>
+                    <TextBlock Text="&#xf2b8;"/>
                 </hc:SideMenuItem.Icon>
             </hc:SideMenuItem>
         </hc:SideMenuItem>

@@ -1,19 +1,13 @@
-﻿using Lucene.Net.Analysis.Util;
-using Microsoft.Office.Interop.PowerPoint;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Windows.Interop;
 using System.Windows;
 using Office = Microsoft.Office.Core;
-using ReferenceConfigurator.popUp;
-using System.Diagnostics;
 using ReferenceConfigurator.utils;
+using ReferenceConfigurator.mainWindow;
+using System.Windows.Threading;
 
 // TODO:  Follow these steps to enable the Ribbon (XML) item:
 
@@ -41,26 +35,33 @@ namespace ReferenceConfigurator
     {
         private Office.IRibbonUI ribbon;
 
+        System.Windows.Application _app;
+
         public ConfiguratorRibbon()
         {
         }
 
         public void openPopUp(Office.IRibbonControl control)
         {
-            var dialog = new Window()
-            {
-                Title = "ReferenceConfigurator",
-                SizeToContent = SizeToContent.WidthAndHeight,
-                ResizeMode = ResizeMode.NoResize,
-                ShowInTaskbar = false,
-                WindowStartupLocation = WindowStartupLocation.CenterOwner,
-            };
-            var content = new PopUpControl();
-            dialog.Content = content;
-            var interop = new WindowInteropHelper(dialog);
-            interop.Owner = Process.GetCurrentProcess().MainWindowHandle;
-            dialog.ShowDialog();
-            dialog.Close();
+            
+            // if it's the first time run, initialize an application so the resourcedictionary is loaded by initializeComponent.
+            if (System.Windows.Application.Current == null) {
+                // initialize an wpf application and load its resources dictionaries and take control of app's shutdown
+                _app = new App();
+                _app.ShutdownMode = ShutdownMode.OnExplicitShutdown;
+            }
+
+            // initialize mainwindow if it's the first time to call this
+            if (_app.MainWindow == null) {
+                _app.MainWindow = new MainWindow();
+                _app.MainWindow.Closing += (s1, e) => { Dispatcher.ExitAllFrames(); };
+            }
+
+            // bring main window to front 
+            _app.MainWindow.Show();
+            _app.MainWindow.Activate();
+
+            Dispatcher.Run();
         }
 
         public Bitmap loadPopUpImage(Office.IRibbonControl control)

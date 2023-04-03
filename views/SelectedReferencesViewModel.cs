@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using System.Windows.Controls;
 using System.Collections.Generic;
+using HandyControl.Controls;
 
 namespace ReferenceConfigurator.views {
     public class SelectedReferencesViewModel : SelectedContentViewModel {
@@ -43,6 +44,7 @@ namespace ReferenceConfigurator.views {
 
         private void createSlide() {
             parent.createSlide();
+            Growl.Success("Slide created scuccessfully");
         }
 
         public override List<ReferenceModel> getReferenceList() {
