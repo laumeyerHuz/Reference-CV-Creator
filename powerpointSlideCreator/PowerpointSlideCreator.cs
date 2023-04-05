@@ -70,6 +70,7 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                         source.Slides[i].Copy();
                         target.Slides[targetSlideRange].Select();
                         target.Application.CommandBars.ExecuteMso("PasteSourceFormatting");
+                        target.Save();
                     }
                     source.Close();
                 } catch (Exception) {
