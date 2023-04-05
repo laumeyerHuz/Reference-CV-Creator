@@ -196,7 +196,7 @@ namespace ReferenceConfigurator.lucene
                 new StandardAnalyzer(AppLuceneVersion));
 
             Query q = queryParser.Parse(search);
-            TopDocs _results = _searcher.Search(q, 20);
+            TopDocs _results = _searcher.Search(q, _reader.NumDocs);
             for(int i =0; i< _results.TotalHits; i++) {
                 _referenceModelList.Add(getModelFromDoc(_searcher.Doc(_results.ScoreDocs[i].Doc)));
             }
