@@ -43,6 +43,9 @@ namespace ReferenceConfigurator.views {
         }
 
         private void createSlide() {
+            if(SelectedReferences.Count < 0) {
+                Growl.Error("No reference slected to be added");
+            }
             parent.createSlide();
             Growl.Success("Slide created scuccessfully");
         }

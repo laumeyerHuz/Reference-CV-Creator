@@ -6,29 +6,11 @@ using System.Collections.ObjectModel;
 using HandyControl.Data;
 using System.Windows.Controls;
 using ReferenceConfigurator.lucene;
+using HandyControl.Controls;
+using System.Collections.Generic;
 
 namespace ReferenceConfigurator.views {
     public class SearchViewModel : MainContentViewModel {
-
-        //private SearchModel _searchModel;
-
-        //public SearchModel SearchModel {
-        //    get => _searchModel;
-        //    set => SetProperty(ref _searchModel, value);
-        //}
-
-        //public ICommand SearchChangedCommand { get; }
-
-        //public SearchViewModel() {
-        //    //_searchModel = new SearchModel();
-        //    //SearchModel = _searchModel;
-        //    //SearchChangedCommand = new RelayCommand<FunctionEventArgs<object>>(SearchChanged);
-        //}
-
-        //private void SearchChanged(FunctionEventArgs<object> info) {
-        //    System.Diagnostics.Debug.WriteLine("Teszt");
-        //}
-
 
         public ICommand SearchChangedCommand { get; }
 
@@ -85,10 +67,14 @@ namespace ReferenceConfigurator.views {
         private void searchChanged(string search) { 
             SearchResult.Clear();
             System.Diagnostics.Debug.WriteLine(search);
-            foreach (ReferenceModel model in _luceneInterface.getModelByGeneralSearch(search)) {
+            List<ReferenceModel> _searchResults = _luceneInterface.getModelByGeneralSearch(search);
+            if(_searchResults.Count == 0) {
+                Growl.Info("No result has been found");
+                return;
+            }
+            foreach (ReferenceModel model in _searchResults) {
                 SearchResult.Add(model);
             }
-           
         }
 
         private void SelectionChanged(EventArgs args) {
