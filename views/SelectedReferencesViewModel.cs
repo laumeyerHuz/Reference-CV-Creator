@@ -33,7 +33,11 @@ namespace ReferenceConfigurator.views {
         }
 
         public override void addReference(ReferenceModel reference) {
-            SelectedReferences.Add(reference);
+            if (SelectedReferences.Any(p => p.ProjectId == reference.ProjectId)) {
+                Growl.Error("Reference already selected");
+                return;
+            }
+                SelectedReferences.Add(reference);
         }
 
         public override void removeReference(ReferenceModel reference) {
