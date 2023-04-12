@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ReferenceConfigurator.templates"
+             xmlns:utils="clr-namespace:ReferenceConfigurator.utils"
               xmlns:hc="https://handyorg.github.io/handycontrol"
              mc:Ignorable="d">
 
@@ -22,7 +23,7 @@
         <hc:CoverView Margin="27" ItemWidth="256" ItemHeight="144" ItemsSource="{Binding Layouts}" ItemContentHeight="350">
             <hc:CoverView.ItemHeaderTemplate>
                 <DataTemplate>
-                    <Image Source="{Binding imagePath}"
+                    <Image Source="{Binding imagePath, Converter={utils:ImageConverter}}"
                             RenderOptions.EdgeMode="Aliased"
                             RenderOptions.BitmapScalingMode="HighQuality"
                            />
@@ -41,8 +42,8 @@
                                    HorizontalAlignment="Center" 
                                    Text="{Binding name}"
                                    Style="{StaticResource TextBlockLargeBold}"/>
-                        <Border Grid.Row="1" Margin="5" Height="200">
-                                <Image Source="{Binding imagePath}"
+                        <Border Grid.Row="1" Margin="5" Height="270">
+                            <Image Source="{Binding imagePath, Converter={utils:ImageConverter}}"
                                         RenderOptions.BitmapScalingMode="HighQuality"
                                         RenderOptions.EdgeMode="Aliased"
                                        />
