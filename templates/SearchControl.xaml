@@ -66,13 +66,6 @@
                     Visibility="{Binding Data.ColumnList[0].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                     Binding="{Binding ProjectId}" 
                     Header="ProjectID"/>
-                <DataGridTemplateColumn Width="60" CanUserResize="False">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/question.png" Width="32" Height="32" Stretch="Uniform"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
                 <DataGridTextColumn Width="1*" Visibility="Visible" Binding="{Binding ProjectName}" Header="Project Name"/>
                 <DataGridTextColumn Width="1*" Visibility="Hidden" Binding="{Binding Partner}" Header="Partner"/>
                 <DataGridTextColumn Width="1*" Visibility="Hidden" Binding="{Binding Branch}" Header="Branch"/>
