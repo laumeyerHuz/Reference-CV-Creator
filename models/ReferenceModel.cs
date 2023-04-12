@@ -18,5 +18,6 @@ namespace ReferenceConfigurator.models {
         public string Client { get; set; }
         public string Topic { get; set; }
         public string ProjectDescriptionDE { get; set; }
+        public string Logo { get; set; }
     }
 }

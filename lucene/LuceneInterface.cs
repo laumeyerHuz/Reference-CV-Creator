@@ -182,7 +182,7 @@ namespace ReferenceConfigurator.lucene
                 Subject = doc.Get("Subject"),
                 Client = doc.Get("Client"),
                 Topic = doc.Get("Topic"),
-                ProjectDescriptionDE = doc.Get("ProjectDescriptionDE")
+                ProjectDescriptionDE = doc.Get("ProjectDescriptionDE"),
             };
 
             return _referenceModel;

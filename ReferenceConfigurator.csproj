@@ -656,6 +656,7 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="utils\ImageConverter.cs" />
     <Compile Include="utils\RatioConverter.cs" />
     <Compile Include="utils\Utils.cs" />
     <Compile Include="views\LanguageSelectionViewModel.cs" />
@@ -700,9 +701,6 @@
     <Resource Include="icons\USA.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\powerpointTemplate\Folie1.PNG" />
-    <Resource Include="icons\powerpointTemplate\Folie2.PNG" />
-    <Resource Include="icons\powerpointTemplate\Folie3.PNG" />
     <None Include="ThisAddIn.Designer.xml">
       <DependentUpon>ThisAddIn.cs</DependentUpon>
     </None>

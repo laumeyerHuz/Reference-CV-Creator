@@ -1,4 +1,5 @@
-﻿using Microsoft.SharePoint.Client;
+﻿using J2N.Collections.Generic;
+using Microsoft.SharePoint.Client;
 using ReferenceConfigurator.Properties;
 using System;
 using System.ComponentModel;
@@ -64,6 +65,51 @@ namespace ReferenceConfigurator {
                     }
                 }
             }
+        }
+
+        public static string downloadCompanyLogo(string name) {
+
+            string basePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+            string folderPath = Path.Combine(basePath, "ReferenceConfigurator/CompanyLogo");
+
+            System.IO.Directory.CreateDirectory(folderPath);
+
+            ClientContext ctx = Weblogin.GetWebLoginClientContext(Properties.Settings.Default.template, false);
+            List list = ctx.Web.Lists.GetByTitle("Dokumente");
+            ctx.Load(list);
+            ctx.ExecuteQuery();
+            FolderCollection fcol = list.RootFolder.Folders;
+            ctx.Load(fcol);
+            ctx.ExecuteQuery();
+
+            foreach (Folder f in fcol) {
+                if (f.Name == "Templates Reference Configurator") {
+                    ctx.Load(f.Folders);
+                    ctx.ExecuteQuery();
+                    fcol = f.Folders;
+                    foreach (Folder f2 in fcol) {
+                        if (f2.Name == "Logos") {
+                            ctx.Load(f2.Files);
+                            ctx.ExecuteQuery();
+                            FileCollection fileCol = f2.Files;
+
+                            foreach (Microsoft.SharePoint.Client.File file in fileCol) {
+                                if (name == file.Name.Split('.')[0]) {
+                                    var fileName = Path.Combine(basePath, "ReferenceConfigurator/CompanyLogo", (string)file.Name);
+                                    var localstream = System.IO.File.Open(fileName, System.IO.FileMode.Create);
+                                    var fileInfo = Microsoft.SharePoint.Client.File.OpenBinaryDirect(ctx, file.ServerRelativeUrl);
+                                    var spstream = fileInfo.Stream;
+                                    spstream.CopyTo(localstream);
+                                    spstream.Close();
+                                    localstream.Close();
+                                    return fileName;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return null;
         }
 
         public static string downloadOnePager(int id) {

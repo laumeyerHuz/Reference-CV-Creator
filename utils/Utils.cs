@@ -88,12 +88,18 @@ namespace ReferenceConfigurator.utils
             var filePath = Path.Combine(basePath, "ReferenceConfigurator","powerpointTemplate");
             string indexPath = Path.Combine(basePath, "ReferenceConfigurator/slides/");
 
-            //Todo make skippable if exist
-            //if (Directory.Exists(indexPath)) { return; }
-
-
             DirectoryInfo d = new DirectoryInfo(filePath);
             System.IO.Directory.CreateDirectory(indexPath);
+
+            //if (Directory.Exists(indexPath)) { 
+            //    foreach (FileInfo file in d.GetFiles("*.pptx")) {
+            //        string imagePath = indexPath + Path.GetFileNameWithoutExtension(file.Name) + "_" + 1 + ".png";
+            //        layoutModels.Add(new LayoutModel(file.FullName, imagePath, Path.GetFileNameWithoutExtension(file.Name)));
+            //    }
+            //}
+
+
+            
             foreach (FileInfo file in d.GetFiles("*.pptx")) {
                 try {
                     Application pptApplication = new Application();

@@ -6,11 +6,9 @@ using Office = Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 using System.Linq;
 using ReferenceConfigurator.utils;
-using System.IO;
-using System.Reflection;
 using System.Windows.Forms;
-using System.Diagnostics;
-using System.Drawing;
+using static Microsoft.Office.Core.MsoTriState;
+using System.Text.RegularExpressions;
 
 namespace ReferenceConfigurator.powerpointSlideCreator {
     public class PowerpointSlideCreator {
@@ -20,7 +18,7 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
 
         public PowerpointSlideCreator() {
         }
-        
+
         public void addReferences(List<ReferenceModel> referenceModels) {
             this._referenceModels = referenceModels;
         }
@@ -96,14 +94,64 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
         }
 
         private void updateSlideContent(Slide slide) {
-            System.Diagnostics.Debug.WriteLine(slide.Shapes.Count);
-            int count = 0;
-            foreach (Shape s in slide.Shapes) {
-                System.Diagnostics.Debug.WriteLine($"{s.Name}");
-                if (s.Name.Contains("TextBox") && count <_referenceModels.Count) {
-                    s.TextFrame.TextRange.Text = _referenceModels[count].ProjectName;
-                    count++;
+            //loadLogos();
+            //System.Diagnostics.Debug.WriteLine(slide.Shapes.Count);
+            //int countDescription = 0;
+            //int countLogo = 0;
+            //foreach (Shape s in slide.Shapes) {
+            //    System.Diagnostics.Debug.WriteLine($"{s.Name}");
+            //    if (s.Name.Contains("Picture") && countLogo < _referenceModels.Count) {
+            //        if (_referenceModels[countLogo].Logo == null) {
+            //            countLogo++;
+            //            continue;
+            //        }
+            //        s.Fill.UserPicture(_referenceModels[countLogo].Logo);
+            //        countLogo++;
+            //    }
+            //    if (s.Name.Contains("TextBox") && countDescription < _referenceModels.Count) {
+            //        s.TextFrame.TextRange.Text = _referenceModels[countDescription].ProjectName;
+            //        countDescription++;
+            //    }
+            //}
+
+            loadLogos();
+            List<Shape> tmp = new List<Shape>();
+            //foreach(Shape s in slide.Shapes) {
+            for (int i = slide.Shapes.Count;i>=1;i--) {
+                Shape s = slide.Shapes[i];
+                if (s.Name.Contains("TextBox")) {
+                    string placeholder = s.TextFrame.TextRange.Text;
+                    Regex rgx = new Regex("[^a-zA-Z0-9 -]");
+                    placeholder = rgx.Replace(placeholder, "");
+                    string[] split = placeholder.Split(' ');
+                    switch (split[0]) {
+                        case "Logo":
+                            if (_referenceModels[split[1].ToInt32()-1].Logo != null) {
+                                slide.Shapes.AddPicture(_referenceModels[split[1].ToInt32()-1].Logo, msoFalse, msoTrue, s.Left, s.Top, s.Width, s.Height);
+                                s.Delete();
+                            }
+                            break;
+                        case "Description":
+                            s.TextFrame.TextRange.Text = _referenceModels[split[1].ToInt32()-1].ProjectName;
+                            break;
+                        default: break;
+                    }
                 }
+            }
+        }
+
+        private void loadLogos() {
+            HashSet<string> clients = new HashSet<string>();
+            foreach (var model in _referenceModels) {
+                clients.Add(model.Client);
+            }
+            Dictionary<string,string> clientLogo = new Dictionary<string,string>();
+            foreach (string client in clients) { 
+                string file = SharepointConnection.downloadCompanyLogo(client);
+                clientLogo[client] = file;
+            }
+            foreach (ReferenceModel model in _referenceModels) {
+                model.Logo = clientLogo[model.Client];
             }
         }
     }

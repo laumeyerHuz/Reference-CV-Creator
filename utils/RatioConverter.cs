@@ -20,7 +20,7 @@ namespace ReferenceConfigurator.utils {
         }
 
         public override object ProvideValue(IServiceProvider serviceProvider) {
-            return _instance ?? (_instance = new RatioConverter());
+            return _instance ??= new RatioConverter();
         }
 
     }
