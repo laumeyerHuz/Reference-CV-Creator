@@ -21,12 +21,15 @@ namespace ReferenceConfigurator.views {
 
         public int _layoutIndex =0;
 
-        public LayoutViewModel() { 
-            _layouts= new ObservableCollection<LayoutModel>();
+        private PopUpViewModel parent;
+
+        public LayoutViewModel(PopUpViewModel parent) {
+            _layouts = new ObservableCollection<LayoutModel>();
             Layouts = _layouts;
 
             SelectLayoutCommand = new RelayCommand<string>(SelectLayout);
             prepareTemplate();
+            this.parent = parent;
         }
 
         private void prepareTemplate() {
@@ -40,6 +43,7 @@ namespace ReferenceConfigurator.views {
                 LayoutModel layout = _layouts[i];
                 if(layout.imagePath== layoutPath) {
                     _layoutIndex= i;
+                    parent.changeLayout(layout.name);
                     break;
                 }
             }           

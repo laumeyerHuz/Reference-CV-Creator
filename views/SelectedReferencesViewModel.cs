@@ -8,6 +8,7 @@ using System.Linq;
 using System.Windows.Controls;
 using System.Collections.Generic;
 using HandyControl.Controls;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace ReferenceConfigurator.views {
     public class SelectedReferencesViewModel : SelectedContentViewModel {
@@ -20,16 +21,39 @@ namespace ReferenceConfigurator.views {
             set => SetProperty(ref _selectedReferences, value);
         }
 
+        private string _selectedLayout;
+
+        public string SelectedLayout {
+            get => _selectedLayout;
+            set => SetProperty(ref _selectedLayout, value);
+        }
+
         public ICommand SelectionChangedCommand { get; }
 
         public ICommand CreateSlideCommand { get; }
 
+        private ObservableCollection<CheckBoxModel> _columnList;
+
+        public ObservableCollection<CheckBoxModel> ColumnList {
+            get => _columnList;
+            set {
+                SetProperty(ref _columnList, value);
+            }
+        }
+
         public SelectedReferencesViewModel(PopUpViewModel parent) {
             this.parent = parent;
+
             SelectionChangedCommand = new RelayCommand<EventArgs>(SelectionChanged);
             CreateSlideCommand = new RelayCommand(createSlide);
+
             _selectedReferences = new ObservableCollection<ReferenceModel>();
             SelectedReferences = _selectedReferences;
+            _columnList = new ObservableCollection<CheckBoxModel>();
+            ColumnList = _columnList;
+
+
+            SelectedLayout = "No Layout Selected";
         }
 
         public override void addReference(ReferenceModel reference) {

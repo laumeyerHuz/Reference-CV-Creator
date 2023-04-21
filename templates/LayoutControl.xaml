@@ -23,10 +23,13 @@
         <hc:CoverView Margin="27" ItemWidth="256" ItemHeight="144" ItemsSource="{Binding Layouts}" ItemContentHeight="350">
             <hc:CoverView.ItemHeaderTemplate>
                 <DataTemplate>
-                    <Image Source="{Binding imagePath, Converter={utils:ImageConverter}}"
+                    <Border BorderThickness="1">
+                        <Image Source="{Binding imagePath, Converter={utils:ImageConverter}}"
                             RenderOptions.EdgeMode="Aliased"
                             RenderOptions.BitmapScalingMode="HighQuality"
+                            
                            />
+                    </Border>
                 </DataTemplate>
             </hc:CoverView.ItemHeaderTemplate>
             <hc:CoverView.ItemTemplate>

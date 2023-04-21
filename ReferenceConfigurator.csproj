@@ -642,6 +642,9 @@
     <Compile Include="templates\SearchControl.xaml.cs">
       <DependentUpon>SearchControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="templates\SelectedReferencesConfiguration.xaml.cs">
+      <DependentUpon>SelectedReferencesConfiguration.xaml</DependentUpon>
+    </Compile>
     <Compile Include="templates\SelectedReferencesControl.xaml.cs">
       <DependentUpon>SelectedReferencesControl.xaml</DependentUpon>
     </Compile>
@@ -667,6 +670,7 @@
     <Compile Include="views\PopUpViewModel.cs" />
     <Compile Include="views\SearchViewModel.cs" />
     <Compile Include="views\SelectedContentViewModel.cs" />
+    <Compile Include="views\SelectedReferencesConfigurationViewModel.cs" />
     <Compile Include="views\SelectedReferencesViewModel.cs" />
     <Compile Include="views\SearchConfigurationViewModel.cs" />
     <Compile Include="views\utils\BindingProxy.cs" />
@@ -740,6 +744,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="templates\SelectedReferencesConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="templates\SelectedReferencesControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -781,6 +789,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icons\Settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\Tips.png" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

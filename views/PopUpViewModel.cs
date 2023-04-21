@@ -39,6 +39,7 @@ namespace ReferenceConfigurator.views {
         private readonly LayoutViewModel Layout;
         private readonly SelectedReferencesViewModel References;
         private readonly SearchConfigurationViewModel SearchConfiguration;
+        private readonly SelectedReferencesConfigurationViewModel SelectedReferencesConfiguration;
 
 
         public PopUpViewModel() {
@@ -51,15 +52,17 @@ namespace ReferenceConfigurator.views {
             //Init Views
             Language = new LanguageSelectionViewModel();
             Search = new SearchViewModel(this, _luceneInterface);
-            Layout = new LayoutViewModel();
+            Layout = new LayoutViewModel(this);
             References = new SelectedReferencesViewModel(this);
             SearchConfiguration = new SearchConfigurationViewModel(Search);
+            SelectedReferencesConfiguration = new SelectedReferencesConfigurationViewModel(References);
 
             //Starting Views
             _mainContentViewModel = Language;
             MainContentViewModel = Language;
             _selectedContentViewModel = References;
             SelectedContentViewModel = References;
+
             
         }
 
@@ -72,6 +75,7 @@ namespace ReferenceConfigurator.views {
                 "Search" => Search,
                 "Layout" => Layout,
                 "Search Configuration" => SearchConfiguration,
+                "Selected References Configuration" => SelectedReferencesConfiguration,
                 _ => Language,
             };
         }
@@ -85,6 +89,10 @@ namespace ReferenceConfigurator.views {
 
         public void addReference(ReferenceModel model) {
             SelectedContentViewModel.addReference(model);
+        }
+
+        public void changeLayout(string name) {
+            References.SelectedLayout = name;
         }
     }
 }

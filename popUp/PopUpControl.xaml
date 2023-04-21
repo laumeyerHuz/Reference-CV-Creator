@@ -27,6 +27,9 @@
             <DataTemplate DataType="{x:Type views:SearchConfigurationViewModel}">
                 <templates:SearchConfigurationControl />
             </DataTemplate>
+            <DataTemplate DataType="{x:Type views:SelectedReferencesConfigurationViewModel}">
+                <templates:SelectedReferencesConfiguration />
+            </DataTemplate>
         </ResourceDictionary>
 
     </UserControl.Resources>

@@ -42,7 +42,7 @@
                   AutoGenerateColumns="False" 
                   ItemsSource="{Binding SearchResult}"
                   Background="Transparent"
-                  Grid.Row="2"
+                  Grid.Row="1"
                   IsReadOnly="True"
                   Margin="5"
                   >

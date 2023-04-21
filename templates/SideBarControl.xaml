@@ -17,7 +17,7 @@
     </UserControl.Resources>
     
 
-    <hc:SideMenu BorderThickness="0" Width="150" Margin="5">
+    <hc:SideMenu BorderThickness="0" Width="170" Margin="5">
         <hc:Interaction.Triggers>
             <hc:EventTrigger EventName="SelectionChanged">
                 <hc:EventToCommand Command="{Binding SwitchItemCommand}" PassEventArgsToCommand="True" />
@@ -77,9 +77,29 @@
             <hc:SideMenuItem.Icon>
                 <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Settings.png" Width="34" Height="34"/>
             </hc:SideMenuItem.Icon>
-            <hc:SideMenuItem Header="Search Configuration" Command="{Binding SelectItemCommand}" CommandParameter="{Binding Header,RelativeSource={RelativeSource Self}}">
+            <hc:SideMenuItem Header="Search" Command="{Binding SelectItemCommand}" CommandParameter="Search Configuration">
                 <hc:SideMenuItem.Icon>
                     <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Search.png" Width="26" Height="26"/>
+                </hc:SideMenuItem.Icon>
+            </hc:SideMenuItem>
+            <hc:SideMenuItem Header="Selected References" Command="{Binding SelectItemCommand}" CommandParameter="Selected References Configuration">
+                <hc:SideMenuItem.Icon>
+                    <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Reference.png" Width="26" Height="26"/>
+                </hc:SideMenuItem.Icon>
+            </hc:SideMenuItem>
+        </hc:SideMenuItem>
+        <hc:SideMenuItem Header="Tips">
+            <hc:SideMenuItem.Icon>
+                <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Tips.png" Width="34" Height="34"/>
+            </hc:SideMenuItem.Icon>
+            <hc:SideMenuItem Header="Search" Command="{Binding SelectItemCommand}" CommandParameter="Search Configuration">
+                <hc:SideMenuItem.Icon>
+                    <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Search.png" Width="26" Height="26"/>
+                </hc:SideMenuItem.Icon>
+            </hc:SideMenuItem>
+            <hc:SideMenuItem Header="Selected References" Command="{Binding SelectItemCommand}" CommandParameter="Selected References Configuration">
+                <hc:SideMenuItem.Icon>
+                    <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Reference.png" Width="26" Height="26"/>
                 </hc:SideMenuItem.Icon>
             </hc:SideMenuItem>
         </hc:SideMenuItem>
