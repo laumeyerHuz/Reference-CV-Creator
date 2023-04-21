@@ -3,8 +3,8 @@
   <ribbon>
     <tabs>
 		<tab idMso="TabHome">
-		<group id="projectList" label="Configurator" autoScale="true">
-			<button id="openPopUp" label="Reference" onAction="openPopUp" getImage="loadPopUpImage" size="large"/>
+		<group id="projectList" label="@Huz" autoScale="true">
+			<button id="openPopUp" label="Reference&#10;Configurator" onAction="openPopUp" getImage="loadPopUpImage" size="large"/>
 		</group>
       </tab>
     </tabs>
