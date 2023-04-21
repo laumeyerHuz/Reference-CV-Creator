@@ -50,7 +50,7 @@ namespace ReferenceConfigurator.views {
                 ColumnList.Add(new CheckBoxModel() { Name = "Data", IsChecked = false });
                 ColumnList.Add(new CheckBoxModel() { Name = "Branch", IsChecked = false });
                 ColumnList.Add(new CheckBoxModel() { Name = "Team", IsChecked = false });
-                ColumnList.Add(new CheckBoxModel() { Name = "Subject", IsChecked = false });
+                ColumnList.Add(new CheckBoxModel() { Name = "ProjectDescriptionEN", IsChecked = false });
                 ColumnList.Add(new CheckBoxModel() { Name = "Client", IsChecked = true });
                 ColumnList.Add(new CheckBoxModel() { Name = "Topic", IsChecked = false });
                 ColumnList.Add(new CheckBoxModel() { Name = "ProjectDescriptionDE", IsChecked = false });

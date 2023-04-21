@@ -121,7 +121,7 @@ namespace ReferenceConfigurator.lucene
             }
             if (!(listItem["Thema"] is null))
             {
-                doc.Add(new TextField("Subject", listItem["Thema"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+                doc.Add(new TextField("ProjectDescriptionEN", listItem["Thema"].ToString(), Lucene.Net.Documents.Field.Store.YES));
             }
             else
             {
@@ -136,7 +136,9 @@ namespace ReferenceConfigurator.lucene
                 doc.Add(new TextField("Client", "", Lucene.Net.Documents.Field.Store.YES));
             }
             if (!(listItem["Topic_x002f_Product"] is null)) {
-                doc.Add(new TextField("Topic", listItem["Topic_x002f_Product"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+                string[] tmp = (string[])listItem["Topic_x002f_Product"];
+                string topics = String.Join(", ", tmp);
+                doc.Add(new TextField("Topic", topics, Lucene.Net.Documents.Field.Store.YES));
             } else {
                 doc.Add(new TextField("Client", "", Lucene.Net.Documents.Field.Store.YES));
             }
@@ -179,7 +181,7 @@ namespace ReferenceConfigurator.lucene
                 Data = doc.Get("Data"),
                 Branch = doc.Get("Branch"),
                 Team = doc.Get("Team"),
-                Subject = doc.Get("Subject"),
+                ProjectDescriptionEN = doc.Get("ProjectDescriptionEN"),
                 Client = doc.Get("Client"),
                 Topic = doc.Get("Topic"),
                 ProjectDescriptionDE = doc.Get("ProjectDescriptionDE"),
@@ -192,7 +194,7 @@ namespace ReferenceConfigurator.lucene
             List<ReferenceModel> _referenceModelList = new List<ReferenceModel>();
             MultiFieldQueryParser queryParser = new MultiFieldQueryParser(
                 AppLuceneVersion,
-                new String[] { "ProjectID", "Partner", "ProjectName", "Branch", "Team","Subject","Client","Topic","ProjectDescriptionDE" },
+                new String[] { "ProjectID", "Partner", "ProjectName", "Branch", "Team","Subject","Client","Topic","ProjectDescriptionDE", "ProjectDescriptionEN" },
                 new StandardAnalyzer(AppLuceneVersion));
 
             Query q = queryParser.Parse(search);

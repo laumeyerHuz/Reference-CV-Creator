@@ -91,8 +91,8 @@
                 <DataGridTextColumn 
                     Width="1*" 
                     Visibility="{Binding Data.ColumnList[8].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
-                    Binding="{Binding Subject}" 
-                    Header="Subject"/>
+                    Binding="{Binding ProjectDescriptionEN}" 
+                    Header="ProjectDescriptionEN"/>
                 <DataGridTextColumn 
                     Width="1*" 
                     Visibility="{Binding Data.ColumnList[9].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 

@@ -32,6 +32,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -40,15 +41,25 @@
             hc:InfoElement.TitlePlacement="Left" 
             hc:InfoElement.Title="Selected Layout:" 
             IsReadOnly="True"
+            Grid.Row="0"
             Margin="5"
             Text="{Binding SelectedLayout}"
             VerticalAlignment="Center"/>
+        <ComboBox 
+            ItemsSource="{Binding LanguageList}" 
+            hc:InfoElement.TitlePlacement="Left" 
+            hc:InfoElement.Title="Select Description Language:" 
+            Style="{StaticResource ComboBoxExtend}"
+            Grid.Row="1"
+            Margin="5,0,5,0"
+            SelectedValue="{Binding SelectedLanguage}"
+            />
         <DataGrid HeadersVisibility="All" 
                   RowHeaderWidth="60" 
                   AutoGenerateColumns="False" 
                   ItemsSource="{Binding SelectedReferences}"
                   Background="Transparent"
-                  Grid.Row="1"
+                  Grid.Row="2"
                   IsReadOnly="True"
                   Margin="5"
                   BorderThickness="0"
@@ -98,8 +109,8 @@
                 <DataGridTextColumn 
                     Width="1*" 
                     Visibility="{Binding Data.ColumnList[8].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
-                    Binding="{Binding Subject}" 
-                    Header="Subject"/>
+                    Binding="{Binding ProjectDescriptionEN}" 
+                    Header="ProjectDescriptionEN"/>
                 <DataGridTextColumn 
                     Width="1*" 
                     Visibility="{Binding Data.ColumnList[9].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
@@ -136,7 +147,7 @@
                 </hc:EventTrigger>
             </hc:Interaction.Triggers>
         </ListView>-->
-        <Button Grid.Row="2" 
+        <Button Grid.Row="4" 
                 Style="{StaticResource ButtonPrimary}" 
                 Content="Create Slide" 
                 Command="{Binding CreateSlideCommand}"

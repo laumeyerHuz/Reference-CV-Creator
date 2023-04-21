@@ -41,6 +41,22 @@ namespace ReferenceConfigurator.views {
             }
         }
 
+        private ObservableCollection<string> _languageList;
+
+        public ObservableCollection<string> LanguageList {
+            get => _languageList;
+            set {
+                SetProperty(ref _languageList, value);
+            }
+        }
+
+        private string _selectedLanguage;
+
+        public string SelectedLanguage {
+            get => _selectedLanguage;
+            set => SetProperty(ref _selectedLanguage, value);
+        }
+
         public SelectedReferencesViewModel(PopUpViewModel parent) {
             this.parent = parent;
 
@@ -51,9 +67,14 @@ namespace ReferenceConfigurator.views {
             SelectedReferences = _selectedReferences;
             _columnList = new ObservableCollection<CheckBoxModel>();
             ColumnList = _columnList;
+            _languageList = new ObservableCollection<string>();
+            LanguageList = _languageList;
+            LanguageList.Add("DE");
+            LanguageList.Add("EN");
 
 
             SelectedLayout = "No Layout Selected";
+            SelectedLanguage = "EN";
         }
 
         public override void addReference(ReferenceModel reference) {

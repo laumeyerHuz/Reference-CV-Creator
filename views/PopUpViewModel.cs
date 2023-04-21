@@ -34,7 +34,7 @@ namespace ReferenceConfigurator.views {
 
         private readonly LuceneInterface _luceneInterface;
 
-        private readonly LanguageSelectionViewModel Language;
+        private readonly StartViewModel StartViewModel;
         private readonly SearchViewModel Search;
         private readonly LayoutViewModel Layout;
         private readonly SelectedReferencesViewModel References;
@@ -50,7 +50,7 @@ namespace ReferenceConfigurator.views {
 
 
             //Init Views
-            Language = new LanguageSelectionViewModel();
+            StartViewModel = new StartViewModel();
             Search = new SearchViewModel(this, _luceneInterface);
             Layout = new LayoutViewModel(this);
             References = new SelectedReferencesViewModel(this);
@@ -58,8 +58,8 @@ namespace ReferenceConfigurator.views {
             SelectedReferencesConfiguration = new SelectedReferencesConfigurationViewModel(References);
 
             //Starting Views
-            _mainContentViewModel = Language;
-            MainContentViewModel = Language;
+            _mainContentViewModel = StartViewModel;
+            MainContentViewModel = StartViewModel;
             _selectedContentViewModel = References;
             SelectedContentViewModel = References;
 
@@ -71,12 +71,11 @@ namespace ReferenceConfigurator.views {
 
         private void SelectItem(string? view) {
             MainContentViewModel = view switch {
-                "Language" => Language,
                 "Search" => Search,
                 "Layout" => Layout,
                 "Search Configuration" => SearchConfiguration,
                 "Selected References Configuration" => SelectedReferencesConfiguration,
-                _ => Language,
+                _ => StartViewModel,
             };
         }
 

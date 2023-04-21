@@ -14,7 +14,7 @@ namespace ReferenceConfigurator.models {
         public string Data { get; set; }
         public string Branch { get; set; }
         public string Team { get; set; }
-        public string Subject { get; set; }
+        public string ProjectDescriptionEN { get; set; }
         public string Client { get; set; }
         public string Topic { get; set; }
         public string ProjectDescriptionDE { get; set; }
