@@ -117,13 +117,17 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
             loadLogos();
             List<Shape> tmp = new List<Shape>();
             //foreach(Shape s in slide.Shapes) {
-            for (int i = slide.Shapes.Count;i>=1;i--) {
+            for (int i = slide.Shapes.Count; i >= 1; i--) {
                 Shape s = slide.Shapes[i];
-                if (s.Name.Contains("TextBox")) {
+                System.Diagnostics.Debug.WriteLine(s.Name);
+                if (s.Name.Contains("TextBox") || s.Name.Contains("Textplatzhalter")) {
                     string placeholder = s.TextFrame.TextRange.Text;
                     Regex rgx = new Regex("[^a-zA-Z0-9 -]");
                     placeholder = rgx.Replace(placeholder, "");
                     string[] split = placeholder.Split(' ');
+                    if (split[1].ToInt32() >_referenceModels.Count) {
+                        continue;
+                    }
                     switch (split[0]) {
                         case "Logo":
                             if (_referenceModels[split[1].ToInt32()-1].Logo != null) {
