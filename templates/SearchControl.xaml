@@ -43,7 +43,9 @@
                   ItemsSource="{Binding SearchResult}"
                   Background="Transparent"
                   Grid.Row="2"
-                  IsReadOnly="True">
+                  IsReadOnly="True"
+                  Margin="5"
+                  >
             <DataGrid.Columns>
                 <DataGridTextColumn 
                     Width="Auto" 
