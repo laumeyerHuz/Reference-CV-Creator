@@ -127,7 +127,9 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                     switch (split[0]) {
                         case "Logo":
                             if (_referenceModels[split[1].ToInt32()-1].Logo != null) {
-                                slide.Shapes.AddPicture(_referenceModels[split[1].ToInt32()-1].Logo, msoFalse, msoTrue, s.Left, s.Top, s.Width, s.Height);
+                                System.Drawing.Image img = System.Drawing.Image.FromFile(_referenceModels[split[1].ToInt32()-1].Logo);
+                                float [] sizes = resizeImage(s.Width, s.Height, img.Width, img.Height, s.Left, s.Top);
+                                slide.Shapes.AddPicture(_referenceModels[split[1].ToInt32()-1].Logo, msoFalse, msoTrue, sizes[0], sizes[1], sizes[2], sizes[3]);
                                 s.Delete();
                             }
                             break;
@@ -138,6 +140,40 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                     }
                 }
             }
+        }
+
+        private float[] resizeImage(float widthPowerPoint, float heightPowerPoint,int widthImage, int heightImage, float x, float y) {
+            int original_width = widthImage;
+            int original_height = heightImage;
+            int bound_width = (int)widthPowerPoint;
+            int bound_height = (int) heightPowerPoint;
+            int new_width = original_width;
+            int new_height = original_height;
+            int middleX = (int)(x+ (widthPowerPoint/2));
+            int middleY = (int)(y+ (heightPowerPoint/2));
+            int newX = (int)x;
+            int newY = (int)y;
+
+            // first check if we need to scale width
+            if (original_width > bound_width) {
+                //scale width to fit
+                new_width = bound_width;
+                //scale height to maintain aspect ratio
+                new_height = (new_width * original_height) / original_width;
+            }
+
+            // then check if we need to scale even with the new height
+            if (new_height > bound_height) {
+                //scale height to fit instead
+                new_height = bound_height;
+                //scale width to maintain aspect ratio
+                new_width = (new_height * original_width) / original_height;
+            }
+            
+            newX = middleX - (new_width/2);
+            newY = middleY - (new_height/2);
+
+            return new float[] { newX, newY, new_width, new_height };
         }
 
         private void loadLogos() {
