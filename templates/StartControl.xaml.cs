@@ -15,10 +15,10 @@ using System.Windows.Shapes;
 
 namespace ReferenceConfigurator.templates {
     /// <summary>
-    /// Interaction logic for LanguageSelectionControl.xaml
+    /// Interaction logic for StartControl.xaml
     /// </summary>
-    public partial class LanguageSelectionControl : UserControl {
-        public LanguageSelectionControl() {
+    public partial class StartControl : UserControl {
+        public StartControl() {
             InitializeComponent();
         }
     }

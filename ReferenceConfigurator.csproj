@@ -633,9 +633,6 @@
     <Compile Include="Propterties\DesignTimeResources.xaml.cs">
       <DependentUpon>DesignTimeResources.xaml</DependentUpon>
     </Compile>
-    <Compile Include="templates\LanguageSelectionControl.xaml.cs">
-      <DependentUpon>LanguageSelectionControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="templates\LayoutControl.xaml.cs">
       <DependentUpon>LayoutControl.xaml</DependentUpon>
     </Compile>
@@ -661,10 +658,12 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="templates\StartControl.xaml.cs">
+      <DependentUpon>StartControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="utils\ImageConverter.cs" />
     <Compile Include="utils\RatioConverter.cs" />
     <Compile Include="utils\Utils.cs" />
-    <Compile Include="views\LanguageSelectionViewModel.cs" />
     <Compile Include="views\LayoutViewModel.cs" />
     <Compile Include="views\MainContentViewModel.cs" />
     <Compile Include="views\PopUpViewModel.cs" />
@@ -673,6 +672,7 @@
     <Compile Include="views\SelectedReferencesConfigurationViewModel.cs" />
     <Compile Include="views\SelectedReferencesViewModel.cs" />
     <Compile Include="views\SearchConfigurationViewModel.cs" />
+    <Compile Include="views\StartViewModel.cs" />
     <Compile Include="views\utils\BindingProxy.cs" />
     <Compile Include="views\ViewModelBase.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -732,10 +732,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="templates\LanguageSelectionControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="templates\LayoutControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -761,6 +757,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="popUp\PopUpControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="templates\StartControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

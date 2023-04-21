@@ -27,11 +27,6 @@
             <hc:SideMenuItem.Icon>
                 <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Reference.png" Width="34" Height="34"/>
             </hc:SideMenuItem.Icon>
-            <hc:SideMenuItem Header="Language" Command="{Binding SelectItemCommand}" CommandParameter="{Binding Header,RelativeSource={RelativeSource Self}}">
-                <hc:SideMenuItem.Icon>
-                    <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Language.png" Width="26" Height="26"/>
-                </hc:SideMenuItem.Icon>
-            </hc:SideMenuItem>
             <hc:SideMenuItem Header="Layout" Command="{Binding SelectItemCommand}" CommandParameter="{Binding Header,RelativeSource={RelativeSource Self}}">
                 <hc:SideMenuItem.Icon>
                     <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Layout.png" Width="26" Height="26"/>
