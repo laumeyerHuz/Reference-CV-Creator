@@ -22,7 +22,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="35"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -34,6 +34,7 @@
                       hc:InfoElement.Placeholder="Please enter search term"
                       hc:InfoElement.Title="General Search"
                       hc:InfoElement.TitlePlacement="Left"
+                      Margin="10,0,5,0"
                       Style="{StaticResource SearchBarExtendBaseStyle}"
                       Grid.Row="0"
                       />
