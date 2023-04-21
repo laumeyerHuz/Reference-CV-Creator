@@ -628,7 +628,6 @@
     </Compile>
     <Compile Include="models\CheckBoxModel.cs" />
     <Compile Include="models\LayoutModel.cs" />
-    <Compile Include="models\SearchModel.cs" />
     <Compile Include="models\ReferenceModel.cs" />
     <Compile Include="powerpointSlideCreator\PowerpointSlideCreator.cs" />
     <Compile Include="Propterties\DesignTimeResources.xaml.cs">
@@ -645,6 +644,9 @@
     </Compile>
     <Compile Include="templates\SelectedReferencesControl.xaml.cs">
       <DependentUpon>SelectedReferencesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="templates\SearchConfigurationControl.xaml.cs">
+      <DependentUpon>SearchConfigurationControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="templates\SideBarControl.xaml.cs">
       <DependentUpon>SideBarControl.xaml</DependentUpon>
@@ -666,6 +668,7 @@
     <Compile Include="views\SearchViewModel.cs" />
     <Compile Include="views\SelectedContentViewModel.cs" />
     <Compile Include="views\SelectedReferencesViewModel.cs" />
+    <Compile Include="views\SearchConfigurationViewModel.cs" />
     <Compile Include="views\utils\BindingProxy.cs" />
     <Compile Include="views\ViewModelBase.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -741,6 +744,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="templates\SearchConfigurationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="templates\SideBarControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -771,6 +778,9 @@
     <Resource Include="icons\Language.png" />
     <Resource Include="icons\Search.png" />
     <Resource Include="icons\Layout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\Settings.png" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

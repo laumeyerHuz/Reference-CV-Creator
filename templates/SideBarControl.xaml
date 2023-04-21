@@ -20,7 +20,7 @@
     <hc:SideMenu BorderThickness="0" Width="150" Margin="5">
         <hc:Interaction.Triggers>
             <hc:EventTrigger EventName="SelectionChanged">
-                <hc:EventToCommand Command="{Binding SwitchItemCmd}" PassEventArgsToCommand="True" />
+                <hc:EventToCommand Command="{Binding SwitchItemCommand}" PassEventArgsToCommand="True" />
             </hc:EventTrigger>
         </hc:Interaction.Triggers>
         <hc:SideMenuItem Header="Reference">
@@ -70,6 +70,16 @@
             <hc:SideMenuItem Header="Queries">
                 <hc:SideMenuItem.Icon>
                     <TextBlock Text="&#xf2b8;"/>
+                </hc:SideMenuItem.Icon>
+            </hc:SideMenuItem>
+        </hc:SideMenuItem>
+        <hc:SideMenuItem Header="Settings">
+            <hc:SideMenuItem.Icon>
+                <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Settings.png" Width="34" Height="34"/>
+            </hc:SideMenuItem.Icon>
+            <hc:SideMenuItem Header="Search Configuration" Command="{Binding SelectItemCommand}" CommandParameter="{Binding Header,RelativeSource={RelativeSource Self}}">
+                <hc:SideMenuItem.Icon>
+                    <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Search.png" Width="26" Height="26"/>
                 </hc:SideMenuItem.Icon>
             </hc:SideMenuItem>
         </hc:SideMenuItem>

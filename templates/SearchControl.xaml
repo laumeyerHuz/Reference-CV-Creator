@@ -23,7 +23,6 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
-            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -38,16 +37,6 @@
                       Style="{StaticResource SearchBarExtendBaseStyle}"
                       Grid.Row="0"
                       />
-        <hc:CheckComboBox Grid.Row="1"
-                          hc:InfoElement.TitleWidth="120"
-                          ItemsSource="{Binding ColumnList}" 
-                          hc:InfoElement.TitlePlacement="Left" 
-                          hc:InfoElement.Placeholder="Please select Columns to show from the drop down list" 
-                          hc:InfoElement.Title="Select Columns" 
-                          Style="{StaticResource CheckComboBoxPlus}" 
-                          Margin="0,8,0,0"
-                          DisplayMemberPath="Name" 
-                          SelectedValuePath="IsChecked"/>
         <DataGrid HeadersVisibility="Column" 
                   RowHeaderWidth="60" 
                   AutoGenerateColumns="False" 
@@ -55,25 +44,67 @@
                   Background="Transparent"
                   Grid.Row="2"
                   IsReadOnly="True">
-            <!--<DataGrid.RowHeaderTemplate>
-                <DataTemplate>
-                    <CheckBox IsChecked="{Binding IsSelected,RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
-                </DataTemplate>
-            </DataGrid.RowHeaderTemplate>-->
             <DataGrid.Columns>
                 <DataGridTextColumn 
-                    Width="1*" 
+                    Width="Auto" 
                     Visibility="{Binding Data.ColumnList[0].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                     Binding="{Binding ProjectId}" 
                     Header="ProjectID"/>
-                <DataGridTextColumn Width="1*" Visibility="Visible" Binding="{Binding ProjectName}" Header="Project Name"/>
-                <DataGridTextColumn Width="1*" Visibility="Hidden" Binding="{Binding Partner}" Header="Partner"/>
-                <DataGridTextColumn Width="1*" Visibility="Hidden" Binding="{Binding Branch}" Header="Branch"/>
-                <DataGridTextColumn Width="1*" Visibility="Hidden" Binding="{Binding Team}" Header="Team"/>
-                <DataGridTextColumn Width="1*" Visibility="Visible" Binding="{Binding Client}" Header="Client"/>
-                <DataGridTextColumn Width="1*" Visibility="Hidden" Binding="{Binding ProjectDescriptionDE}" Header="ProjectDescriptionDE"/>
-                <DataGridTextColumn Width="1*" Visibility="Hidden" Binding="{Binding Topic}" Header="Topic"/>
-                <DataGridTextColumn Width="1*" Visibility="Hidden" Binding="{Binding Subject}" Header="Subject"/>
+                <DataGridTextColumn 
+                    Width="1*" 
+                    Visibility="{Binding Data.ColumnList[1].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
+                    Binding="{Binding Partner}" 
+                    Header="Partner"/>
+                <DataGridTextColumn 
+                    Width="1*"
+                    Visibility="{Binding Data.ColumnList[2].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
+                    Binding="{Binding ProjectName}" 
+                    Header="Project Name"/>
+                <DataGridTextColumn 
+                    Width="1*" 
+                    Visibility="{Binding Data.ColumnList[3].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
+                    Binding="{Binding Start}" 
+                    Header="Start"/>
+                <DataGridTextColumn 
+                    Width="1*" 
+                    Visibility="{Binding Data.ColumnList[4].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
+                    Binding="{Binding End}" 
+                    Header="End"/>
+                <DataGridTextColumn 
+                    Width="1*" 
+                    Visibility="{Binding Data.ColumnList[5].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
+                    Binding="{Binding Data}" 
+                    Header="Data"/>
+                <DataGridTextColumn 
+                    Width="1*" 
+                    Visibility="{Binding Data.ColumnList[6].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
+                    Binding="{Binding Branch}" 
+                    Header="Branch"/>
+                <DataGridTextColumn 
+                    Width="1*" 
+                    Visibility="{Binding Data.ColumnList[7].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
+                    Binding="{Binding Team}" 
+                    Header="Team"/>
+                <DataGridTextColumn 
+                    Width="1*" 
+                    Visibility="{Binding Data.ColumnList[8].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
+                    Binding="{Binding Subject}" 
+                    Header="Subject"/>
+                <DataGridTextColumn 
+                    Width="1*" 
+                    Visibility="{Binding Data.ColumnList[9].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
+                    Binding="{Binding Client}" 
+                    Header="Client"/>
+                <DataGridTextColumn 
+                    Width="1*"
+                    Visibility="{Binding Data.ColumnList[10].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
+                    Binding="{Binding Topic}" 
+                    Header="Topic"/>
+                <DataGridTextColumn 
+                    Width="1*" 
+                    Visibility="{Binding Data.ColumnList[11].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
+                    Binding="{Binding ProjectDescritpionDE}" 
+                    Header="ProjectDescriptionDE"/>
             </DataGrid.Columns>
             <hc:Interaction.Triggers>
                 <hc:EventTrigger EventName="SelectionChanged">
@@ -82,35 +113,4 @@
             </hc:Interaction.Triggers>
         </DataGrid>
     </Grid>
-
-
 </UserControl>
-    
-    
-<!--<ListView ItemsSource="{Binding SearchResult}" 
-                  Style="{StaticResource ListViewBaseStyle}" 
-                  Grid.Row="2" 
-                  Background="Transparent"
-                  Margin="0,8,0,0">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="100" Header="ProjectId" DisplayMemberBinding="{Binding ProjectId}"/>
-                    <GridViewColumn Width="200" Header="ProjectName" DisplayMemberBinding="{Binding ProjectName}"/>
-                    <GridViewColumn Width="250" Header="Branch" DisplayMemberBinding="{Binding Branch}"/>
-                </GridView>
-            </ListView.View>
-            <hc:Interaction.Triggers>
-            <hc:EventTrigger EventName="SelectionChanged">
-                <hc:EventToCommand Command="{Binding SelectionChangedCommand}" PassEventArgsToCommand="True" />
-            </hc:EventTrigger>
-        </hc:Interaction.Triggers>
-        </ListView>-->
-
-<!--<hc:PropertyGrid Width="600" SelectedObject="{Binding SearchModel}">
-        <hc:Interaction.Triggers>
-            <hc:EventTrigger EventName="SelectedObjectChanged">
-                <hc:EventToCommand Command="{Binding SearchChangedCommand}" PassEventArgsToCommand="True" />
-            </hc:EventTrigger>
-        </hc:Interaction.Triggers>
-    </hc:PropertyGrid>-->
-

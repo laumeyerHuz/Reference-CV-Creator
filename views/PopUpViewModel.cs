@@ -7,6 +7,8 @@ using System.Collections.ObjectModel;
 using ReferenceConfigurator.models;
 using ReferenceConfigurator.lucene;
 using ReferenceConfigurator.powerpointSlideCreator;
+using ReferenceConfigurator.Properties;
+using AngleSharp.Css.Dom;
 
 namespace ReferenceConfigurator.views {
     public class PopUpViewModel : ViewModelBase {
@@ -36,12 +38,13 @@ namespace ReferenceConfigurator.views {
         private readonly SearchViewModel Search;
         private readonly LayoutViewModel Layout;
         private readonly SelectedReferencesViewModel References;
+        private readonly SearchConfigurationViewModel SearchConfiguration;
 
 
         public PopUpViewModel() {
             //init Commands
             SwitchItemCommand = new RelayCommand(SwitchItemCmd);
-            SelectItemCommand = new RelayCommand<String>(SelectItem);
+            SelectItemCommand = new RelayCommand<string>(SelectItem);
             _luceneInterface = new LuceneInterface();
 
 
@@ -50,12 +53,14 @@ namespace ReferenceConfigurator.views {
             Search = new SearchViewModel(this, _luceneInterface);
             Layout = new LayoutViewModel();
             References = new SelectedReferencesViewModel(this);
+            SearchConfiguration = new SearchConfigurationViewModel(Search);
 
             //Starting Views
             _mainContentViewModel = Language;
             MainContentViewModel = Language;
             _selectedContentViewModel = References;
             SelectedContentViewModel = References;
+            
         }
 
         private void SwitchItemCmd() {
@@ -66,6 +71,7 @@ namespace ReferenceConfigurator.views {
                 "Language" => Language,
                 "Search" => Search,
                 "Layout" => Layout,
+                "Search Configuration" => SearchConfiguration,
                 _ => Language,
             };
         }
