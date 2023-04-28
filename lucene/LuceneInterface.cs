@@ -196,7 +196,7 @@ namespace ReferenceConfigurator.lucene
                 AppLuceneVersion,
                 new String[] { "ProjectID", "Partner", "ProjectName", "Branch", "Team","Subject","Client","Topic","ProjectDescriptionDE", "ProjectDescriptionEN" },
                 new StandardAnalyzer(AppLuceneVersion));
-
+            search = search + "~0.7";
             Query q = queryParser.Parse(search);
             TopDocs _results = _searcher.Search(q, _reader.NumDocs);
             for(int i =0; i< _results.TotalHits; i++) {
