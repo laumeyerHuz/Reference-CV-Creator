@@ -94,6 +94,7 @@ namespace ReferenceConfigurator {
                             FileCollection fileCol = f2.Files;
 
                             foreach (Microsoft.SharePoint.Client.File file in fileCol) {
+                                name = name.Replace("/", "_");
                                 if (name == file.Name.Split('.')[0]) {
                                     var fileName = Path.Combine(basePath, "ReferenceConfigurator/CompanyLogo", (string)file.Name);
                                     var localstream = System.IO.File.Open(fileName, System.IO.FileMode.Create);
