@@ -8,15 +8,17 @@ using System.Linq;
 using System.Windows.Controls;
 using System.Collections.Generic;
 using HandyControl.Controls;
+using System.Windows.Data;
+using System.ComponentModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace ReferenceConfigurator.views {
     public class SelectedReferencesViewModel : SelectedContentViewModel {
         PopUpViewModel parent;
 
-        private ObservableCollection<ReferenceModel> _selectedReferences;
+        private ICollectionView _selectedReferences;
 
-        public ObservableCollection<ReferenceModel> SelectedReferences {
+        public ICollectionView SelectedReferences {
             get => _selectedReferences;
             set => SetProperty(ref _selectedReferences, value);
         }
@@ -57,13 +59,15 @@ namespace ReferenceConfigurator.views {
             set => SetProperty(ref _selectedLanguage, value);
         }
 
+        private List<ReferenceModel> _references;
+
         public SelectedReferencesViewModel(PopUpViewModel parent) {
             this.parent = parent;
 
-            SelectionChangedCommand = new RelayCommand<EventArgs>(SelectionChanged);
+            SelectionChangedCommand = new RelayCommand<ReferenceModel>(SelectionChanged);
             CreateSlideCommand = new RelayCommand(createSlide);
-
-            _selectedReferences = new ObservableCollection<ReferenceModel>();
+            _references = new List<ReferenceModel>();
+            _selectedReferences = CollectionViewSource.GetDefaultView(_references);
             SelectedReferences = _selectedReferences;
             _columnList = new ObservableCollection<CheckBoxModel>();
             ColumnList = _columnList;
@@ -78,21 +82,24 @@ namespace ReferenceConfigurator.views {
         }
 
         public override void addReference(ReferenceModel reference) {
-            if (SelectedReferences.Any(p => p.ProjectId == reference.ProjectId)) {
+
+            if (_references.Any(p => p.ProjectId == reference.ProjectId)) {
                 Growl.Error("Reference already selected");
                 return;
             }
-                SelectedReferences.Add(reference);
+                _references.Add(reference);
+            SelectedReferences = CollectionViewSource.GetDefaultView(_references);
+            SelectedReferences.Refresh();
         }
 
         public override void removeReference(ReferenceModel reference) {
-            ObservableCollection<ReferenceModel> SelectedReferencesCopy = new ObservableCollection<ReferenceModel>(SelectedReferences);
-            SelectedReferencesCopy.Remove(reference);
-            SelectedReferences = SelectedReferencesCopy;
+            _references.Remove(reference);
+            SelectedReferences = CollectionViewSource.GetDefaultView(_references);
+            SelectedReferences.Refresh();
         }
 
         private void createSlide() {
-            if(SelectedReferences.Count < 0) {
+            if(_references.Count < 0) {
                 Growl.Error("No reference slected to be added");
             }
             parent.createSlide();
@@ -100,14 +107,13 @@ namespace ReferenceConfigurator.views {
         }
 
         public override List<ReferenceModel> getReferenceList() {
-            return SelectedReferences.ToList();
+            return _references;
         }
 
-        private void SelectionChanged(EventArgs args) {
-            SelectionChangedEventArgs selected = args as SelectionChangedEventArgs;
-            foreach (ReferenceModel model in selected.AddedItems) {
-                removeReference(model);
-            }           
+        private void SelectionChanged(ReferenceModel selected) {
+            if(selected != null) {
+                removeReference(selected);
+            }         
         }
 
     }

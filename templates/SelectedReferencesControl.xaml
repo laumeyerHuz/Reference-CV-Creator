@@ -64,7 +64,15 @@
                   Margin="5"
                   BorderThickness="0"
                   hc:DataGridAttach.ShowRowNumber="True"
+                  IsSynchronizedWithCurrentItem="True"
                   >
+            <DataGrid.InputBindings>
+                <MouseBinding
+                    MouseAction="LeftDoubleClick"
+                    Command="{Binding SelectionChangedCommand}"
+                    CommandParameter="{Binding SelectedReferences/}">
+                </MouseBinding>
+            </DataGrid.InputBindings>
             <DataGrid.Columns>
                 <DataGridTextColumn 
                     Width="Auto" 
@@ -127,26 +135,7 @@
                     Binding="{Binding ProjectDescritpionDE}" 
                     Header="ProjectDescriptionDE"/>
             </DataGrid.Columns>
-            <hc:Interaction.Triggers>
-                <hc:EventTrigger EventName="SelectionChanged">
-                    <hc:EventToCommand Command="{Binding SelectionChangedCommand}" PassEventArgsToCommand="True" />
-                </hc:EventTrigger>
-            </hc:Interaction.Triggers>
         </DataGrid>
-        <!--<ListView Grid.Row="1" ItemsSource="{Binding SelectedReferences}" Style="{StaticResource ListViewBaseStyle}" Background="Transparent" BorderThickness="0">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="Auto" Header="ProjectId" DisplayMemberBinding="{Binding ProjectId}"/>
-                    <GridViewColumn Width="Auto" Header="ProjectName" DisplayMemberBinding="{Binding ProjectName}"/>
-                    <GridViewColumn Width="Auto" Header="Branch" DisplayMemberBinding="{Binding Branch}"/>
-                </GridView>
-            </ListView.View>
-            <hc:Interaction.Triggers>
-                <hc:EventTrigger EventName="SelectionChanged">
-                    <hc:EventToCommand Command="{Binding SelectionChangedCommand}" PassEventArgsToCommand="True" />
-                </hc:EventTrigger>
-            </hc:Interaction.Triggers>
-        </ListView>-->
         <Button Grid.Row="4" 
                 Style="{StaticResource ButtonPrimary}" 
                 Content="Create Slide" 

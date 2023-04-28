@@ -38,7 +38,8 @@
                       Style="{StaticResource SearchBarExtendBaseStyle}"
                       Grid.Row="0"
                       />
-        <DataGrid HeadersVisibility="Column" 
+        <DataGrid x:Name="SearchResultsGrid"
+                  HeadersVisibility="Column" 
                   RowHeaderWidth="60" 
                   AutoGenerateColumns="False" 
                   ItemsSource="{Binding SearchResult}"
@@ -46,7 +47,15 @@
                   Grid.Row="1"
                   IsReadOnly="True"
                   Margin="5"
+                  IsSynchronizedWithCurrentItem="True"
                   >
+            <DataGrid.InputBindings>
+                <MouseBinding
+                    MouseAction="LeftDoubleClick"
+                    Command="{Binding SelectionChangedCommand}"
+                    CommandParameter="{Binding SearchResult/}">
+                </MouseBinding>
+            </DataGrid.InputBindings>
             <DataGrid.Columns>
                 <DataGridTextColumn 
                     Width="Auto" 
@@ -109,11 +118,6 @@
                     Binding="{Binding ProjectDescritpionDE}" 
                     Header="ProjectDescriptionDE"/>
             </DataGrid.Columns>
-            <hc:Interaction.Triggers>
-                <hc:EventTrigger EventName="SelectionChanged">
-                    <hc:EventToCommand Command="{Binding SelectionChangedCommand}" PassEventArgsToCommand="True" />
-                </hc:EventTrigger>
-            </hc:Interaction.Triggers>
         </DataGrid>
     </Grid>
 </UserControl>
