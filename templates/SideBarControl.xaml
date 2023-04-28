@@ -15,88 +15,96 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    
 
-    <hc:SideMenu BorderThickness="0" Width="170" Margin="5">
-        <hc:Interaction.Triggers>
-            <hc:EventTrigger EventName="SelectionChanged">
-                <hc:EventToCommand Command="{Binding SwitchItemCommand}" PassEventArgsToCommand="True" />
-            </hc:EventTrigger>
-        </hc:Interaction.Triggers>
-        <hc:SideMenuItem Header="Reference">
-            <hc:SideMenuItem.Icon>
-                <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Reference.png" Width="34" Height="34"/>
-            </hc:SideMenuItem.Icon>
-            <hc:SideMenuItem Header="Layout" Command="{Binding SelectItemCommand}" CommandParameter="{Binding Header,RelativeSource={RelativeSource Self}}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <hc:SideMenu BorderThickness="0" Width="170" Margin="5" Grid.Row="0">
+            <hc:Interaction.Triggers>
+                <hc:EventTrigger EventName="SelectionChanged">
+                    <hc:EventToCommand Command="{Binding SwitchItemCommand}" PassEventArgsToCommand="True" />
+                </hc:EventTrigger>
+            </hc:Interaction.Triggers>
+            <hc:SideMenuItem Header="Reference">
                 <hc:SideMenuItem.Icon>
-                    <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Layout.png" Width="26" Height="26"/>
+                    <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Reference.png" Width="34" Height="34"/>
                 </hc:SideMenuItem.Icon>
+                <hc:SideMenuItem Header="Layout" Command="{Binding SelectItemCommand}" CommandParameter="{Binding Header,RelativeSource={RelativeSource Self}}">
+                    <hc:SideMenuItem.Icon>
+                        <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Layout.png" Width="26" Height="26"/>
+                    </hc:SideMenuItem.Icon>
+                </hc:SideMenuItem>
+                <hc:SideMenuItem Header="Search" Command="{Binding SelectItemCommand}" CommandParameter="{Binding Header,RelativeSource={RelativeSource Self}}">
+                    <hc:SideMenuItem.Icon>
+                        <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Search.png" Width="26" Height="26"/>
+                    </hc:SideMenuItem.Icon>
+                </hc:SideMenuItem>
             </hc:SideMenuItem>
-            <hc:SideMenuItem Header="Search" Command="{Binding SelectItemCommand}" CommandParameter="{Binding Header,RelativeSource={RelativeSource Self}}">
+            <hc:SideMenuItem Header="Profile">
                 <hc:SideMenuItem.Icon>
-                    <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Search.png" Width="26" Height="26"/>
+                    <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Profile.png" Width="34" Height="34"/>
                 </hc:SideMenuItem.Icon>
+                <hc:SideMenuItem Header="Work Items">
+                    <hc:SideMenuItem.Icon>
+                        <TextBlock Text="&#xf314;"/>
+                    </hc:SideMenuItem.Icon>
+                </hc:SideMenuItem>
+                <hc:SideMenuItem Header="Boards">
+                    <hc:SideMenuItem.Icon>
+                        <TextBlock Text="&#xf444;"/>
+                    </hc:SideMenuItem.Icon>
+                </hc:SideMenuItem>
+                <hc:SideMenuItem Header="Backlogs">
+                    <hc:SideMenuItem.Icon>
+                        <TextBlock Text="&#xf6bf;"/>
+                    </hc:SideMenuItem.Icon>
+                </hc:SideMenuItem>
+                <hc:SideMenuItem Header="Sprints">
+                    <hc:SideMenuItem.Icon>
+                        <TextBlock Text="&#xf3b0;"/>
+                    </hc:SideMenuItem.Icon>
+                </hc:SideMenuItem>
+                <hc:SideMenuItem Header="Queries">
+                    <hc:SideMenuItem.Icon>
+                        <TextBlock Text="&#xf2b8;"/>
+                    </hc:SideMenuItem.Icon>
+                </hc:SideMenuItem>
             </hc:SideMenuItem>
-        </hc:SideMenuItem>
-        <hc:SideMenuItem Header="Profile">
-            <hc:SideMenuItem.Icon>
-                <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Profile.png" Width="34" Height="34"/>
-            </hc:SideMenuItem.Icon>
-            <hc:SideMenuItem Header="Work Items">
+            
+        </hc:SideMenu>
+        <hc:SideMenu BorderThickness="0" Width="170" Margin="5" Grid.Row="1">
+            <hc:SideMenuItem Header="Settings">
                 <hc:SideMenuItem.Icon>
-                    <TextBlock Text="&#xf314;"/>
+                    <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Settings.png" Width="34" Height="34"/>
                 </hc:SideMenuItem.Icon>
+                <hc:SideMenuItem Header="Search" Command="{Binding SelectItemCommand}" CommandParameter="Search Configuration">
+                    <hc:SideMenuItem.Icon>
+                        <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Search.png" Width="26" Height="26"/>
+                    </hc:SideMenuItem.Icon>
+                </hc:SideMenuItem>
+                <hc:SideMenuItem Header="Selected References" Command="{Binding SelectItemCommand}" CommandParameter="Selected References Configuration">
+                    <hc:SideMenuItem.Icon>
+                        <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Reference.png" Width="26" Height="26"/>
+                    </hc:SideMenuItem.Icon>
+                </hc:SideMenuItem>
             </hc:SideMenuItem>
-            <hc:SideMenuItem Header="Boards">
+            <hc:SideMenuItem Header="Tips">
                 <hc:SideMenuItem.Icon>
-                    <TextBlock Text="&#xf444;"/>
+                    <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Tips.png" Width="34" Height="34"/>
                 </hc:SideMenuItem.Icon>
+                <hc:SideMenuItem Header="Search" Command="{Binding SelectItemCommand}" CommandParameter="Search Configuration">
+                    <hc:SideMenuItem.Icon>
+                        <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Search.png" Width="26" Height="26"/>
+                    </hc:SideMenuItem.Icon>
+                </hc:SideMenuItem>
+                <hc:SideMenuItem Header="Selected References" Command="{Binding SelectItemCommand}" CommandParameter="Selected References Configuration">
+                    <hc:SideMenuItem.Icon>
+                        <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Reference.png" Width="26" Height="26"/>
+                    </hc:SideMenuItem.Icon>
+                </hc:SideMenuItem>
             </hc:SideMenuItem>
-            <hc:SideMenuItem Header="Backlogs">
-                <hc:SideMenuItem.Icon>
-                    <TextBlock Text="&#xf6bf;"/>
-                </hc:SideMenuItem.Icon>
-            </hc:SideMenuItem>
-            <hc:SideMenuItem Header="Sprints">
-                <hc:SideMenuItem.Icon>
-                    <TextBlock Text="&#xf3b0;"/>
-                </hc:SideMenuItem.Icon>
-            </hc:SideMenuItem>
-            <hc:SideMenuItem Header="Queries">
-                <hc:SideMenuItem.Icon>
-                    <TextBlock Text="&#xf2b8;"/>
-                </hc:SideMenuItem.Icon>
-            </hc:SideMenuItem>
-        </hc:SideMenuItem>
-        <hc:SideMenuItem Header="Settings">
-            <hc:SideMenuItem.Icon>
-                <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Settings.png" Width="34" Height="34"/>
-            </hc:SideMenuItem.Icon>
-            <hc:SideMenuItem Header="Search" Command="{Binding SelectItemCommand}" CommandParameter="Search Configuration">
-                <hc:SideMenuItem.Icon>
-                    <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Search.png" Width="26" Height="26"/>
-                </hc:SideMenuItem.Icon>
-            </hc:SideMenuItem>
-            <hc:SideMenuItem Header="Selected References" Command="{Binding SelectItemCommand}" CommandParameter="Selected References Configuration">
-                <hc:SideMenuItem.Icon>
-                    <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Reference.png" Width="26" Height="26"/>
-                </hc:SideMenuItem.Icon>
-            </hc:SideMenuItem>
-        </hc:SideMenuItem>
-        <hc:SideMenuItem Header="Tips">
-            <hc:SideMenuItem.Icon>
-                <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Tips.png" Width="34" Height="34"/>
-            </hc:SideMenuItem.Icon>
-            <hc:SideMenuItem Header="Search" Command="{Binding SelectItemCommand}" CommandParameter="Search Configuration">
-                <hc:SideMenuItem.Icon>
-                    <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Search.png" Width="26" Height="26"/>
-                </hc:SideMenuItem.Icon>
-            </hc:SideMenuItem>
-            <hc:SideMenuItem Header="Selected References" Command="{Binding SelectItemCommand}" CommandParameter="Selected References Configuration">
-                <hc:SideMenuItem.Icon>
-                    <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Reference.png" Width="26" Height="26"/>
-                </hc:SideMenuItem.Icon>
-            </hc:SideMenuItem>
-        </hc:SideMenuItem>
-    </hc:SideMenu>
+        </hc:SideMenu >
+    </Grid>
 </UserControl>
