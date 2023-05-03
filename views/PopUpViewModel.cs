@@ -83,6 +83,7 @@ namespace ReferenceConfigurator.views {
             PowerpointSlideCreator powerpointSlideCreator = new PowerpointSlideCreator();
             powerpointSlideCreator.addReferences(SelectedContentViewModel.getReferenceList());
             powerpointSlideCreator.addLayoutModel(Layout.Layouts[Layout._layoutIndex]);
+            powerpointSlideCreator.addLanguage(References.getSelectedLanguage());
             powerpointSlideCreator.createSlide();
         }
 

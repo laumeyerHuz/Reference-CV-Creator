@@ -10,6 +10,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows.Interop;
 using Office = Microsoft.Office.Core;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
@@ -91,35 +92,25 @@ namespace ReferenceConfigurator.utils
             DirectoryInfo d = new DirectoryInfo(filePath);
             System.IO.Directory.CreateDirectory(indexPath);
 
-            //if (Directory.Exists(indexPath)) { 
-            //    foreach (FileInfo file in d.GetFiles("*.pptx")) {
-            //        string imagePath = indexPath + Path.GetFileNameWithoutExtension(file.Name) + "_" + 1 + ".png";
-            //        layoutModels.Add(new LayoutModel(file.FullName, imagePath, Path.GetFileNameWithoutExtension(file.Name)));
-            //    }
-            //}
 
-
-            
             foreach (FileInfo file in d.GetFiles("*.pptx")) {
-                try {
-                    Application pptApplication = new Application();
-                    Presentation pptPresentation = pptApplication.Presentations
-                    .Open(file.FullName, MsoTriState.msoFalse, MsoTriState.msoFalse
-                    , MsoTriState.msoFalse);
+                string imagePath = indexPath + Path.GetFileNameWithoutExtension(file.Name) + ".png";
 
-                    
-
-                    for (int i = 0; i < pptPresentation.Slides.Count; i++) {
-                        string imagePath = indexPath + Path.GetFileNameWithoutExtension(file.Name) + "_"+ i+ ".png";
-                        pptPresentation.Slides[i+1].Export(imagePath, "png", 1920,1080);
+                if (File.Exists(imagePath)) {
+                    layoutModels.Add(new LayoutModel(file.FullName, imagePath, Path.GetFileNameWithoutExtension(file.Name)));
+                } else {
+                    try {
+                        Application pptApplication = new Application();
+                        Presentation pptPresentation = pptApplication.Presentations
+                        .Open(file.FullName, MsoTriState.msoFalse, MsoTriState.msoFalse
+                        , MsoTriState.msoFalse);
+                        pptPresentation.Slides[1].Export(imagePath, "png", 1920, 1080);
                         layoutModels.Add(new LayoutModel(file.FullName, imagePath, Path.GetFileNameWithoutExtension(file.Name)));
+                        pptPresentation.Close();
+
+                    } catch (Exception e) {
+                        System.Diagnostics.Debug.WriteLine(e.ToString());
                     }
-                    pptPresentation.Close();
-
-                    
-
-                } catch (Exception e) {
-                    System.Diagnostics.Debug.WriteLine(e.ToString());
                 }
             }
             return layoutModels;

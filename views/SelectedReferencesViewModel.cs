@@ -116,5 +116,9 @@ namespace ReferenceConfigurator.views {
             }         
         }
 
+        public string getSelectedLanguage() {
+            return SelectedLanguage;
+        }
+
     }
 }

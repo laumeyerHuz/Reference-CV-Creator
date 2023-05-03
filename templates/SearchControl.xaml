@@ -60,7 +60,8 @@
                 <DataGridTextColumn 
                     Width="Auto" 
                     Visibility="{Binding Data.ColumnList[0].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
-                    Binding="{Binding ProjectId}" 
+                    Binding="{Binding ProjectId}"
+                    SortDirection="Ascending"
                     Header="ProjectID"/>
                 <DataGridTextColumn 
                     Width="1*" 
