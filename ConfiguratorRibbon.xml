@@ -4,7 +4,7 @@
     <tabs>
 		<tab idMso="TabHome">
 		<group id="projectList" label="@Huz" autoScale="true">
-			<button id="openPopUp" label="Reference&#10;Creator" onAction="openPopUp" getImage="loadPopUpImage" size="large"/>
+			<button id="openPopUp" label="Reference&#10;CV" onAction="openPopUp" getImage="loadPopUpImage" size="large"/>
 		</group>
       </tab>
     </tabs>
