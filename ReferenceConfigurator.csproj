@@ -772,9 +772,6 @@
     <Resource Include="icons\question.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="icons\PopUp.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="icons\Profile.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -792,6 +789,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icons\Tips.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\PopUp.png" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
