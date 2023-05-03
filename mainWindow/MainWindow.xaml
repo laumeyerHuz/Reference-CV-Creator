@@ -10,7 +10,7 @@
              Height="{Binding Source={x:Static SystemParameters.MaximizedPrimaryScreenHeight}, Converter={utils:RatioConverter}, ConverterParameter='0.95' }" 
             Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={utils:RatioConverter}, ConverterParameter='0.99' }"      
               WindowStartupLocation="CenterScreen"
-            Title="ReferenceConfigurator"
+            Title="Reference &amp; CV Creator"
             mc:Ignorable="d">
     <Grid>
         <popup:PopUpControl/>
