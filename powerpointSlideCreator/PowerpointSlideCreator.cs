@@ -9,12 +9,14 @@ using ReferenceConfigurator.utils;
 using System.Windows.Forms;
 using static Microsoft.Office.Core.MsoTriState;
 using System.Text.RegularExpressions;
+using HandyControl.Controls;
 
 namespace ReferenceConfigurator.powerpointSlideCreator {
     public class PowerpointSlideCreator {
 
         private List<ReferenceModel> _referenceModels;
         private LayoutModel _layout;
+        private string _language;
 
         public PowerpointSlideCreator() {
         }
@@ -25,6 +27,10 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
 
         public void addLayoutModel(LayoutModel layoutModel) {
             this._layout = layoutModel;
+        }
+
+        public void addLanguage(string language) {
+            this._language = language;
         }
 
         public void createSlide() {
@@ -72,7 +78,7 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                     }
                     source.Close();
                 } catch (Exception) {
-                    MessageBox.Show("Error opening PowerPoint, corruption found inside the powerpoint file. " +
+                    System.Windows.Forms.MessageBox.Show("Error opening PowerPoint, corruption found inside the powerpoint file. " +
                                     Environment.NewLine + "The corrupted file has been deleted." + Environment.NewLine +
                                     "Please attempt to redownload file.",
                                     "Error Opening PowerPoint",
@@ -138,7 +144,13 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                             }
                             break;
                         case "Description":
-                            s.TextFrame.TextRange.Text = _referenceModels[split[1].ToInt32()-1].ProjectName;
+                            if(_language == "DE") {
+                                s.TextFrame.TextRange.Text = _referenceModels[split[1].ToInt32() - 1].ProjectDescriptionDE;
+                            } else if(_language == "EN") {
+                                s.TextFrame.TextRange.Text = _referenceModels[split[1].ToInt32() - 1].ProjectDescriptionEN;
+                            } else {
+                                Growl.Info("No language selected");
+                            }
                             break;
                         default: break;
                     }
