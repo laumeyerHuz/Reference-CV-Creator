@@ -4,7 +4,7 @@ using ReferenceConfigurator.Properties;
 using System;
 using System.ComponentModel;
 using System.IO;
-using System.Net;
+using PnP.Framework;
 using System.Security;
 using System.Threading;
 using System.Windows.Navigation;
@@ -13,7 +13,8 @@ namespace ReferenceConfigurator {
     class SharepointConnection {
 
         private static ClientContext createClientContext(string url) {
-            ClientContext ctx = Weblogin.GetWebLoginClientContext(url,false);
+            var authManager = new AuthenticationManager("<Azure AD client id>", "c:\\temp\\mycert.pfx", "pfx pwd", "oublkg.sharepoint.com");
+            ClientContext ctx = authManager.GetContext(url);
             return ctx;
         }
 
