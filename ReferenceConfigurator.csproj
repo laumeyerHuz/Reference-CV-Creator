@@ -769,7 +769,9 @@
     <EmbeddedResource Include="ConfiguratorRibbon.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icons\question.png" />
+    <EmbeddedResource Include="icons\question.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icons\Profile.png">
@@ -791,7 +793,9 @@
     <Resource Include="icons\Tips.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icons\PopUp.png" />
+    <EmbeddedResource Include="icons\PopUp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
