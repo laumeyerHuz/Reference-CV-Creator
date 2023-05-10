@@ -20,12 +20,12 @@ namespace ReferenceConfigurator {
         }
 
 
-        public static ClientContext GetClientContext() {
-            return SharepointConnection.createClientContext(Properties.Settings.Default.url);
+        public static ClientContext GetClientContext(string url) {
+            return SharepointConnection.createClientContext(url);
         }
 
         public static ListItemCollection getSharepointList() {
-            ClientContext ctx = GetClientContext();
+            ClientContext ctx = GetClientContext(Settings.Default.url);
             List list = ctx.Web.Lists.GetByTitle("Project list");
             ListItemCollection itemColl = list.GetItems(CamlQuery.CreateAllItemsQuery());
             ctx.Load(itemColl);
@@ -41,7 +41,7 @@ namespace ReferenceConfigurator {
 
             System.IO.Directory.CreateDirectory(folderPath);
 
-            ClientContext ctx = createClientContext(Properties.Settings.Default.template);
+            ClientContext ctx = GetClientContext(Settings.Default.template);
             List list = ctx.Web.Lists.GetByTitle("Dokumente");
             ctx.Load(list);
             ctx.ExecuteQuery();
@@ -76,7 +76,7 @@ namespace ReferenceConfigurator {
 
             System.IO.Directory.CreateDirectory(folderPath);
 
-            ClientContext ctx = createClientContext(Properties.Settings.Default.template);
+            ClientContext ctx = GetClientContext(Properties.Settings.Default.template);
             List list = ctx.Web.Lists.GetByTitle("Dokumente");
             ctx.Load(list);
             ctx.ExecuteQuery();
@@ -122,7 +122,7 @@ namespace ReferenceConfigurator {
 
             System.IO.Directory.CreateDirectory(folderPath);
 
-            ClientContext ctx = createClientContext(Properties.Settings.Default.onePager);
+            ClientContext ctx = GetClientContext(Properties.Settings.Default.onePager);
             List list = ctx.Web.Lists.GetByTitle("Dokumente");
             ctx.Load(list);
             ctx.ExecuteQuery();
