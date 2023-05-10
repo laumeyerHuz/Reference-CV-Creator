@@ -4,22 +4,24 @@ using ReferenceConfigurator.Properties;
 using System;
 using System.ComponentModel;
 using System.IO;
-using System.Net;
 using System.Security;
 using System.Threading;
 using System.Windows.Navigation;
+using PnP.Framework;
 
 namespace ReferenceConfigurator {
     class SharepointConnection {
 
-        private static ClientContext createClientContext() {
-            ClientContext ctx = Weblogin.GetWebLoginClientContext(Properties.Settings.Default.url, false);
+        private static ClientContext createClientContext(string url) {
+            var authManger = new AuthenticationManager();
+
+            ClientContext ctx = authManger.GetContext(url);
             return ctx;
         }
 
 
         public static ClientContext GetClientContext() {
-            return SharepointConnection.createClientContext();
+            return SharepointConnection.createClientContext(Properties.Settings.Default.url);
         }
 
         public static ListItemCollection getSharepointList() {
@@ -39,7 +41,7 @@ namespace ReferenceConfigurator {
 
             System.IO.Directory.CreateDirectory(folderPath);
 
-            ClientContext ctx = Weblogin.GetWebLoginClientContext(Properties.Settings.Default.template, false);
+            ClientContext ctx = createClientContext(Properties.Settings.Default.template);
             List list = ctx.Web.Lists.GetByTitle("Dokumente");
             ctx.Load(list);
             ctx.ExecuteQuery();
@@ -74,7 +76,7 @@ namespace ReferenceConfigurator {
 
             System.IO.Directory.CreateDirectory(folderPath);
 
-            ClientContext ctx = Weblogin.GetWebLoginClientContext(Properties.Settings.Default.template, false);
+            ClientContext ctx = createClientContext(Properties.Settings.Default.template);
             List list = ctx.Web.Lists.GetByTitle("Dokumente");
             ctx.Load(list);
             ctx.ExecuteQuery();
@@ -120,7 +122,7 @@ namespace ReferenceConfigurator {
 
             System.IO.Directory.CreateDirectory(folderPath);
 
-            ClientContext ctx = Weblogin.GetWebLoginClientContext(Properties.Settings.Default.onePager, false);
+            ClientContext ctx = createClientContext(Properties.Settings.Default.onePager);
             List list = ctx.Web.Lists.GetByTitle("Dokumente");
             ctx.Load(list);
             ctx.ExecuteQuery();
