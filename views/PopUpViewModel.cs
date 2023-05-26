@@ -44,7 +44,7 @@ namespace ReferenceConfigurator.views {
 
         public PopUpViewModel() {
             //init Commands
-            SwitchItemCommand = new RelayCommand<string>(SwitchItemCmd);
+            SwitchItemCommand = new RelayCommand(SwitchItemCmd);
             SelectItemCommand = new RelayCommand<string>(SelectItem);
             _luceneInterface = new LuceneInterface();
 
@@ -66,19 +66,19 @@ namespace ReferenceConfigurator.views {
             
         }
 
-        private void SwitchItemCmd(string? view) {
-            switch (view) {
-                case "Reference":
-                    MainContentViewModel = Search;
-                    SelectedContentViewModel = References;
-                    break;
-                //case "Profile":
-                //    MainContentViewModel = SearchProfile;
-                //    SelectedContentViewModel = Profiles;
-                //    break;
-                default:
-                    break;
-            }
+        private void SwitchItemCmd() {
+            //switch (view) {
+            //    case "Reference":
+            //        MainContentViewModel = Search;
+            //        SelectedContentViewModel = References;
+            //        break;
+            //    //case "Profile":
+            //    //    MainContentViewModel = SearchProfile;
+            //    //    SelectedContentViewModel = Profiles;
+            //    //    break;
+            //    default:
+            //        break;
+            //}
         }
 
         private void SelectItem(string? view) {
