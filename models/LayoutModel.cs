@@ -19,7 +19,7 @@ namespace ReferenceConfigurator.models {
             this.powerpointPath = powerpointPath;
             this.imagePath = imagePath;
             this.name = name;
-            if(name == "Project One Pager_Vorlage") {
+            if(name == "Project One Pager") {
                 onePager = true;
             } else {
                 onePager = false;
