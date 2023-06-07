@@ -9,7 +9,7 @@ using ReferenceConfigurator.utils;
 namespace ReferenceConfigurator.views {
     public class LayoutViewModel : MainContentViewModel {
 
-        private ObservableCollection<LayoutModel> _layouts;
+        protected ObservableCollection<LayoutModel> _layouts;
 
         public ObservableCollection<LayoutModel> Layouts {
             get => _layouts;
@@ -28,17 +28,13 @@ namespace ReferenceConfigurator.views {
             Layouts = _layouts;
 
             SelectLayoutCommand = new RelayCommand<string>(SelectLayout);
-            prepareTemplate();
             this.parent = parent;
         }
 
-        private void prepareTemplate() {
-            Utils.downloadPowerpointTemplate();
-            Layouts = new ObservableCollection<LayoutModel>( Utils.SlidesToImage());
-        }
+        protected virtual void prepareTemplate() { }
 
 
-        private void SelectLayout(string layoutPath) {
+        protected void SelectLayout(string layoutPath) {
             for(int i = 0; i < _layouts.Count; i++) {
                 LayoutModel layout = _layouts[i];
                 if(layout.imagePath== layoutPath) {

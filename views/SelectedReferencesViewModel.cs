@@ -103,7 +103,8 @@ namespace ReferenceConfigurator.views {
                 Growl.Error("No reference slected to be added");
             }
             parent.createSlide();
-            Growl.Success("Slide created scuccessfully");
+            //Growl.Success("Slide created scuccessfully");
+            System.Windows.Application.Current.Windows[0].Close();
         }
 
         public override List<ReferenceModel> getReferenceList() {

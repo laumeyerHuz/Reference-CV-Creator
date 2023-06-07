@@ -15,10 +15,16 @@
             <DataTemplate DataType="{x:Type views:StartViewModel}">
                 <templates:StartControl />
             </DataTemplate>
-            <DataTemplate DataType="{x:Type views:SearchViewModel}">
+            <DataTemplate DataType="{x:Type views:SearchReferenceViewModel}">
                 <templates:SearchControl />
             </DataTemplate>
-            <DataTemplate DataType="{x:Type views:LayoutViewModel}">
+            <DataTemplate DataType="{x:Type views:SearchProfileViewModel}">
+                <templates:SearchControl />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type views:LayoutReferenceViewModel}">
+                <templates:LayoutControl />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type views:LayoutProfileViewModel}">
                 <templates:LayoutControl />
             </DataTemplate>
             <DataTemplate DataType="{x:Type views:SelectedReferencesViewModel}">

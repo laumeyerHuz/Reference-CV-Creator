@@ -1,0 +1,110 @@
+﻿<UserControl x:Class="ReferenceConfigurator.templates.ProfileSearchControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ReferenceConfigurator.templates"
+             xmlns:proxy="clr-namespace:ReferenceConfigurator.views.utils"
+             xmlns:hc="https://handyorg.github.io/handycontrol">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <hc:ThemeResources />
+                <ResourceDictionary Source="pack://application:,,,/Handycontrol;component/Themes/Basic/Colors/Light.xaml"/>
+                <hc:Theme />
+                <ResourceDictionary Source="pack://application:,,,/Handycontrol;component/Themes/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            <proxy:BindingProxy x:Key="ColumnListProxy" Data="{Binding}"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <hc:SearchBar Command="{Binding SearchChangedCommand}" 
+                      CommandParameter="{Binding Text,RelativeSource={RelativeSource Self}}"
+                      hc:InfoElement.TitleWidth="120"
+                      hc:InfoElement.Placeholder="Please enter search term"
+                      hc:InfoElement.Title="General Search"
+                      hc:InfoElement.TitlePlacement="Left"
+                      Margin="10,0,5,0"
+                      Style="{StaticResource SearchBarExtendBaseStyle}"
+                      Grid.Row="0"
+                      />
+        <DataGrid x:Name="SearchResultsGrid"
+                  HeadersVisibility="Column" 
+                  RowHeaderWidth="60" 
+                  AutoGenerateColumns="False" 
+                  ItemsSource="{Binding SearchResult}"
+                  Background="Transparent"
+                  Grid.Row="1"
+                  IsReadOnly="True"
+                  Margin="5"
+                  IsSynchronizedWithCurrentItem="True"
+                  >
+            <DataGrid.InputBindings>
+                <MouseBinding
+                    MouseAction="LeftDoubleClick"
+                    Command="{Binding SelectionChangedCommand}"
+                    CommandParameter="{Binding SearchResult/}">
+                </MouseBinding>
+            </DataGrid.InputBindings>
+            <DataGrid.Columns>
+                <DataGridTextColumn 
+                    Width="Auto" 
+                    Visibility="{Binding Data.ColumnList[0].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                    Binding="{Binding ProjectId}"
+                    SortDirection="Ascending"
+                    Header="Name"/>
+                <DataGridTextColumn 
+                    Width="1*" 
+                    Visibility="{Binding Data.ColumnList[1].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
+                    Binding="{Binding Partner}" 
+                    Header="Job Description"/>
+                <DataGridTextColumn 
+                    Width="1*"
+                    Visibility="{Binding Data.ColumnList[2].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
+                    Binding="{Binding ProjectName}" 
+                    Header="Years Experience"/>
+                <DataGridTextColumn 
+                    Width="1*" 
+                    Visibility="{Binding Data.ColumnList[3].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
+                    Binding="{Binding Start}" 
+                    Header="Languages"/>
+                <DataGridTextColumn 
+                    Width="1*" 
+                    Visibility="{Binding Data.ColumnList[4].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
+                    Binding="{Binding End}" 
+                    Header="Education and Training"/>
+                <DataGridTextColumn 
+                    Width="1*" 
+                    Visibility="{Binding Data.ColumnList[5].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
+                    Binding="{Binding Data}" 
+                    Header="Project Experience"/>
+                <DataGridTextColumn 
+                    Width="1*" 
+                    Visibility="{Binding Data.ColumnList[6].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
+                    Binding="{Binding Branch}" 
+                    Header="Industry Experience"/>
+                <DataGridTextColumn 
+                    Width="1*" 
+                    Visibility="{Binding Data.ColumnList[7].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
+                    Binding="{Binding Team}" 
+                    Header="Functional Experience"/>
+                <DataGridTextColumn 
+                    Width="1*" 
+                    Visibility="{Binding Data.ColumnList[8].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
+                    Binding="{Binding ProjectDescriptionEN}" 
+                    Header="Social Media"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
+

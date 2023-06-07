@@ -13,7 +13,12 @@
             <hc:Divider LineStrokeThickness="2" LineStroke="{DynamicResource DarkPrimaryBrush}"/>
             <TextBlock HorizontalAlignment="Center" Margin="2" Text="First time?" Style="{StaticResource TextBlockLarge}"/>
             <TextBlock HorizontalAlignment="Center" Margin="2" Text="Check out the tips and Settings site to get started" Style="{StaticResource TextBlockLarge}"/>
-
+            <hc:StepBar Name="step" StepIndex="{Binding state}" IsMouseSelectable="True">
+                <hc:StepBarItem Content="Register"/>
+                <hc:StepBarItem Content="BasicInfo"/>
+                <hc:StepBarItem Content="UploadFile"/>
+                <hc:StepBarItem Content="Complete"/>
+            </hc:StepBar>
         </StackPanel>
         
     </Grid>

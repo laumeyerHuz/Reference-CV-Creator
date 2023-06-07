@@ -35,8 +35,10 @@ namespace ReferenceConfigurator.views {
         private readonly LuceneInterface _luceneInterface;
 
         private readonly StartViewModel StartViewModel;
-        private readonly SearchViewModel Search;
-        private readonly LayoutViewModel Layout;
+        private readonly SearchReferenceViewModel SearchReference;
+        private readonly LayoutReferenceViewModel LayoutReference;
+        private readonly SearchProfileViewModel SearchProfile;
+        private readonly LayoutProfileViewModel LayoutProfile;
         private readonly SelectedReferencesViewModel References;
         private readonly SearchConfigurationViewModel SearchConfiguration;
         private readonly SelectedReferencesConfigurationViewModel SelectedReferencesConfiguration;
@@ -51,10 +53,12 @@ namespace ReferenceConfigurator.views {
 
             //Init Views
             StartViewModel = new StartViewModel();
-            Search = new SearchViewModel(this, _luceneInterface);
-            Layout = new LayoutViewModel(this);
+            SearchReference = new SearchReferenceViewModel(this, _luceneInterface);
+            LayoutReference = new LayoutReferenceViewModel(this);
+            SearchProfile = new SearchProfileViewModel(this, _luceneInterface);
+            LayoutProfile = new LayoutProfileViewModel(this);
             References = new SelectedReferencesViewModel(this);
-            SearchConfiguration = new SearchConfigurationViewModel(Search);
+            SearchConfiguration = new SearchConfigurationViewModel(SearchReference);
             SelectedReferencesConfiguration = new SelectedReferencesConfigurationViewModel(References);
 
             //Starting Views
@@ -67,27 +71,17 @@ namespace ReferenceConfigurator.views {
         }
 
         private void SwitchItemCmd() {
-            //switch (view) {
-            //    case "Reference":
-            //        MainContentViewModel = Search;
-            //        SelectedContentViewModel = References;
-            //        break;
-            //    //case "Profile":
-            //    //    MainContentViewModel = SearchProfile;
-            //    //    SelectedContentViewModel = Profiles;
-            //    //    break;
-            //    default:
-            //        break;
-            //}
+            
         }
 
         private void SelectItem(string? view) {
             MainContentViewModel = view switch {
-                "Search" => Search,
-                "Layout" => Layout,
+                "Search" => SearchReference,
+                "Layout" => LayoutReference,
                 "Search Configuration" => SearchConfiguration,
                 "Selected References Configuration" => SelectedReferencesConfiguration,
-                "Layout Profile"=> Layout,
+                "Layout Profile"=> LayoutProfile,
+                "Search Profile"=> SearchProfile,
                 _ => StartViewModel,
             };
         }
@@ -95,7 +89,7 @@ namespace ReferenceConfigurator.views {
         public void createSlide() {
             PowerpointSlideCreator powerpointSlideCreator = new PowerpointSlideCreator();
             powerpointSlideCreator.addReferences(SelectedContentViewModel.getReferenceList());
-            powerpointSlideCreator.addLayoutModel(Layout.Layouts[Layout._layoutIndex]);
+            powerpointSlideCreator.addLayoutModel(LayoutReference.Layouts[LayoutReference._layoutIndex]);
             powerpointSlideCreator.addLanguage(References.getSelectedLanguage());
             powerpointSlideCreator.createSlide();
         }

@@ -16,14 +16,14 @@ namespace ReferenceConfigurator.views {
 
         public ICommand SearchChangedCommand { get; }
 
-        private ICollectionView _searchResult;
+        protected ICollectionView _searchResult;
 
         public ICollectionView SearchResult {
             get => _searchResult;
             set => SetProperty(ref _searchResult, value);
         }
 
-        private ObservableCollection<CheckBoxModel> _columnList;
+        protected ObservableCollection<CheckBoxModel> _columnList;
 
         public ObservableCollection<CheckBoxModel> ColumnList {
             get => _columnList;
@@ -33,9 +33,9 @@ namespace ReferenceConfigurator.views {
 
         public ICommand SelectionChangedCommand { get; }
 
-        private PopUpViewModel parent;
+        protected PopUpViewModel parent;
 
-        private LuceneInterface _luceneInterface;
+        protected LuceneInterface _luceneInterface;
 
         public SearchViewModel(PopUpViewModel parent, LuceneInterface luceneInterface) {
             this.parent = parent;
@@ -49,7 +49,7 @@ namespace ReferenceConfigurator.views {
             SelectionChangedCommand = new RelayCommand<ReferenceModel>(SelectionChanged);
         }
 
-        private void searchChanged(string search) { 
+        protected virtual void searchChanged(string search) { 
             System.Diagnostics.Debug.WriteLine(search);
             List<ReferenceModel> _searchResults = _luceneInterface.getModelByGeneralSearch(search);
             if(_searchResults.Count == 0) {
@@ -60,7 +60,7 @@ namespace ReferenceConfigurator.views {
             SearchResult = CollectionViewSource.GetDefaultView(_search);
         }
 
-        private void SelectionChanged(ReferenceModel selected) {
+        protected void SelectionChanged(ReferenceModel selected) {
             if(selected != null) { 
                 parent.addReference(selected);
             }
