@@ -83,21 +83,33 @@ namespace ReferenceConfigurator.utils
             return node.Value.Value;
         }
 
-        public static List<LayoutModel> SlidesToImage() {
+        public static List<LayoutModel> SlidesToImage(string type) {
             List<LayoutModel> layoutModels = new List<LayoutModel>();
             string basePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-            var filePath = Path.Combine(basePath, "ReferenceConfigurator","powerpointTemplate");
-            string indexPath = Path.Combine(basePath, "ReferenceConfigurator/slides/");
+            string baseFolderName = "ReferenceConfigurator/powerpointTemplate/";
+            string folderName = "";
+            if (type == "Profile") {
+                folderName = "profile";
+            } else if (type == "Reference") {
+                folderName = "reference";
+            }
+            string filePath = Path.Combine(basePath,baseFolderName, folderName);
+            string indexPath = Path.Combine(basePath, "ReferenceConfigurator/slides/",folderName);
 
             DirectoryInfo d = new DirectoryInfo(filePath);
             System.IO.Directory.CreateDirectory(indexPath);
 
 
             foreach (FileInfo file in d.GetFiles("*.pptx")) {
-                string imagePath = indexPath + Path.GetFileNameWithoutExtension(file.Name) + ".png";
+                string imagePath = indexPath +"/" + Path.GetFileNameWithoutExtension(file.Name) + ".png";
 
                 if (File.Exists(imagePath)) {
-                    layoutModels.Add(new LayoutModel(file.FullName, imagePath, Path.GetFileNameWithoutExtension(file.Name)));
+                    if (type == "Profile") {
+                        layoutModels.Add(new ProfileLayoutModel(file.FullName, imagePath, Path.GetFileNameWithoutExtension(file.Name)));
+                    } else if (type == "Reference") {
+                        layoutModels.Add(new ReferenceLayoutModel(file.FullName, imagePath, Path.GetFileNameWithoutExtension(file.Name)));
+                    }
+                    
                 } else {
                     try {
                         Application pptApplication = new Application();
@@ -105,7 +117,11 @@ namespace ReferenceConfigurator.utils
                         .Open(file.FullName, MsoTriState.msoFalse, MsoTriState.msoFalse
                         , MsoTriState.msoFalse);
                         pptPresentation.Slides[1].Export(imagePath, "png", 1920, 1080);
-                        layoutModels.Add(new LayoutModel(file.FullName, imagePath, Path.GetFileNameWithoutExtension(file.Name)));
+                        if (type == "Profile") {
+                            layoutModels.Add(new ProfileLayoutModel(file.FullName, imagePath, Path.GetFileNameWithoutExtension(file.Name)));
+                        } else if (type == "Reference") {
+                            layoutModels.Add(new ReferenceLayoutModel(file.FullName, imagePath, Path.GetFileNameWithoutExtension(file.Name)));
+                        }
                         pptPresentation.Close();
 
                     } catch (Exception e) {
@@ -116,8 +132,8 @@ namespace ReferenceConfigurator.utils
             return layoutModels;
         }
 
-        public static void downloadPowerpointTemplate() {
-            SharepointConnection.downloadPowerpointTemplates();
+        public static void downloadPowerpointTemplate(string type) {
+            SharepointConnection.downloadPowerpointTemplates(type);
         }
 
         public static string getOnePager(int id) {

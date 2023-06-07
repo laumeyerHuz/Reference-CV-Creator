@@ -34,10 +34,10 @@
     <Nullable>enable</Nullable>
     <LangVersion>8.0</LangVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <PublishUrl>C:\Users\leonhard.laumeyer\Documents\projects\ReferenceConfigurator\executable\v0.7\</PublishUrl>
+    <PublishUrl>C:\Users\leonhard.laumeyer\Documents\projects\ReferenceConfigurator\executable\v0.9\</PublishUrl>
     <InstallUrl />
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>1.0.0.8</ApplicationVersion>
+    <ApplicationVersion>1.0.0.10</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -628,6 +628,8 @@
     </Compile>
     <Compile Include="models\CheckBoxModel.cs" />
     <Compile Include="models\LayoutModel.cs" />
+    <Compile Include="models\ProfileLayoutModel.cs" />
+    <Compile Include="models\ReferenceLayoutModel.cs" />
     <Compile Include="models\ReferenceModel.cs" />
     <Compile Include="powerpointSlideCreator\PowerpointSlideCreator.cs" />
     <Compile Include="Propterties\DesignTimeResources.xaml.cs">
@@ -635,6 +637,9 @@
     </Compile>
     <Compile Include="templates\LayoutControl.xaml.cs">
       <DependentUpon>LayoutControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="templates\ProfileSearchControl.xaml.cs">
+      <DependentUpon>ProfileSearchControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="templates\SearchControl.xaml.cs">
       <DependentUpon>SearchControl.xaml</DependentUpon>
@@ -664,9 +669,13 @@
     <Compile Include="utils\ImageConverter.cs" />
     <Compile Include="utils\RatioConverter.cs" />
     <Compile Include="utils\Utils.cs" />
+    <Compile Include="views\LayoutProfileViewModel.cs" />
+    <Compile Include="views\LayoutReferenceViewModel.cs" />
     <Compile Include="views\LayoutViewModel.cs" />
     <Compile Include="views\MainContentViewModel.cs" />
     <Compile Include="views\PopUpViewModel.cs" />
+    <Compile Include="views\SearchProfileViewModel.cs" />
+    <Compile Include="views\SearchReferenceViewModel.cs" />
     <Compile Include="views\SearchViewModel.cs" />
     <Compile Include="views\SelectedContentViewModel.cs" />
     <Compile Include="views\SelectedReferencesConfigurationViewModel.cs" />
@@ -676,13 +685,14 @@
     <Compile Include="views\utils\BindingProxy.cs" />
     <Compile Include="views\ViewModelBase.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
     <None Include="packages.config" />
@@ -701,6 +711,9 @@
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Content Include="ReferenceConfiguratorCert.pfx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="ReferenceConfigurator_TemporaryKey.pfx" />
     <Resource Include="icons\Germany.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -708,6 +721,9 @@
     <Resource Include="icons\USA.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Content Include="settings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="ThisAddIn.Designer.xml">
       <DependentUpon>ThisAddIn.cs</DependentUpon>
     </None>
@@ -733,6 +749,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="templates\LayoutControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="templates\ProfileSearchControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
