@@ -15,6 +15,7 @@ namespace ReferenceConfigurator.models {
 
         public ProfileLayoutModel(string powerpointPath, string imagePath, string name) : base(powerpointPath, imagePath, name) {
             if (name == "Profile One Pager") {
+                maxElements = -1;
                 onePager = true;
             } else {
                 onePager = false;
@@ -22,6 +23,7 @@ namespace ReferenceConfigurator.models {
                 this.leader = split[0].ToInt32();
                 this.teamMates = split[1].ToInt32();
                 this.experts = split[2].ToInt32();
+                maxElements = leader+teamMates+experts;
             }
             
         }

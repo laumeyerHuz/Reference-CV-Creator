@@ -10,6 +10,7 @@ using ReferenceConfigurator.powerpointSlideCreator;
 using ReferenceConfigurator.Properties;
 using AngleSharp.Css.Dom;
 using HandyControl.Controls;
+using Microsoft.Office.SharePoint.Tools;
 
 namespace ReferenceConfigurator.views {
     public class PopUpViewModel : ViewModelBase {
@@ -123,8 +124,14 @@ namespace ReferenceConfigurator.views {
             };
         }
 
-        public void changeLayout(string name) {
-            References.SelectedLayout = name;
+        public void changeLayout(LayoutModel model) {
+            if (ContentViewModel == LayoutProfile) {
+
+            } else if (ContentViewModel == LayoutReference) {
+                SearchReference.maxReferences = model.maxElements;
+            }
+            References.SelectedLayout = model.name;
+            
         }
 
         public void prev() {

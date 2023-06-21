@@ -45,7 +45,7 @@ namespace ReferenceConfigurator.views {
                 LayoutModel layout = _layouts[i];
                 if(layout.imagePath== layoutPath) {
                     _layoutIndex= i;
-                    parent.changeLayout(layout.name);
+                    parent.changeLayout(layout);
                     break;
                 }
             }           

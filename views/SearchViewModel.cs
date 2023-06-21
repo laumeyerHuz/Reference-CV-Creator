@@ -59,7 +59,7 @@ namespace ReferenceConfigurator.views {
 
         protected LuceneInterface _luceneInterface;
 
-        protected int maxReferences;
+        public int maxReferences;
 
         public SearchViewModel(PopUpViewModel parent, LuceneInterface luceneInterface) {
             this.parent = parent;
