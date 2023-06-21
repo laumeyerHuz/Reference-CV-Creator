@@ -13,7 +13,7 @@ using System.ComponentModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace ReferenceConfigurator.views {
-    public class SelectedReferencesViewModel : SelectedContentViewModel {
+    public class SelectedReferencesViewModel : MainContentViewModel {
         PopUpViewModel parent;
 
         private ICollectionView _selectedReferences;
@@ -33,6 +33,10 @@ namespace ReferenceConfigurator.views {
         public ICommand SelectionChangedCommand { get; }
 
         public ICommand CreateSlideCommand { get; }
+
+        public ICommand NextCommand { get; }
+
+        public ICommand PrevCommand { get; }
 
         private ObservableCollection<CheckBoxModel> _columnList;
 
@@ -66,6 +70,8 @@ namespace ReferenceConfigurator.views {
 
             SelectionChangedCommand = new RelayCommand<ReferenceModel>(SelectionChanged);
             CreateSlideCommand = new RelayCommand(createSlide);
+            NextCommand = new RelayCommand(next);
+            PrevCommand = new RelayCommand(prev);
             _references = new List<ReferenceModel>();
             _selectedReferences = CollectionViewSource.GetDefaultView(_references);
             SelectedReferences = _selectedReferences;
@@ -81,7 +87,7 @@ namespace ReferenceConfigurator.views {
             SelectedLanguage = "EN";
         }
 
-        public override void addReference(ReferenceModel reference) {
+        public void addReference(ReferenceModel reference) {
 
             if (_references.Any(p => p.ProjectId == reference.ProjectId)) {
                 Growl.Error("Reference already selected");
@@ -92,7 +98,7 @@ namespace ReferenceConfigurator.views {
             SelectedReferences.Refresh();
         }
 
-        public override void removeReference(ReferenceModel reference) {
+        public void removeReference(ReferenceModel reference) {
             _references.Remove(reference);
             SelectedReferences = CollectionViewSource.GetDefaultView(_references);
             SelectedReferences.Refresh();
@@ -107,7 +113,7 @@ namespace ReferenceConfigurator.views {
             System.Windows.Application.Current.Windows[0].Close();
         }
 
-        public override List<ReferenceModel> getReferenceList() {
+        public List<ReferenceModel> getReferenceList() {
             return _references;
         }
 
@@ -121,5 +127,12 @@ namespace ReferenceConfigurator.views {
             return SelectedLanguage;
         }
 
+        public void next() {
+            parent.next();
+        }
+
+        public void prev() {
+            parent.prev();
+        }
     }
 }

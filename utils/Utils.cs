@@ -141,8 +141,33 @@ namespace ReferenceConfigurator.utils
             return fileName;
         }
 
-        public static void removeOnePager(string file) {
-            File.Delete(file);
+        public static void removeOnePager() {
+            string basePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+            string folderPath = Path.Combine(basePath, "ReferenceConfigurator/onePager");
+            if(Directory.Exists(folderPath)) {
+                Directory.Delete(folderPath, true);
+            }
+        }
+
+        public static void removeLogos() {
+            string basePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+            string folderPath = Path.Combine(basePath, "ReferenceConfigurator/CompanyLogo");
+            if (Directory.Exists(folderPath)) {
+                Directory.Delete(folderPath, true);
+            }
+        }
+
+        public static void removeTemplates() {
+            string basePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+            string folderPath = Path.Combine(basePath, "ReferenceConfigurator/powerpointTemplate");
+            if (Directory.Exists(folderPath)) {
+                Directory.Delete(folderPath, true);
+            }
+            folderPath = Path.Combine(basePath, "ReferenceConfigurator/slides");
+            if (Directory.Exists(folderPath)) {
+                Directory.Delete(folderPath, true);
+            }
+
         }
     }
 }

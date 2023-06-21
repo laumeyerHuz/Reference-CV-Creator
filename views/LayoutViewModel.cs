@@ -23,15 +23,21 @@ namespace ReferenceConfigurator.views {
 
         private PopUpViewModel parent;
 
+        public ICommand NextCommand { get; }
+
+        public ICommand PrevCommand { get; }
+
         public LayoutViewModel(PopUpViewModel parent) {
             _layouts = new ObservableCollection<LayoutModel>();
             Layouts = _layouts;
 
             SelectLayoutCommand = new RelayCommand<string>(SelectLayout);
+            NextCommand = new RelayCommand(next);
+            PrevCommand = new RelayCommand(prev);
             this.parent = parent;
         }
 
-        protected virtual void prepareTemplate() { }
+        public virtual void prepareTemplate() { }
 
 
         protected void SelectLayout(string layoutPath) {
@@ -43,6 +49,14 @@ namespace ReferenceConfigurator.views {
                     break;
                 }
             }           
+        }
+
+        public void prev() {
+            parent.prev();
+        }
+
+        public void next() {
+            parent.next();
         }
     }
 }

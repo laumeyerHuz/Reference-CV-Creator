@@ -12,13 +12,38 @@
                 HorizontalAlignment="Center" Margin="5" Text="WELCOME!" Style="{StaticResource TextBlockLargeBold}"/>
             <hc:Divider LineStrokeThickness="2" LineStroke="{DynamicResource DarkPrimaryBrush}"/>
             <TextBlock HorizontalAlignment="Center" Margin="2" Text="First time?" Style="{StaticResource TextBlockLarge}"/>
+            
             <TextBlock HorizontalAlignment="Center" Margin="2" Text="Check out the tips and Settings site to get started" Style="{StaticResource TextBlockLarge}"/>
-            <hc:StepBar Name="step" StepIndex="{Binding state}" IsMouseSelectable="True">
-                <hc:StepBarItem Content="Register"/>
-                <hc:StepBarItem Content="BasicInfo"/>
-                <hc:StepBarItem Content="UploadFile"/>
-                <hc:StepBarItem Content="Complete"/>
-            </hc:StepBar>
+            <ListBox HorizontalAlignment="Center" VerticalAlignment="Center" Margin="32" BorderThickness="0" Style="{DynamicResource WrapPanelHorizontalListBox}" ItemsSource="{Binding SelectionList}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="data:CardModel">
+                        <hc:Card MaxWidth="240" BorderThickness="1" Margin="20" Footer="{Binding Footer}">
+                            <!--Card Content section template-->
+                            <Border CornerRadius="4,4,0,0" Width="160" Height="160">
+                                <Image VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Height="150" Source="{Binding imagePath}"/>
+                            </Border>
+                            <!--Card Footer section template-->
+                            <hc:Card.FooterTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="10" Width="160">
+                                        <!--Card First-level content-->
+                                        <TextBlock TextWrapping="NoWrap"  Style="{DynamicResource TextBlockLargeBold}" TextTrimming="CharacterEllipsis" 
+                                           Text="{Binding DataContext.Footer,RelativeSource={RelativeSource AncestorType=hc:Card}}" 
+                                           HorizontalAlignment="Center"/>
+                                        <!--Card Secondary content-->
+                                        <Button 
+                                            Margin="0,6,0,0"
+                                            Style="{StaticResource ButtonPrimary}" 
+                                            Content="Select this Layout" 
+                                            Command="{Binding Path = DataContext.SelectCardCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
+                                            CommandParameter="{Binding Footer,RelativeSource={RelativeSource AncestorType=hc:Card}}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </hc:Card.FooterTemplate>
+                        </hc:Card>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </StackPanel>
         
     </Grid>

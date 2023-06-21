@@ -13,7 +13,7 @@ namespace ReferenceConfigurator.views {
             prepareTemplate();
         }
 
-        protected override void  prepareTemplate() {
+        public override void  prepareTemplate() {
             Utils.downloadPowerpointTemplate("Profile");
             Layouts = new ObservableCollection<LayoutModel>(Utils.SlidesToImage("Profile"));
         }

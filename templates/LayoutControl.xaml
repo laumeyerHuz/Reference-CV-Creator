@@ -19,31 +19,36 @@
         </ResourceDictionary>
 
     </UserControl.Resources>
-    <hc:ScrollViewer UseLayoutRounding="True">
-        <hc:CoverView Margin="27" ItemWidth="256" ItemHeight="144" ItemsSource="{Binding Layouts}" ItemContentHeight="350">
-            <hc:CoverView.ItemHeaderTemplate>
-                <DataTemplate>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <hc:ScrollViewer UseLayoutRounding="True" Grid.Row="0">
+            <hc:CoverView Margin="27" ItemWidth="256" ItemHeight="144" ItemsSource="{Binding Layouts}" ItemContentHeight="350">
+                <hc:CoverView.ItemHeaderTemplate>
+                    <DataTemplate>
                         <Image Source="{Binding imagePath, Converter={utils:ImageConverter}}"
                             RenderOptions.EdgeMode="Aliased"
                             RenderOptions.BitmapScalingMode="HighQuality"
                             
                            />
-                </DataTemplate>
-            </hc:CoverView.ItemHeaderTemplate>
-            <hc:CoverView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" 
+                    </DataTemplate>
+                </hc:CoverView.ItemHeaderTemplate>
+                <hc:CoverView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" 
                                    VerticalAlignment="Center" 
                                    HorizontalAlignment="Center" 
                                    Text="{Binding name}"
                                    Style="{StaticResource TextBlockLargeBold}"/>
-                        <Border 
+                            <Border 
                             Grid.Row="1" 
                             Margin="5" 
                             Height="270" 
@@ -51,23 +56,27 @@
                             HorizontalAlignment="Center" 
                             VerticalAlignment="Center"
                             BorderBrush="Black">
-                            <Image Source="{Binding imagePath, Converter={utils:ImageConverter}}"
+                                <Image Source="{Binding imagePath, Converter={utils:ImageConverter}}"
                                         RenderOptions.BitmapScalingMode="HighQuality"
                                         RenderOptions.EdgeMode="Aliased"
                                        />
                             </Border>
-                        <Button Grid.Row="2" 
+                            <Button Grid.Row="2" 
                                 Margin="5,0,5,5"
                                 Style="{StaticResource ButtonPrimary}" 
                                 Content="Select this Layout" 
                                 Command="{Binding Path = DataContext.SelectLayoutCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
                                 CommandParameter="{Binding imagePath}"/>
-                    </Grid>
-                    
-                </DataTemplate>
-            </hc:CoverView.ItemTemplate>
-        </hc:CoverView>
-    </hc:ScrollViewer>
-    
+                        </Grid>
+
+                    </DataTemplate>
+                </hc:CoverView.ItemTemplate>
+            </hc:CoverView>
+        </hc:ScrollViewer>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10" Grid.Row="1">
+            <Button Style="{StaticResource ButtonPrimary}" Command="{Binding PrevCommand}" Content="Prev" Margin="10,0,0,0" hc:BorderElement.CornerRadius="15"/>
+            <Button Style="{StaticResource ButtonPrimary}" Command="{Binding NextCommand}" Content="Next" Margin="10,0,0,0" hc:BorderElement.CornerRadius="15"/>
+        </StackPanel>
+    </Grid>
 
 </UserControl>

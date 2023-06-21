@@ -24,6 +24,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -38,73 +39,169 @@
                       Style="{StaticResource SearchBarExtendBaseStyle}"
                       Grid.Row="0"
                       />
-        <DataGrid x:Name="SearchResultsGrid"
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <DataGrid x:Name="SearchResultsGrid"
                   HeadersVisibility="Column" 
                   RowHeaderWidth="60" 
                   AutoGenerateColumns="False" 
                   ItemsSource="{Binding SearchResult}"
                   Background="Transparent"
-                  Grid.Row="1"
+                  Grid.Column="0"
                   IsReadOnly="True"
                   Margin="5"
                   IsSynchronizedWithCurrentItem="True"
                   >
-            <DataGrid.InputBindings>
-                <MouseBinding
+                <DataGrid.InputBindings>
+                    <MouseBinding
                     MouseAction="LeftDoubleClick"
                     Command="{Binding SelectionChangedCommand}"
                     CommandParameter="{Binding SearchResult/}">
-                </MouseBinding>
-            </DataGrid.InputBindings>
-            <DataGrid.Columns>
-                <DataGridTextColumn 
+                    </MouseBinding>
+                </DataGrid.InputBindings>
+                <DataGrid.Columns>
+                    <DataGridTextColumn 
                     Width="Auto" 
                     Visibility="{Binding Data.ColumnList[0].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                     Binding="{Binding ProjectId}"
                     SortDirection="Ascending"
                     Header="Name"/>
-                <DataGridTextColumn 
+                    <DataGridTextColumn 
                     Width="1*" 
                     Visibility="{Binding Data.ColumnList[1].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
                     Binding="{Binding Partner}" 
                     Header="Job Description"/>
-                <DataGridTextColumn 
+                    <DataGridTextColumn 
                     Width="1*"
                     Visibility="{Binding Data.ColumnList[2].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
                     Binding="{Binding ProjectName}" 
                     Header="Years Experience"/>
-                <DataGridTextColumn 
+                    <DataGridTextColumn 
                     Width="1*" 
                     Visibility="{Binding Data.ColumnList[3].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
                     Binding="{Binding Start}" 
                     Header="Languages"/>
-                <DataGridTextColumn 
+                    <DataGridTextColumn 
                     Width="1*" 
                     Visibility="{Binding Data.ColumnList[4].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
                     Binding="{Binding End}" 
                     Header="Education and Training"/>
-                <DataGridTextColumn 
+                    <DataGridTextColumn 
                     Width="1*" 
                     Visibility="{Binding Data.ColumnList[5].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
                     Binding="{Binding Data}" 
                     Header="Project Experience"/>
-                <DataGridTextColumn 
+                    <DataGridTextColumn 
                     Width="1*" 
                     Visibility="{Binding Data.ColumnList[6].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
                     Binding="{Binding Branch}" 
                     Header="Industry Experience"/>
-                <DataGridTextColumn 
+                    <DataGridTextColumn 
                     Width="1*" 
                     Visibility="{Binding Data.ColumnList[7].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
                     Binding="{Binding Team}" 
                     Header="Functional Experience"/>
-                <DataGridTextColumn 
+                    <DataGridTextColumn 
                     Width="1*" 
                     Visibility="{Binding Data.ColumnList[8].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
                     Binding="{Binding ProjectDescriptionEN}" 
                     Header="Social Media"/>
-            </DataGrid.Columns>
-        </DataGrid>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Grid Width="65" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Height="55" Width="60" Command="{Binding AddSelectionCommand}" CommandParameter="{Binding SearchResult/}">
+                    <StackPanel>
+                        <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Right.png" Height="40" Width="40" />
+                    </StackPanel>
+                </Button>
+                <Button Grid.Row="1" Height="55" Width="60" Command="{Binding RemoveSelectionCommand}" CommandParameter="{Binding SelectedList/}">
+                    <StackPanel>
+                        <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Left.png" Height="40" Width="40" />
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+            <DataGrid x:Name="SearchSelectedGrid"
+                  HeadersVisibility="Column" 
+                  RowHeaderWidth="60" 
+                  AutoGenerateColumns="False" 
+                  ItemsSource="{Binding SelectedList}"
+                  Background="Transparent"
+                  Grid.Column="2"
+                  IsReadOnly="True"
+                  Margin="5"
+                  IsSynchronizedWithCurrentItem="True"
+                  >
+                <DataGrid.InputBindings>
+                    <MouseBinding
+                    MouseAction="LeftDoubleClick"
+                    Command="{Binding SelectionChangedCommand}"
+                    CommandParameter="{Binding SelectedList/}">
+                    </MouseBinding>
+                </DataGrid.InputBindings>
+                <DataGrid.Columns>
+                    <DataGridTextColumn 
+                    Width="Auto" 
+                    Visibility="{Binding Data.ColumnList[0].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                    Binding="{Binding ProjectId}"
+                    SortDirection="Ascending"
+                    Header="Name"/>
+                    <DataGridTextColumn 
+                    Width="1*" 
+                    Visibility="{Binding Data.ColumnList[1].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
+                    Binding="{Binding Partner}" 
+                    Header="Job Description"/>
+                    <DataGridTextColumn 
+                    Width="1*"
+                    Visibility="{Binding Data.ColumnList[2].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
+                    Binding="{Binding ProjectName}" 
+                    Header="Years Experience"/>
+                    <DataGridTextColumn 
+                    Width="1*" 
+                    Visibility="{Binding Data.ColumnList[3].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
+                    Binding="{Binding Start}" 
+                    Header="Languages"/>
+                    <DataGridTextColumn 
+                    Width="1*" 
+                    Visibility="{Binding Data.ColumnList[4].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
+                    Binding="{Binding End}" 
+                    Header="Education and Training"/>
+                    <DataGridTextColumn 
+                    Width="1*" 
+                    Visibility="{Binding Data.ColumnList[5].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
+                    Binding="{Binding Data}" 
+                    Header="Project Experience"/>
+                    <DataGridTextColumn 
+                    Width="1*" 
+                    Visibility="{Binding Data.ColumnList[6].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
+                    Binding="{Binding Branch}" 
+                    Header="Industry Experience"/>
+                    <DataGridTextColumn 
+                    Width="1*" 
+                    Visibility="{Binding Data.ColumnList[7].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
+                    Binding="{Binding Team}" 
+                    Header="Functional Experience"/>
+                    <DataGridTextColumn 
+                    Width="1*" 
+                    Visibility="{Binding Data.ColumnList[8].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
+                    Binding="{Binding ProjectDescriptionEN}" 
+                    Header="Social Media"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10" Grid.Row="3">
+            <Button Style="{StaticResource ButtonPrimary}" Command="{Binding PrevCommand}" Content="Prev" Margin="10,0,0,0" hc:BorderElement.CornerRadius="15"/>
+            <Button Style="{StaticResource ButtonPrimary}" Command="{Binding NextCommand}" Content="Next" Margin="10,0,0,0" hc:BorderElement.CornerRadius="15"/>
+        </StackPanel>
     </Grid>
 </UserControl>
 
