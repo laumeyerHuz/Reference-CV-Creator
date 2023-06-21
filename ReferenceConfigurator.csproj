@@ -34,10 +34,10 @@
     <Nullable>enable</Nullable>
     <LangVersion>8.0</LangVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <PublishUrl>C:\Users\leonhard.laumeyer\Documents\projects\ReferenceConfigurator\executable\v0.9\</PublishUrl>
+    <PublishUrl>C:\Users\leonhard.laumeyer\Documents\projects\ReferenceConfigurator\executable\v0.9.3\</PublishUrl>
     <InstallUrl />
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>1.0.0.10</ApplicationVersion>
+    <ApplicationVersion>1.0.0.13</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -626,11 +626,13 @@
     <Compile Include="mainWindow\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="models\CardModel.cs" />
     <Compile Include="models\CheckBoxModel.cs" />
     <Compile Include="models\LayoutModel.cs" />
     <Compile Include="models\ProfileLayoutModel.cs" />
     <Compile Include="models\ReferenceLayoutModel.cs" />
     <Compile Include="models\ReferenceModel.cs" />
+    <Compile Include="models\StepIndexModel.cs" />
     <Compile Include="powerpointSlideCreator\PowerpointSlideCreator.cs" />
     <Compile Include="Propterties\DesignTimeResources.xaml.cs">
       <DependentUpon>DesignTimeResources.xaml</DependentUpon>
@@ -640,6 +642,12 @@
     </Compile>
     <Compile Include="templates\ProfileSearchControl.xaml.cs">
       <DependentUpon>ProfileSearchControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="templates\ProgressBarControl.xaml.cs">
+      <DependentUpon>ProgressBarControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="templates\SaveDataControl.xaml.cs">
+      <DependentUpon>SaveDataControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="templates\SearchControl.xaml.cs">
       <DependentUpon>SearchControl.xaml</DependentUpon>
@@ -674,10 +682,11 @@
     <Compile Include="views\LayoutViewModel.cs" />
     <Compile Include="views\MainContentViewModel.cs" />
     <Compile Include="views\PopUpViewModel.cs" />
+    <Compile Include="views\ProgressBarViewModel.cs" />
+    <Compile Include="views\SavedDataViewModel.cs" />
     <Compile Include="views\SearchProfileViewModel.cs" />
     <Compile Include="views\SearchReferenceViewModel.cs" />
     <Compile Include="views\SearchViewModel.cs" />
-    <Compile Include="views\SelectedContentViewModel.cs" />
     <Compile Include="views\SelectedReferencesConfigurationViewModel.cs" />
     <Compile Include="views\SelectedReferencesViewModel.cs" />
     <Compile Include="views\SearchConfigurationViewModel.cs" />
@@ -707,10 +716,15 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="SharepointConnection\SharepointConnection.cs" />
-    <Compile Include="SharepointConnection\WebLogin.cs" />
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Resource Include="icons\Left.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\Right.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Content Include="ReferenceConfiguratorCert.pfx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -753,6 +767,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="templates\ProfileSearchControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="templates\ProgressBarControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="templates\SaveDataControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
