@@ -39,9 +39,18 @@ namespace ReferenceConfigurator {
             return SharepointConnection.createClientContext(url);
         }
 
-        public static ListItemCollection getSharepointList() {
+        public static ListItemCollection getSharepointListReference() {
             ClientContext ctx = GetClientContext(Settings.Default.url);
             List list = ctx.Web.Lists.GetByTitle("Project list");
+            ListItemCollection itemColl = list.GetItems(CamlQuery.CreateAllItemsQuery());
+            ctx.Load(itemColl);
+            ctx.ExecuteQuery();
+            return itemColl;
+        }
+
+        public static ListItemCollection getSharepointListProfile() {
+            ClientContext ctx = GetClientContext(Settings.Default.template);
+            List list = ctx.Web.Lists.GetByTitle("Input for CVs");
             ListItemCollection itemColl = list.GetItems(CamlQuery.CreateAllItemsQuery());
             ctx.Load(itemColl);
             ctx.ExecuteQuery();

@@ -20,20 +20,16 @@ using System.Collections.Generic;
 using HandyControl.Controls;
 
 namespace ReferenceConfigurator.lucene {
-    public class LuceneInterfaceReference :LuceneInterface {
+    public class LuceneInterfaceProfile : LuceneInterface {
 
-
-        public LuceneInterfaceReference(): base() {
-            indexPath = Path.Combine(basePath, "ReferenceConfigurator/index/Reference");
+        public LuceneInterfaceProfile(): base() {
+            indexPath = Path.Combine(basePath, "ReferenceConfigurator/index/Profile");
             dir = FSDirectory.Open(indexPath);
             createIndexWriter();
             _reader = DirectoryReader.Open(dir);
             _searcher = new IndexSearcher(_reader);
         }
 
-        
-
-        //Adding new columns: debug listitem and look in 
         protected override void addListItemToDoc(ListItem listItem) {
             //System.Diagnostics.Debug.WriteLine(listItem["Title"]);
             Document doc = new Document {
@@ -105,10 +101,6 @@ namespace ReferenceConfigurator.lucene {
             _writer.AddDocument(doc);
         }
 
-        protected override ListItemCollection getSharepointList() {
-            return SharepointConnection.getSharepointListReference();
-        }
-
         private ReferenceModel getModelFromDoc(Document doc) {
             ReferenceModel _referenceModel = new ReferenceModel {
                 ProjectId = doc.Get("ProjectID").ToInt32(),
@@ -123,7 +115,7 @@ namespace ReferenceConfigurator.lucene {
                 Client = doc.Get("Client"),
                 Topic = doc.Get("Topic"),
                 ProjectDescriptionDE = doc.Get("ProjectDescriptionDE"),
-                OnePager = doc.Get("OnePager").Length >1 ? true : false,
+                OnePager = doc.Get("OnePager").Length > 1 ? true : false,
             };
 
             return _referenceModel;
@@ -143,9 +135,5 @@ namespace ReferenceConfigurator.lucene {
             }
             return _referenceModelList;
         }
-
-        
-
     }
-
 }

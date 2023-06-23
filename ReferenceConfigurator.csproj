@@ -623,6 +623,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="ConfiguratorRibbon.cs" />
+    <Compile Include="lucene\LuceneInterface.cs" />
+    <Compile Include="lucene\LuceneInterfaceProfile.cs" />
     <Compile Include="mainWindow\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -630,6 +632,7 @@
     <Compile Include="models\CheckBoxModel.cs" />
     <Compile Include="models\LayoutModel.cs" />
     <Compile Include="models\ProfileLayoutModel.cs" />
+    <Compile Include="models\ProfileModel.cs" />
     <Compile Include="models\ReferenceLayoutModel.cs" />
     <Compile Include="models\ReferenceModel.cs" />
     <Compile Include="models\StepIndexModel.cs" />
