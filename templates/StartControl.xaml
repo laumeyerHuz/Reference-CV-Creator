@@ -20,7 +20,9 @@
                         <hc:Card MaxWidth="240" BorderThickness="1" Margin="20" Footer="{Binding Footer}">
                             <!--Card Content section template-->
                             <Border CornerRadius="4,4,0,0" Width="160" Height="160">
-                                <Image VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Height="150" Source="{Binding imagePath}"/>
+                                <Image VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Height="150" Source="{Binding imagePath}"
+                                       RenderOptions.EdgeMode="Aliased"
+                                       RenderOptions.BitmapScalingMode="HighQuality" />
                             </Border>
                             <!--Card Footer section template-->
                             <hc:Card.FooterTemplate>

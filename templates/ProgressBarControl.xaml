@@ -13,7 +13,10 @@
         </Grid.ColumnDefinitions>
         <Button Margin="5,0,0,0" Grid.Column="0" Height="45" Width="50" Command="{Binding BackCommand}">
             <StackPanel>
-                <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Left.png" Height="30" Width="30" />
+                <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Left.png" 
+                       Height="30" Width="30"
+                       RenderOptions.EdgeMode="Aliased"
+                       RenderOptions.BitmapScalingMode="HighQuality" />
             </StackPanel>
         </Button>
         <hc:StepBar Margin="5,10,5,5" Grid.Column="1" Name="step" StepIndex="{Binding StepIndex}" ItemsSource="{Binding StepList}" IsMouseSelectable="True">

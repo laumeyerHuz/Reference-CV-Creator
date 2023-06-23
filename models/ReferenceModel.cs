@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ReferenceConfigurator.models {
-    public class ReferenceModel {
+    public class ReferenceModel :SearchModel {
         public int ProjectId { get; set; }
         public string Partner { get; set; }
         public string ProjectName { get; set; }

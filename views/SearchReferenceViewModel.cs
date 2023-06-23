@@ -16,12 +16,12 @@ namespace ReferenceConfigurator.views {
 
         protected override void searchChanged(string search) {
             System.Diagnostics.Debug.WriteLine(search);
-            List<ReferenceModel> _searchResults = _luceneInterface.getModelByGeneralSearch(search);
+            List<SearchModel> _searchResults = _luceneInterface.getModelByGeneralSearch(search);
             if (_searchResults.Count == 0) {
                 Growl.Info("No result has been found");
                 return;
             }
-            IList<ReferenceModel> _search = _searchResults;
+            IList<SearchModel> _search = _searchResults;
             SearchResult = CollectionViewSource.GetDefaultView(_search);
         }
 

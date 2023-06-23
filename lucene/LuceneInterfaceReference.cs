@@ -23,9 +23,10 @@ namespace ReferenceConfigurator.lucene {
     public class LuceneInterfaceReference :LuceneInterface {
 
 
-        public LuceneInterfaceReference(): base() {
+        public LuceneInterfaceReference() {
             indexPath = Path.Combine(basePath, "ReferenceConfigurator/index/Reference");
             dir = FSDirectory.Open(indexPath);
+            dateFile = Path.Combine(indexPath, "dateReference.txt");
             createIndexWriter();
             _reader = DirectoryReader.Open(dir);
             _searcher = new IndexSearcher(_reader);
@@ -129,8 +130,8 @@ namespace ReferenceConfigurator.lucene {
             return _referenceModel;
         }
 
-        public List<ReferenceModel> getModelByGeneralSearch(string search) {
-            List<ReferenceModel> _referenceModelList = new List<ReferenceModel>();
+        public override List<SearchModel> getModelByGeneralSearch(string search) {
+            List<SearchModel> _referenceModelList = new List<SearchModel>();
             MultiFieldQueryParser queryParser = new MultiFieldQueryParser(
                 AppLuceneVersion,
                 new String[] { "ProjectID", "Partner", "ProjectName", "Branch", "Team", "Subject", "Client", "Topic", "ProjectDescriptionDE", "ProjectDescriptionEN", "OnePager" },

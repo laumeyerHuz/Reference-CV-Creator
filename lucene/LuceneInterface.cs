@@ -30,11 +30,11 @@ namespace ReferenceConfigurator.lucene {
         protected string basePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
         protected string indexPath;
         protected FSDirectory dir;
+        protected string dateFile;
 
         public LuceneInterface() {}
 
         protected void createIndexWriter() {
-            string file = Path.Combine(indexPath, "date.txt");
             DateTime now = DateTime.Now;
             if (!DirectoryReader.IndexExists(dir)) {
 
@@ -44,24 +44,28 @@ namespace ReferenceConfigurator.lucene {
 
                 ListItemCollection list = getSharepointList();
                 addSharepointToIndex(list);
-                System.IO.File.WriteAllText(file, now.ToString());
+                System.IO.File.WriteAllText(dateFile, now.ToString());
 
             } else {
-                if (System.IO.File.Exists(file)) {
-                    DateTime lastUpdate = DateTime.Parse(System.IO.File.ReadAllText(file));
+                if (System.IO.File.Exists(dateFile)) {
+                    DateTime lastUpdate = DateTime.Parse(System.IO.File.ReadAllText(dateFile));
                     TimeSpan ts = now - lastUpdate;
                     if (ts.TotalDays > 6) {
                         refreshIndex();
-                        System.IO.File.WriteAllText(file, now.ToString());
+                        System.IO.File.WriteAllText(dateFile, now.ToString());
                     }
                 } else {
-                    System.IO.File.WriteAllText(file, now.ToString());
+                    System.IO.File.WriteAllText(dateFile, now.ToString());
                 }
 
             }
         }
 
         protected virtual ListItemCollection getSharepointList() {
+            throw new NotImplementedException();
+        }
+
+        public virtual List<SearchModel> getModelByGeneralSearch(string search) {
             throw new NotImplementedException();
         }
 

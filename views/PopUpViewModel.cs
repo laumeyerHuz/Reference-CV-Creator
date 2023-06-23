@@ -30,31 +30,34 @@ namespace ReferenceConfigurator.views {
         }
 
 
-        private readonly LuceneInterfaceReference _luceneInterface;
+        private readonly LuceneInterfaceReference _luceneInterfaceReference;
+        private readonly LuceneInterfaceProfile _luceneInterfaceProfile;
 
         private readonly StartViewModel Start;
         private readonly SearchReferenceViewModel SearchReference;
         private readonly LayoutReferenceViewModel LayoutReference;
         private readonly SearchProfileViewModel SearchProfile;
+        private readonly SearchProfileConfigurationViewModel SearchProfileConfiguration;
         private readonly LayoutProfileViewModel LayoutProfile;
+        private readonly SearchReferenceConfigurationViewModel SearchReferenceConfiguration;
         private readonly SelectedReferencesViewModel References;
-        private readonly SearchConfigurationViewModel SearchConfiguration;
         private readonly SelectedReferencesConfigurationViewModel SelectedReferencesConfiguration;
         private readonly ProgressBarViewModel ProgressBar;
         private readonly SavedDataViewModel SavedData;
 
         public PopUpViewModel() {
-            _luceneInterface = new LuceneInterfaceReference();
-
+            _luceneInterfaceReference = new LuceneInterfaceReference();
+            _luceneInterfaceProfile = new LuceneInterfaceProfile();
 
             //Init Views
             Start = new StartViewModel(this);
-            SearchReference = new SearchReferenceViewModel(this, _luceneInterface);
+            SearchReference = new SearchReferenceViewModel(this, _luceneInterfaceReference);
             LayoutReference = new LayoutReferenceViewModel(this);
-            SearchProfile = new SearchProfileViewModel(this, _luceneInterface);
+            SearchProfile = new SearchProfileViewModel(this, _luceneInterfaceProfile);
             LayoutProfile = new LayoutProfileViewModel(this);
             References = new SelectedReferencesViewModel(this);
-            SearchConfiguration = new SearchConfigurationViewModel(SearchReference);
+            SearchReferenceConfiguration = new SearchReferenceConfigurationViewModel(SearchReference);
+            SearchProfileConfiguration = new SearchProfileConfigurationViewModel(SearchProfile);
             SelectedReferencesConfiguration = new SelectedReferencesConfigurationViewModel(References);
             SavedData = new SavedDataViewModel(this);
             ProgressBar = new ProgressBarViewModel(this);
@@ -98,7 +101,7 @@ namespace ReferenceConfigurator.views {
             ContentViewModel = path switch {
                 "Profile" => LayoutProfile,
                 "Reference" => LayoutReference,
-                "Settings" => SearchConfiguration,
+                "Settings" => SearchReferenceConfiguration,
                 "Start" => Start,
                 _ => Start
             };
@@ -117,7 +120,8 @@ namespace ReferenceConfigurator.views {
                 "SearchReferences" => SearchReference,
                 "SummaryProfile" => References,
                 "SummaryReferences" => References,
-                "SearchConfiguration" => SearchConfiguration,
+                "SearchReferenceConfiguration" => SearchReferenceConfiguration,
+                "SearchProfileConfiguration" => SearchProfileConfiguration,
                 "SummaryConfiguration" => SelectedReferencesConfiguration,
                 "SavedData" => SavedData,
                 _ => Start
@@ -148,7 +152,8 @@ namespace ReferenceConfigurator.views {
         }
 
         public void refreshSearch() {
-            _luceneInterface.refreshIndex();
+            _luceneInterfaceProfile.refreshIndex();
+            _luceneInterfaceReference.refreshIndex();
         }
     }
 }

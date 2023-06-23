@@ -131,7 +131,9 @@
                     <StackPanel>
                         <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Right.png"
                                Height="40"
-                               Width="40" />
+                               Width="40"
+                               RenderOptions.EdgeMode="Aliased"
+                               RenderOptions.BitmapScalingMode="HighQuality" />
                     </StackPanel>
                 </Button>
                 <Button Grid.Row="1"
@@ -142,7 +144,9 @@
                     <StackPanel>
                         <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Left.png"
                                Height="40"
-                               Width="40" />
+                               Width="40"
+                               RenderOptions.EdgeMode="Aliased"
+                               RenderOptions.BitmapScalingMode="HighQuality" />
                     </StackPanel>
                 </Button>
             </Grid>

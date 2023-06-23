@@ -635,6 +635,7 @@
     <Compile Include="models\ProfileModel.cs" />
     <Compile Include="models\ReferenceLayoutModel.cs" />
     <Compile Include="models\ReferenceModel.cs" />
+    <Compile Include="models\SearchModel.cs" />
     <Compile Include="models\StepIndexModel.cs" />
     <Compile Include="powerpointSlideCreator\PowerpointSlideCreator.cs" />
     <Compile Include="Propterties\DesignTimeResources.xaml.cs">
@@ -687,7 +688,9 @@
     <Compile Include="views\PopUpViewModel.cs" />
     <Compile Include="views\ProgressBarViewModel.cs" />
     <Compile Include="views\SavedDataViewModel.cs" />
+    <Compile Include="views\SearchProfileConfigurationViewModel.cs" />
     <Compile Include="views\SearchProfileViewModel.cs" />
+    <Compile Include="views\SearchReferenceConfigurationViewModel.cs" />
     <Compile Include="views\SearchReferenceViewModel.cs" />
     <Compile Include="views\SearchViewModel.cs" />
     <Compile Include="views\SelectedReferencesConfigurationViewModel.cs" />
@@ -708,7 +711,6 @@
     </Compile>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <EmbeddedResource Include="powerpointTemplate\powerpointTemplate.pptx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

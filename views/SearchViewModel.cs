@@ -21,7 +21,7 @@ namespace ReferenceConfigurator.views {
             set => SetProperty(ref _searchResult, value);
         }
 
-        protected ObservableCollection<ReferenceModel> _selectedItems = new ObservableCollection<ReferenceModel>();
+        protected ObservableCollection<SearchModel> _selectedItems = new ObservableCollection<SearchModel>();
 
         protected ICollectionView _selectedList;
 
@@ -57,19 +57,17 @@ namespace ReferenceConfigurator.views {
 
         protected PopUpViewModel parent;
 
-        protected LuceneInterfaceReference _luceneInterface;
+        protected LuceneInterface _luceneInterface;
 
         public int maxReferences;
 
-        public SearchViewModel(PopUpViewModel parent, LuceneInterfaceReference luceneInterface) {
+        public SearchViewModel(PopUpViewModel parent, LuceneInterface luceneInterface) {
             this.parent = parent;
             _luceneInterface = luceneInterface;
 
             IList<ReferenceModel> search = new List<ReferenceModel>();
             _searchResult = CollectionViewSource.GetDefaultView(search);
             SearchResult = _searchResult;
-            SearchResult.SortDescriptions.Add(
-               new SortDescription("ProjectId", ListSortDirection.Descending));
 
             _selectedList = CollectionViewSource.GetDefaultView(_selectedItems);
             SelectedList = _selectedList;
@@ -88,12 +86,12 @@ namespace ReferenceConfigurator.views {
         }
 
         protected virtual void searchChanged(string search) {
-            List<ReferenceModel> _searchResults = _luceneInterface.getModelByGeneralSearch(search);
+            List<SearchModel> _searchResults = _luceneInterface.getModelByGeneralSearch(search);
             if (_searchResults.Count == 0) {
                 Growl.Info("No result has been found");
                 return;
             }
-            IList<ReferenceModel> _search = _searchResults;
+            IList<SearchModel> _search = _searchResults;
             SearchResult = CollectionViewSource.GetDefaultView(_search);
            
         }
