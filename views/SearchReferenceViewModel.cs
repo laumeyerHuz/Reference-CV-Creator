@@ -11,7 +11,7 @@ using System.Windows.Data;
 
 namespace ReferenceConfigurator.views {
     public class SearchReferenceViewModel : SearchViewModel {
-        public SearchReferenceViewModel(PopUpViewModel parent, LuceneInterface luceneInterface) : base(parent, luceneInterface) {
+        public SearchReferenceViewModel(PopUpViewModel parent, LuceneInterfaceReference luceneInterface) : base(parent, luceneInterface) {
         }
 
         protected override void searchChanged(string search) {

@@ -10,7 +10,7 @@ using System.Windows.Data;
 
 namespace ReferenceConfigurator.views {
     public class SearchProfileViewModel : SearchViewModel {
-        public SearchProfileViewModel(PopUpViewModel parent, LuceneInterface luceneInterface) : base(parent, luceneInterface) {
+        public SearchProfileViewModel(PopUpViewModel parent, LuceneInterfaceReference luceneInterface) : base(parent, luceneInterface) {
         }
 
         protected override void searchChanged(string search) {

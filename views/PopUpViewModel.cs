@@ -30,7 +30,7 @@ namespace ReferenceConfigurator.views {
         }
 
 
-        private readonly LuceneInterface _luceneInterface;
+        private readonly LuceneInterfaceReference _luceneInterface;
 
         private readonly StartViewModel Start;
         private readonly SearchReferenceViewModel SearchReference;
@@ -44,7 +44,7 @@ namespace ReferenceConfigurator.views {
         private readonly SavedDataViewModel SavedData;
 
         public PopUpViewModel() {
-            _luceneInterface = new LuceneInterface();
+            _luceneInterface = new LuceneInterfaceReference();
 
 
             //Init Views

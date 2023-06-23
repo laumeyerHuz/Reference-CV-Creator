@@ -20,7 +20,7 @@ using System.Collections.Generic;
 using HandyControl.Controls;
 
 namespace ReferenceConfigurator.lucene {
-    public class LuceneInterface {
+    public class LuceneInterfaceReference {
         IndexWriter _writer;
         IndexReader _reader;
         IndexSearcher _searcher;
@@ -32,7 +32,7 @@ namespace ReferenceConfigurator.lucene {
         FSDirectory dir = FSDirectory.Open(indexPath);
 
 
-        public LuceneInterface() {
+        public LuceneInterfaceReference() {
             createIndexWriter();
             _reader = DirectoryReader.Open(dir);
             _searcher = new IndexSearcher(_reader);
