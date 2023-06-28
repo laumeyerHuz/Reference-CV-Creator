@@ -96,7 +96,7 @@ namespace ReferenceConfigurator.views {
            
         }
 
-        protected virtual void SelectionChanged(ReferenceModel selected) {
+        protected virtual void SelectionChanged(SearchModel selected) {
             if (selected != null) {
                 if (_selectedItems.Contains(selected)){
                     _selectedItems.Remove(selected);
@@ -119,7 +119,7 @@ namespace ReferenceConfigurator.views {
             }
         }
 
-        protected virtual void AddSelection(ReferenceModel selected) {
+        protected virtual void AddSelection(SearchModel selected) {
             if (selected != null) {
                 if (maxReferences > 0) {
                     if (_selectedItems.Count < maxReferences) {
@@ -136,7 +136,7 @@ namespace ReferenceConfigurator.views {
             }
         }
 
-        protected virtual void RemoveSelection(ReferenceModel selected) {
+        protected virtual void RemoveSelection(SearchModel selected) {
             if (selected != null) {
                 _selectedItems.Remove(selected);
                 parent.removeReference(selected);

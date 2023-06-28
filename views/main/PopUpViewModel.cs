@@ -81,19 +81,19 @@ namespace ReferenceConfigurator.views {
             powerpointSlideCreator.createSlide();
         }
 
-        public void addReference(ReferenceModel model) {
+        public void addReference(SearchModel model) {
             if(ContentViewModel == SearchProfile) {
                 
             } else if(ContentViewModel == SearchReference) {
-                References.addReference(model);
+                References.addReference((ReferenceModel)model);
             }
         }
 
-        public void removeReference(ReferenceModel model) {
+        public void removeReference(SearchModel model) {
             if (ContentViewModel == SearchProfile) {
-
+                
             } else if (ContentViewModel == SearchReference) {
-                References.removeReference(model);
+                References.removeReference((ReferenceModel)model);
             }
         }
 

@@ -641,32 +641,29 @@
     <Compile Include="Propterties\DesignTimeResources.xaml.cs">
       <DependentUpon>DesignTimeResources.xaml</DependentUpon>
     </Compile>
-    <Compile Include="templates\LayoutControl.xaml.cs">
+    <Compile Include="templates\layout\LayoutControl.xaml.cs">
       <DependentUpon>LayoutControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="templates\ProfileSearchControl.xaml.cs">
+    <Compile Include="templates\search\ProfileSearchControl.xaml.cs">
       <DependentUpon>ProfileSearchControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="templates\ProgressBarControl.xaml.cs">
+    <Compile Include="templates\main\ProgressBarControl.xaml.cs">
       <DependentUpon>ProgressBarControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="templates\SaveDataControl.xaml.cs">
+    <Compile Include="templates\settings\SaveDataControl.xaml.cs">
       <DependentUpon>SaveDataControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="templates\SearchControl.xaml.cs">
+    <Compile Include="templates\search\SearchControl.xaml.cs">
       <DependentUpon>SearchControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="templates\SelectedReferencesConfiguration.xaml.cs">
+    <Compile Include="templates\summary\SelectedReferencesConfiguration.xaml.cs">
       <DependentUpon>SelectedReferencesConfiguration.xaml</DependentUpon>
     </Compile>
-    <Compile Include="templates\SelectedReferencesControl.xaml.cs">
+    <Compile Include="templates\summary\SelectedReferencesControl.xaml.cs">
       <DependentUpon>SelectedReferencesControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="templates\SearchConfigurationControl.xaml.cs">
+    <Compile Include="templates\search\SearchConfigurationControl.xaml.cs">
       <DependentUpon>SearchConfigurationControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="templates\SideBarControl.xaml.cs">
-      <DependentUpon>SideBarControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="lucene\LuceneInterfaceReference.cs" />
     <Compile Include="popUp\PopUpControl.xaml.cs">
@@ -675,28 +672,28 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="templates\StartControl.xaml.cs">
+    <Compile Include="templates\main\StartControl.xaml.cs">
       <DependentUpon>StartControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="utils\ImageConverter.cs" />
     <Compile Include="utils\RatioConverter.cs" />
     <Compile Include="utils\Utils.cs" />
-    <Compile Include="views\LayoutProfileViewModel.cs" />
-    <Compile Include="views\LayoutReferenceViewModel.cs" />
-    <Compile Include="views\LayoutViewModel.cs" />
-    <Compile Include="views\MainContentViewModel.cs" />
-    <Compile Include="views\PopUpViewModel.cs" />
-    <Compile Include="views\ProgressBarViewModel.cs" />
-    <Compile Include="views\SavedDataViewModel.cs" />
-    <Compile Include="views\SearchProfileConfigurationViewModel.cs" />
-    <Compile Include="views\SearchProfileViewModel.cs" />
-    <Compile Include="views\SearchReferenceConfigurationViewModel.cs" />
-    <Compile Include="views\SearchReferenceViewModel.cs" />
-    <Compile Include="views\SearchViewModel.cs" />
-    <Compile Include="views\SelectedReferencesConfigurationViewModel.cs" />
-    <Compile Include="views\SelectedReferencesViewModel.cs" />
-    <Compile Include="views\SearchConfigurationViewModel.cs" />
-    <Compile Include="views\StartViewModel.cs" />
+    <Compile Include="views\layout\LayoutProfileViewModel.cs" />
+    <Compile Include="views\layout\LayoutReferenceViewModel.cs" />
+    <Compile Include="views\layout\LayoutViewModel.cs" />
+    <Compile Include="views\main\MainContentViewModel.cs" />
+    <Compile Include="views\main\PopUpViewModel.cs" />
+    <Compile Include="views\main\ProgressBarViewModel.cs" />
+    <Compile Include="views\settings\SavedDataViewModel.cs" />
+    <Compile Include="views\search\SearchProfileConfigurationViewModel.cs" />
+    <Compile Include="views\search\SearchProfileViewModel.cs" />
+    <Compile Include="views\search\SearchReferenceConfigurationViewModel.cs" />
+    <Compile Include="views\search\SearchReferenceViewModel.cs" />
+    <Compile Include="views\search\SearchViewModel.cs" />
+    <Compile Include="views\summary\SelectedReferencesConfigurationViewModel.cs" />
+    <Compile Include="views\summary\SelectedReferencesViewModel.cs" />
+    <Compile Include="views\search\SearchConfigurationViewModel.cs" />
+    <Compile Include="views\main\StartViewModel.cs" />
     <Compile Include="views\utils\BindingProxy.cs" />
     <Compile Include="views\ViewModelBase.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -767,39 +764,35 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="templates\LayoutControl.xaml">
+    <Page Include="templates\layout\LayoutControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="templates\ProfileSearchControl.xaml">
+    <Page Include="templates\search\ProfileSearchControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="templates\ProgressBarControl.xaml">
+    <Page Include="templates\main\ProgressBarControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="templates\SaveDataControl.xaml">
+    <Page Include="templates\settings\SaveDataControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="templates\SearchControl.xaml">
+    <Page Include="templates\search\SearchControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="templates\SelectedReferencesConfiguration.xaml">
+    <Page Include="templates\summary\SelectedReferencesConfiguration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="templates\SelectedReferencesControl.xaml">
+    <Page Include="templates\summary\SelectedReferencesControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="templates\SearchConfigurationControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="templates\SideBarControl.xaml">
+    <Page Include="templates\search\SearchConfigurationControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -807,7 +800,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="templates\StartControl.xaml">
+    <Page Include="templates\main\StartControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
