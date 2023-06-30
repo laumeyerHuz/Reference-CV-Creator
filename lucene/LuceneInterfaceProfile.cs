@@ -145,9 +145,9 @@ namespace ReferenceConfigurator.lucene {
                 doc.Add(new TextField("AdditionalQualifications", "", Lucene.Net.Documents.Field.Store.YES));
             }
             if (!(listItem["field_22"] is null)) {
-                doc.Add(new TextField("LanguagesEn", listItem["field_22"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+                doc.Add(new TextField("LanguagesEN", listItem["field_22"].ToString(), Lucene.Net.Documents.Field.Store.YES));
             } else {
-                doc.Add(new TextField("LanguagesEn", "", Lucene.Net.Documents.Field.Store.YES));
+                doc.Add(new TextField("LanguagesEN", "", Lucene.Net.Documents.Field.Store.YES));
             }
             if (!(listItem["field_23"] is null)) {
                 doc.Add(new TextField("LanguagesDE", listItem["field_23"].ToString(), Lucene.Net.Documents.Field.Store.YES));
@@ -191,7 +191,7 @@ namespace ReferenceConfigurator.lucene {
                 MethodExpertise = doc.Get("MethodExpertise"),
                 ToolExpertise = doc.Get("ToolExpertise"),
                 AdditionalQualifications = doc.Get("AdditionalQualifications"),
-                LanguagesEn = doc.Get("LanguagesEn"),
+                LanguagesEN = doc.Get("LanguagesEN"),
                 LanguagesDE = doc.Get("LanguagesDE"),
                 YearsWorkExperience = doc.Get("YearsWorkExperience").ToInt32(),
             };
@@ -202,7 +202,7 @@ namespace ReferenceConfigurator.lucene {
             List<SearchModel> _referenceModelList = new List<SearchModel>();
             MultiFieldQueryParser queryParser = new MultiFieldQueryParser(
                 AppLuceneVersion,
-                new String[] { "FirstName", "LastName", "Initials", "RoleEN", "RoleDE", "Tribe", "Squad", "ProductTopicOwner", "InternalResponsibility", "ProfessionalExperienceEN", "ProfessionalExperienceDE", "EducationAndTrainingEN", "EnductionAndTrainingDE", "ProjectExperienceEN", "ProjectExperienceDE", "IndustryExperienceEN", "IndustryExperienceDE", "FunctionalExperienceEN", "FunctionalExperienceDE", "MethodExpertise", "ToolExpertise", "AdditionalQualifications", "LanguagesEn", "LanguagesDE", "YearsWorkExperience" },
+                new String[] { "FirstName", "LastName", "Initials", "RoleEN", "RoleDE", "Tribe", "Squad", "ProductTopicOwner", "InternalResponsibility", "ProfessionalExperienceEN", "ProfessionalExperienceDE", "EducationAndTrainingEN", "EnductionAndTrainingDE", "ProjectExperienceEN", "ProjectExperienceDE", "IndustryExperienceEN", "IndustryExperienceDE", "FunctionalExperienceEN", "FunctionalExperienceDE", "MethodExpertise", "ToolExpertise", "AdditionalQualifications", "LanguagesEN", "LanguagesDE", "YearsWorkExperience" },
                 new StandardAnalyzer(AppLuceneVersion));
             search = search + "~0.95";
             Query q = queryParser.Parse(search);

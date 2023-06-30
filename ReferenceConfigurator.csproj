@@ -637,7 +637,8 @@
     <Compile Include="models\ReferenceModel.cs" />
     <Compile Include="models\SearchModel.cs" />
     <Compile Include="models\StepIndexModel.cs" />
-    <Compile Include="powerpointSlideCreator\PowerpointSlideCreator.cs" />
+    <Compile Include="powerpointSlideCreator\PowerpointSlideCreatorProfile.cs" />
+    <Compile Include="powerpointSlideCreator\PowerpointSlideCreatorReference.cs" />
     <Compile Include="Propterties\DesignTimeResources.xaml.cs">
       <DependentUpon>DesignTimeResources.xaml</DependentUpon>
     </Compile>
@@ -656,11 +657,14 @@
     <Compile Include="templates\search\SearchControl.xaml.cs">
       <DependentUpon>SearchControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="templates\summary\SelectedReferencesConfiguration.xaml.cs">
-      <DependentUpon>SelectedReferencesConfiguration.xaml</DependentUpon>
+    <Compile Include="templates\summary\SummaryReferenceConfiguration.xaml.cs">
+      <DependentUpon>SummaryReferenceConfiguration.xaml</DependentUpon>
     </Compile>
-    <Compile Include="templates\summary\SelectedReferencesControl.xaml.cs">
-      <DependentUpon>SelectedReferencesControl.xaml</DependentUpon>
+    <Compile Include="templates\summary\SummaryProfileControl.xaml.cs">
+      <DependentUpon>SummaryProfileControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="templates\summary\SummaryReferenceControl.xaml.cs">
+      <DependentUpon>SummaryReferenceControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="templates\search\SearchConfigurationControl.xaml.cs">
       <DependentUpon>SearchConfigurationControl.xaml</DependentUpon>
@@ -690,8 +694,11 @@
     <Compile Include="views\search\SearchReferenceConfigurationViewModel.cs" />
     <Compile Include="views\search\SearchReferenceViewModel.cs" />
     <Compile Include="views\search\SearchViewModel.cs" />
-    <Compile Include="views\summary\SelectedReferencesConfigurationViewModel.cs" />
-    <Compile Include="views\summary\SelectedReferencesViewModel.cs" />
+    <Compile Include="views\summary\SummaryProfileConfigurationViewModel.cs" />
+    <Compile Include="views\summary\SummaryProfileViewModel.cs" />
+    <Compile Include="views\summary\SummaryReferencesConfigurationViewModel.cs" />
+    <Compile Include="views\summary\SummaryReferenceViewModel.cs" />
+    <Compile Include="views\summary\SummaryViewModel.cs" />
     <Compile Include="views\search\SearchConfigurationViewModel.cs" />
     <Compile Include="views\main\StartViewModel.cs" />
     <Compile Include="views\utils\BindingProxy.cs" />
@@ -784,11 +791,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="templates\summary\SelectedReferencesConfiguration.xaml">
+    <Page Include="templates\summary\SummaryReferenceConfiguration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="templates\summary\SelectedReferencesControl.xaml">
+    <Page Include="templates\summary\SummaryProfileControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="templates\summary\SummaryReferenceControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -30,15 +30,21 @@
             <DataTemplate DataType="{x:Type views:LayoutProfileViewModel}">
                 <templates:LayoutControl />
             </DataTemplate>
-            <DataTemplate DataType="{x:Type views:SelectedReferencesViewModel}">
-                <templates:SelectedReferencesControl />
+            <DataTemplate DataType="{x:Type views:SummaryReferenceViewModel}">
+                <templates:SummaryReferenceControl />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type views:SummaryProfileViewModel}">
+                <templates:SummaryProfileControl />
             </DataTemplate>
             <DataTemplate DataType="{x:Type views:SearchConfigurationViewModel}">
                 <templates:SearchConfigurationControl />
             </DataTemplate>
-            <DataTemplate DataType="{x:Type views:SelectedReferencesConfigurationViewModel}">
-                <templates:SelectedReferencesConfiguration />
+            <DataTemplate DataType="{x:Type views:SummaryReferencesConfigurationViewModel}">
+                <templates:SummaryReferenceConfiguration />
             </DataTemplate>
+            <!--<DataTemplate DataType="{x:Type views:SummaryProfileConfigurationViewModel}">
+                <templates:SummaryProfileConfiguration />
+            </DataTemplate>-->
             <DataTemplate DataType="{x:Type views:SavedDataViewModel}">
                 <templates:SaveDataControl />
             </DataTemplate>

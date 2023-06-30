@@ -29,9 +29,11 @@ namespace ReferenceConfigurator.models {
         public string MethodExpertise { get; set; }
         public string ToolExpertise { get; set; }
         public string AdditionalQualifications { get; set; }
-        public string LanguagesEn { get; set; }
+        public string LanguagesEN { get; set; }
         public string LanguagesDE { get; set; }
         public int YearsWorkExperience { get; set; }
+
+        public string [] flags { get; set; }
 
         public ProfileModel() { }
     }

@@ -65,7 +65,7 @@ namespace ReferenceConfigurator.views {
             this.parent = parent;
             _luceneInterface = luceneInterface;
 
-            IList<ReferenceModel> search = new List<ReferenceModel>();
+            IList<SearchModel> search = new List<SearchModel>();
             _searchResult = CollectionViewSource.GetDefaultView(search);
             SearchResult = _searchResult;
 
@@ -76,11 +76,11 @@ namespace ReferenceConfigurator.views {
             ColumnList = _columnList;
 
             SearchChangedCommand = new RelayCommand<string>(searchChanged);
-            SelectionChangedCommand = new RelayCommand<ReferenceModel>(SelectionChanged);
+            SelectionChangedCommand = new RelayCommand<SearchModel>(SelectionChanged);
             NextCommand = new RelayCommand(next);
             PrevCommand = new RelayCommand(prev);
-            AddSelectionCommand = new RelayCommand<ReferenceModel>(AddSelection);
-            RemoveSelectionCommand = new RelayCommand<ReferenceModel>(RemoveSelection);
+            AddSelectionCommand = new RelayCommand<SearchModel>(AddSelection);
+            RemoveSelectionCommand = new RelayCommand<SearchModel>(RemoveSelection);
             maxReferences = -1;
 
         }
@@ -121,16 +121,20 @@ namespace ReferenceConfigurator.views {
 
         protected virtual void AddSelection(SearchModel selected) {
             if (selected != null) {
-                if (maxReferences > 0) {
-                    if (_selectedItems.Count < maxReferences) {
+                if (_selectedItems.Contains(selected)) {
+                    if (maxReferences > 0) {
+                        if (_selectedItems.Count < maxReferences) {
+                            _selectedItems.Add(selected);
+                            parent.addReference(selected);
+                        } else {
+                            Growl.Error("Too many items selected remove one or change to a bigger layout");
+                        }
+                    } else {
                         _selectedItems.Add(selected);
                         parent.addReference(selected);
-                    } else {
-                        Growl.Error("Too many items selected remove one or change to a bigger layout");
                     }
                 } else {
-                    _selectedItems.Add(selected);
-                    parent.addReference(selected);
+                    Growl.Error("Element already selected");
                 }
                 SelectedList = CollectionViewSource.GetDefaultView(_selectedItems);
             }

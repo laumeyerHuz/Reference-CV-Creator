@@ -11,6 +11,8 @@ using ReferenceConfigurator.Properties;
 using AngleSharp.Css.Dom;
 using HandyControl.Controls;
 using Microsoft.Office.SharePoint.Tools;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ReferenceConfigurator.views {
     public class PopUpViewModel : ViewModelBase {
@@ -40,8 +42,10 @@ namespace ReferenceConfigurator.views {
         private readonly SearchProfileConfigurationViewModel SearchProfileConfiguration;
         private readonly LayoutProfileViewModel LayoutProfile;
         private readonly SearchReferenceConfigurationViewModel SearchReferenceConfiguration;
-        private readonly SelectedReferencesViewModel References;
-        private readonly SelectedReferencesConfigurationViewModel SelectedReferencesConfiguration;
+        private readonly SummaryViewModel SummaryReferences;
+        private readonly SummaryReferencesConfigurationViewModel SummaryReferencesConfiguration;
+        private readonly SummaryViewModel SummaryProfile;
+        private readonly SummaryProfileConfigurationViewModel SummaryProfileConfiguration;
         private readonly ProgressBarViewModel ProgressBar;
         private readonly SavedDataViewModel SavedData;
 
@@ -55,10 +59,12 @@ namespace ReferenceConfigurator.views {
             LayoutReference = new LayoutReferenceViewModel(this);
             SearchProfile = new SearchProfileViewModel(this, _luceneInterfaceProfile);
             LayoutProfile = new LayoutProfileViewModel(this);
-            References = new SelectedReferencesViewModel(this);
+            SummaryReferences = new SummaryReferenceViewModel(this);
+            SummaryProfile = new SummaryProfileViewModel(this);
             SearchReferenceConfiguration = new SearchReferenceConfigurationViewModel(SearchReference);
             SearchProfileConfiguration = new SearchProfileConfigurationViewModel(SearchProfile);
-            SelectedReferencesConfiguration = new SelectedReferencesConfigurationViewModel(References);
+            SummaryReferencesConfiguration = new SummaryReferencesConfigurationViewModel(SummaryReferences);
+            SummaryProfileConfiguration = new SummaryProfileConfigurationViewModel(SummaryProfile);
             SavedData = new SavedDataViewModel(this);
             ProgressBar = new ProgressBarViewModel(this);
             ProgressBar.changeStepList("Profile");
@@ -74,26 +80,36 @@ namespace ReferenceConfigurator.views {
 
 
         public void createSlide() {
-            PowerpointSlideCreator powerpointSlideCreator = new PowerpointSlideCreator();
-            powerpointSlideCreator.addReferences(References.getReferenceList());
-            powerpointSlideCreator.addLayoutModel(LayoutReference.Layouts[LayoutReference._layoutIndex]);
-            powerpointSlideCreator.addLanguage(References.getSelectedLanguage());
-            powerpointSlideCreator.createSlide();
+            if (ContentViewModel == SummaryProfile) {
+                PowerpointSlideCreatorProfile powerpointSlideCreator = new PowerpointSlideCreatorProfile();
+                powerpointSlideCreator.addReferences(SummaryProfile.getReferenceList().Cast<ProfileModel>().ToList());
+                powerpointSlideCreator.addLayoutModel((ProfileLayoutModel)LayoutProfile.Layouts[LayoutProfile._layoutIndex]);
+                powerpointSlideCreator.addLanguage(SummaryProfile.getSelectedLanguage());
+                powerpointSlideCreator.createSlide();
+
+            } else if (ContentViewModel == SummaryReferences) {
+                PowerpointSlideCreatorReference powerpointSlideCreator = new PowerpointSlideCreatorReference();
+                powerpointSlideCreator.addReferences(SummaryReferences.getReferenceList().Cast<ReferenceModel>().ToList());
+                powerpointSlideCreator.addLayoutModel(LayoutReference.Layouts[LayoutReference._layoutIndex]);
+                powerpointSlideCreator.addLanguage(SummaryReferences.getSelectedLanguage());
+                powerpointSlideCreator.createSlide();
+            }
+           
         }
 
         public void addReference(SearchModel model) {
             if(ContentViewModel == SearchProfile) {
-                
+                SummaryProfile.addReference(model);
             } else if(ContentViewModel == SearchReference) {
-                References.addReference((ReferenceModel)model);
+                SummaryReferences.addReference(model);
             }
         }
 
         public void removeReference(SearchModel model) {
             if (ContentViewModel == SearchProfile) {
-                
+                SummaryProfile.removeReference(model);
             } else if (ContentViewModel == SearchReference) {
-                References.removeReference((ReferenceModel)model);
+                SummaryReferences.removeReference(model);
             }
         }
 
@@ -118,11 +134,11 @@ namespace ReferenceConfigurator.views {
                 "LayoutReferences"=>LayoutReference,
                 "SearchProfile"=> SearchProfile,
                 "SearchReferences" => SearchReference,
-                "SummaryProfile" => References,
-                "SummaryReferences" => References,
+                "SummaryProfile" => SummaryProfile,
+                "SummaryReferences" => SummaryReferences,
                 "SearchReferenceConfiguration" => SearchReferenceConfiguration,
                 "SearchProfileConfiguration" => SearchProfileConfiguration,
-                "SummaryConfiguration" => SelectedReferencesConfiguration,
+                "SummaryConfiguration" => SummaryReferencesConfiguration,
                 "SavedData" => SavedData,
                 _ => Start
             };
@@ -134,7 +150,7 @@ namespace ReferenceConfigurator.views {
             } else if (ContentViewModel == LayoutReference) {
                 SearchReference.maxReferences = model.maxElements;
             }
-            References.SelectedLayout = model.name;
+            SummaryReferences.SelectedLayout = model.name;
             
         }
 
