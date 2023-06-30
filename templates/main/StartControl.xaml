@@ -1,52 +1,78 @@
 ﻿<UserControl x:Class="ReferenceConfigurator.templates.StartControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ReferenceConfigurator.templates"
              xmlns:hc="https://handyorg.github.io/handycontrol"
              mc:Ignorable="d">
     <Grid>
-        <StackPanel>
-            <TextBlock 
-                HorizontalAlignment="Center" Margin="5" Text="WELCOME!" Style="{StaticResource TextBlockLargeBold}"/>
-            <hc:Divider LineStrokeThickness="2" LineStroke="{DynamicResource DarkPrimaryBrush}"/>
-            <TextBlock HorizontalAlignment="Center" Margin="2" Text="First time?" Style="{StaticResource TextBlockLarge}"/>
-            
-            <TextBlock HorizontalAlignment="Center" Margin="2" Text="Check out the tips and Settings site to get started" Style="{StaticResource TextBlockLarge}"/>
-            <ListBox HorizontalAlignment="Center" VerticalAlignment="Center" Margin="32" BorderThickness="0" Style="{DynamicResource WrapPanelHorizontalListBox}" ItemsSource="{Binding SelectionList}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate DataType="data:CardModel">
-                        <hc:Card MaxWidth="240" BorderThickness="1" Margin="20" Footer="{Binding Footer}">
-                            <!--Card Content section template-->
-                            <Border CornerRadius="4,4,0,0" Width="160" Height="160">
-                                <Image VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Height="150" Source="{Binding imagePath}"
-                                       RenderOptions.EdgeMode="Aliased"
-                                       RenderOptions.BitmapScalingMode="HighQuality" />
-                            </Border>
-                            <!--Card Footer section template-->
-                            <hc:Card.FooterTemplate>
-                                <DataTemplate>
-                                    <StackPanel Margin="10" Width="160">
-                                        <!--Card First-level content-->
-                                        <TextBlock TextWrapping="NoWrap"  Style="{DynamicResource TextBlockLargeBold}" TextTrimming="CharacterEllipsis" 
-                                           Text="{Binding DataContext.Footer,RelativeSource={RelativeSource AncestorType=hc:Card}}" 
-                                           HorizontalAlignment="Center"/>
-                                        <!--Card Secondary content-->
-                                        <Button 
-                                            Margin="0,6,0,0"
-                                            Style="{StaticResource ButtonPrimary}" 
-                                            Content="Select this Path" 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Viewbox Grid.Row="0" Margin="40" MaxWidth="500">
+            <TextBlock                     
+                       Text="WELCOME!"
+                       FontSize="20"
+                       Style="{StaticResource TextBlockLargeBold}" />
+        </Viewbox>
+
+        <TextBlock Grid.Row="1"
+                   HorizontalAlignment="Center"
+                   Margin="10"
+                   Text="Select one path to get started with the creation of a slide:"
+                   Style="{StaticResource TextBlockLarge}" />
+
+        <ListBox Grid.Row="2"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center"
+                 Margin="32"
+                 BorderThickness="0"
+                 Style="{DynamicResource WrapPanelHorizontalListBox}"
+                 ItemsSource="{Binding SelectionList}">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="data:CardModel">
+                    <hc:Card MaxWidth="240"
+                             BorderThickness="1"
+                             Margin="20"
+                             Footer="{Binding Footer}">
+                        <!--Card Content section template-->
+                        <Border CornerRadius="4,4,0,0"
+                                Width="160"
+                                Height="160">
+                            <Image VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Width="150"
+                                   Height="150"
+                                   Source="{Binding imagePath}"
+                                   RenderOptions.EdgeMode="Aliased"
+                                   RenderOptions.BitmapScalingMode="HighQuality" />
+                        </Border>
+                        <!--Card Footer section template-->
+                        <hc:Card.FooterTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="10"
+                                            Width="160">
+                                    <!--Card First-level content-->
+                                    <TextBlock TextWrapping="NoWrap"
+                                               Style="{DynamicResource TextBlockLargeBold}"
+                                               TextTrimming="CharacterEllipsis"
+                                               Text="{Binding DataContext.Footer,RelativeSource={RelativeSource AncestorType=hc:Card}}"
+                                               HorizontalAlignment="Center" />
+                                    <!--Card Secondary content-->
+                                    <Button Margin="0,6,0,0"
+                                            Style="{StaticResource ButtonPrimary}"
+                                            Content="Select this "
                                             Command="{Binding Path = DataContext.SelectCardCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
-                                            CommandParameter="{Binding Footer,RelativeSource={RelativeSource AncestorType=hc:Card}}"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </hc:Card.FooterTemplate>
-                        </hc:Card>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </StackPanel>
-        
+                                            CommandParameter="{Binding Footer,RelativeSource={RelativeSource AncestorType=hc:Card}}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </hc:Card.FooterTemplate>
+                    </hc:Card>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </UserControl>
