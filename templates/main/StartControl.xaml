@@ -36,7 +36,7 @@
                                         <Button 
                                             Margin="0,6,0,0"
                                             Style="{StaticResource ButtonPrimary}" 
-                                            Content="Select this Layout" 
+                                            Content="Select this Path" 
                                             Command="{Binding Path = DataContext.SelectCardCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
                                             CommandParameter="{Binding Footer,RelativeSource={RelativeSource AncestorType=hc:Card}}"/>
                                     </StackPanel>
