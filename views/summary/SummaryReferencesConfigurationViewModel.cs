@@ -10,7 +10,7 @@ using System.Collections.ObjectModel;
 
 
 namespace ReferenceConfigurator.views {
-    public class SelectedReferencesConfigurationViewModel : MainContentViewModel {
+    public class SummaryReferencesConfigurationViewModel : MainContentViewModel {
         private ObservableCollection<CheckBoxModel> _columnList;
 
         public ObservableCollection<CheckBoxModel> ColumnList {
@@ -23,9 +23,9 @@ namespace ReferenceConfigurator.views {
 
         public ICommand SaveConfigurationCommand { get; }
 
-        private SelectedReferencesViewModel _selectedViewModel;
+        private SummaryViewModel _selectedViewModel;
 
-        public SelectedReferencesConfigurationViewModel(SelectedReferencesViewModel selected) {
+        public SummaryReferencesConfigurationViewModel(SummaryViewModel selected) {
             _selectedViewModel = selected;
             _columnList = new ObservableCollection<CheckBoxModel>();
             ColumnList = _columnList;

@@ -12,13 +12,13 @@ using System.Text.RegularExpressions;
 using HandyControl.Controls;
 
 namespace ReferenceConfigurator.powerpointSlideCreator {
-    public class PowerpointSlideCreator {
+    public class PowerpointSlideCreatorReference {
 
         private List<ReferenceModel> _referenceModels;
         private LayoutModel _layout;
         private string _language;
 
-        public PowerpointSlideCreator() {
+        public PowerpointSlideCreatorReference() {
         }
 
         public void addReferences(List<ReferenceModel> referenceModels) {
