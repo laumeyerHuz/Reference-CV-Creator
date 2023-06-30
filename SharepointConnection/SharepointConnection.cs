@@ -138,7 +138,7 @@ namespace ReferenceConfigurator {
                             FileCollection fileCol = f2.Files;
 
                             foreach (Microsoft.SharePoint.Client.File file in fileCol) {
-                                if (string.Equals(name, file.Name.Split('.')[0], StringComparison.OrdinalIgnoreCase)) {
+                                if (string.Equals(name, Path.GetFileNameWithoutExtension(file.Name), StringComparison.OrdinalIgnoreCase)) {
                                     var fileName = Path.Combine(basePath, "ReferenceConfigurator/CompanyLogo", (string)file.Name);
 
                                     downloadFileHttp(Settings.Default.template, fileName, file);
