@@ -9,21 +9,7 @@
 
     <Application.Resources>
         <ResourceDictionary>
-            <DataTemplate DataType="{x:Type views:StartViewModel}">
-                <templates:StartControl />
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type views:SearchViewModel}">
-                <templates:SearchControl />
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type views:LayoutViewModel}">
-                <templates:LayoutControl />
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type views:SelectedReferencesViewModel}">
-                <templates:SelectedReferencesControl />
-            </DataTemplate>
-
-
-            <ResourceDictionary.MergedDictionaries>
+           <ResourceDictionary.MergedDictionaries>
                 <hc:ThemeResources RequestedTheme="Light"/>
                 <hc:Theme/>
                 <!-- Other merged dictionaries here -->
