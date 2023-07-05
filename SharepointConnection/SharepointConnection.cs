@@ -56,6 +56,32 @@ namespace ReferenceConfigurator {
             ctx.ExecuteQuery();
             return itemColl;
         }
+        public static FileCollection getSharepointListLogo() {
+            ClientContext ctx = GetClientContext(Settings.Default.template);
+            List list = ctx.Web.Lists.GetByTitle("Dokumente");
+            ctx.Load(list);
+            ctx.ExecuteQuery();
+            FolderCollection fcol = list.RootFolder.Folders;
+            ctx.Load(fcol);
+            ctx.ExecuteQuery();
+
+            foreach (Folder f in fcol) {
+                if (f.Name == "Templates Reference Configurator") {
+                    ctx.Load(f.Folders);
+                    ctx.ExecuteQuery();
+                    fcol = f.Folders;
+                    foreach (Folder f2 in fcol) {
+                        if (f2.Name == "Logos") {
+                            ctx.Load(f2.Files);
+                            ctx.ExecuteQuery();
+                            FileCollection fileCol = f2.Files;
+                            return fileCol;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
 
         public static void downloadPowerpointTemplates(string type) {
             
@@ -162,12 +188,6 @@ namespace ReferenceConfigurator {
             client.DefaultRequestHeaders.Add("Authorization" , "Bearer " + accessToken);
             client.DefaultRequestHeaders.Add("Accept", "application/json;odata=verbose");
 
-            //Task<HttpResponseMessage> taskGetFileInfo = Task.Run(() => client.GetAsync(siteUrl + "/_api/web/getFileByServerRelativeUrl(" + "'" + file.ServerRelativeUrl + "'" + ")"));
-            //taskGetFileInfo.Wait();
-            //Task<string> json = taskGetFileInfo.Result.Content.ReadAsStringAsync();
-            //dynamic SPFileRestResponse = JsonConvert.DeserializeObject(json.Result);
-
-            // Download the file via REST
             var uri = new Uri(siteUrl + "/_layouts/15/download.aspx?UniqueId=" + file.UniqueId);
             var taskDownloadFile = Task.Run(() => client.GetByteArrayAsync(uri));
             taskDownloadFile.Wait();
@@ -274,8 +294,54 @@ namespace ReferenceConfigurator {
                             FileCollection fileCol = f2.Files;
 
                             foreach (Microsoft.SharePoint.Client.File file in fileCol) {
-                                if (language == file.Name.Split('.')[0]) {
+                                if (string.Equals(language, Path.GetFileNameWithoutExtension(file.Name), StringComparison.OrdinalIgnoreCase)) {
                                     var fileName = Path.Combine(basePath, "ReferenceConfigurator/Languages", (string)file.Name);
+
+                                    downloadFileHttp(Settings.Default.template, fileName, file);
+                                    return fileName;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        public static string downloadLanguageProfilePicture(string name) {
+
+            string basePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+            string folderPath = Path.Combine(basePath, "ReferenceConfigurator/ProfilePictures");
+
+            System.IO.Directory.CreateDirectory(folderPath);
+            string[] images = Directory.GetFiles(folderPath + "/", name + ".*");
+            if (images.Length > 0) {
+                return images[0];
+            }
+
+
+            ClientContext ctx = GetClientContext(Settings.Default.template);
+            List list = ctx.Web.Lists.GetByTitle("Dokumente");
+            ctx.Load(list);
+            ctx.ExecuteQuery();
+            FolderCollection fcol = list.RootFolder.Folders;
+            ctx.Load(fcol);
+            ctx.ExecuteQuery();
+
+            foreach (Folder f in fcol) {
+                if (f.Name == "Templates Reference Configurator") {
+                    ctx.Load(f.Folders);
+                    ctx.ExecuteQuery();
+                    fcol = f.Folders;
+                    foreach (Folder f2 in fcol) {
+                        if (f2.Name == "People Pictures") {
+                            ctx.Load(f2.Files);
+                            ctx.ExecuteQuery();
+                            FileCollection fileCol = f2.Files;
+
+                            foreach (Microsoft.SharePoint.Client.File file in fileCol) {
+                                if (string.Equals(name, Path.GetFileNameWithoutExtension(file.Name), StringComparison.OrdinalIgnoreCase)) {
+                                    var fileName = Path.Combine(basePath, "ReferenceConfigurator/ProfilePictures", (string)file.Name);
 
                                     downloadFileHttp(Settings.Default.template, fileName, file);
                                     return fileName;

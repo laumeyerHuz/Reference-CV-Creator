@@ -34,7 +34,7 @@ namespace ReferenceConfigurator.lucene {
 
         public LuceneInterface() {}
 
-        protected void createIndexWriter() {
+        protected virtual void createIndexWriter() {
             DateTime now = DateTime.Now;
             if (!DirectoryReader.IndexExists(dir)) {
 
@@ -89,7 +89,7 @@ namespace ReferenceConfigurator.lucene {
 
         protected virtual void addListItemToDoc(ListItem listItem) { }
 
-        public void refreshIndex() {
+        public virtual void refreshIndex() {
             if (DirectoryReader.IndexExists(dir)) {
                 _analyzer = new StandardAnalyzer(AppLuceneVersion);
                 IndexWriterConfig indexConfig = new IndexWriterConfig(AppLuceneVersion, _analyzer);
