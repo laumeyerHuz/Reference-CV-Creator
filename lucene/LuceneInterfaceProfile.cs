@@ -2,22 +2,14 @@
 using Lucene.Net.Documents;
 using Lucene.Net.Index;
 using Lucene.Net.Search;
-using Lucene.Net.Store;
-using Lucene.Net.Util;
-using Lucene.Net.QueryParsers;
-using System.Diagnostics;
 using FSDirectory = Lucene.Net.Store.FSDirectory;
 using System;
 using System.IO;
-using Lucene.Net.Analysis;
 using Microsoft.SharePoint.Client;
-using System.Linq;
-using System.Text.RegularExpressions;
 using Lucene.Net.QueryParsers.Classic;
-using Microsoft.Office.Interop.PowerPoint;
 using ReferenceConfigurator.models;
 using System.Collections.Generic;
-using HandyControl.Controls;
+
 
 namespace ReferenceConfigurator.lucene {
     public class LuceneInterfaceProfile : LuceneInterface {
@@ -45,7 +37,7 @@ namespace ReferenceConfigurator.lucene {
                 doc.Add(new TextField("LastName", "", Lucene.Net.Documents.Field.Store.YES));
             }
             if (!(listItem["field_2"] is null)) {
-                doc.Add(new TextField("Initials", listItem["field_1"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+                doc.Add(new TextField("Initials", listItem["field_2"].ToString(), Lucene.Net.Documents.Field.Store.YES));
             } else {
                 doc.Add(new TextField("Initials", "", Lucene.Net.Documents.Field.Store.YES));
             }

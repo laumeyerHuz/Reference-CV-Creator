@@ -35,6 +35,8 @@ namespace ReferenceConfigurator.models {
 
         public string [] flags { get; set; }
 
+        public string ProfilePicture { get; set; }
+
         public ProfileModel() { }
     }
 }

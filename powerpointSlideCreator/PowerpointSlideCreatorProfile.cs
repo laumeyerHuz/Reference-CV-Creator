@@ -35,19 +35,20 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
             if (_layout.onePager) {
                 addOnePagers();
             } else {
-                var presentation = Globals.ThisAddIn.Application.ActivePresentation;
-                var selectedSlidesNumbers = this.GetSelectedSlideNumbers(presentation);
-                var firstSelectedSlide = selectedSlidesNumbers[0];
+                Growl.Info("Not working yet. Please choose one pager.");
+                //var presentation = Globals.ThisAddIn.Application.ActivePresentation;
+                //var selectedSlidesNumbers = this.GetSelectedSlideNumbers(presentation);
+                //var firstSelectedSlide = selectedSlidesNumbers[0];
 
-                // Insert slide from file.  Note that this step will NOT bring the theme
-                // from the slide file, only it's text.
-                presentation.Slides.InsertFromFile(_layout.powerpointPath, firstSelectedSlide, 1, 1);
+                //// Insert slide from file.  Note that this step will NOT bring the theme
+                //// from the slide file, only it's text.
+                //presentation.Slides.InsertFromFile(_layout.powerpointPath, firstSelectedSlide, 1, 1);
 
-                // Apply the theme of the newly inserted slide file.  Note that the new 
-                // slide gets inserted after selected slide, so add 1 to slide index
-                // to target new slide for theme.
-                presentation.Slides[firstSelectedSlide + 1].ApplyTheme(_layout.powerpointPath);
-                updateSlideContent(presentation.Slides[firstSelectedSlide + 1]);
+                //// Apply the theme of the newly inserted slide file.  Note that the new 
+                //// slide gets inserted after selected slide, so add 1 to slide index
+                //// to target new slide for theme.
+                //presentation.Slides[firstSelectedSlide + 1].ApplyTheme(_layout.powerpointPath);
+                //updateSlideContent(presentation.Slides[firstSelectedSlide + 1]);
             }
         }
 
@@ -122,6 +123,7 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
 
         private void updateOnePagerContent(Slide slide, ProfileModel current) {
             loadFlags();
+            loadProfilePictures();
             for (int i = slide.Shapes.Count; i >= 1; i--) {
                 Shape s = slide.Shapes[i];
                 if (s.Name.Contains("TextBox") || s.Name.Contains("Textplatzhalter") || s.Name.Contains("Text") || s.Name.Contains("Title") || s.Name.Contains("Titel")) {
@@ -150,7 +152,7 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                             break;
                         case "professional":
                             if (_language == "EN") {
-                                s.TextFrame.TextRange.Text =current.ProfessionalExperienceEN;
+                                s.TextFrame.TextRange.Text = current.ProfessionalExperienceEN;
                             } else if (_language == "DE") {
                                 s.TextFrame.TextRange.Text = current.ProfessionalExperienceDE;
                             } else {
@@ -191,6 +193,66 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                                 s.TextFrame.TextRange.Text = current.EnductionAndTrainingDE;
                             } else {
                                 Growl.Info("No language selected");
+                            }
+                            break;
+                        case "Profile":
+                            if (current.ProfilePicture != null) {
+                                System.Drawing.Image img = System.Drawing.Image.FromFile(current.ProfilePicture);
+                                float[] sizes = resizeImage(s.Width, s.Height, img.Width, img.Height, s.Left, s.Top);
+                                slide.Shapes.AddPicture(current.ProfilePicture, msoFalse, msoTrue, sizes[0], sizes[1], sizes[2], sizes[3]);
+                                s.Delete();
+                            }
+                            break; 
+                        case "Lang 1":
+                            if (current.flags.Length > 0) {
+                                if (current.flags[0] != null) {
+                                    System.Drawing.Image imgL = System.Drawing.Image.FromFile(current.flags[0]);
+                                    float[] sizesL = resizeImage(s.Width, s.Height, imgL.Width, imgL.Height, s.Left, s.Top);
+                                    slide.Shapes.AddPicture(current.flags[0], msoFalse, msoTrue, sizesL[0], sizesL[1], sizesL[2], sizesL[3]);
+                                    s.Delete();
+                                }
+                            } else {
+                                s.Delete();
+                                break; 
+                            }
+                            break;
+                        case "Lang 2":
+                            if (current.flags.Length > 1) {
+                                if (current.flags[1] != null) {
+                                    System.Drawing.Image imgL = System.Drawing.Image.FromFile(current.flags[1]);
+                                    float[] sizesL = resizeImage(s.Width, s.Height, imgL.Width, imgL.Height, s.Left, s.Top);
+                                    slide.Shapes.AddPicture(current.flags[1], msoFalse, msoTrue, sizesL[0], sizesL[1], sizesL[2], sizesL[3]);
+                                    s.Delete();
+                                }
+                            } else {
+                                s.Delete();
+                                break;
+                            }
+                            break;
+                        case "Lang 3":
+                            if (current.flags.Length > 2) {
+                                if (current.flags[2] != null) {
+                                    System.Drawing.Image imgL = System.Drawing.Image.FromFile(current.flags[2]);
+                                    float[] sizesL = resizeImage(s.Width, s.Height, imgL.Width, imgL.Height, s.Left, s.Top);
+                                    slide.Shapes.AddPicture(current.flags[2], msoFalse, msoTrue, sizesL[0], sizesL[1], sizesL[2], sizesL[3]);
+                                    s.Delete();
+                                }
+                            } else {
+                                s.Delete();
+                                break;
+                            }
+                            break;
+                        case "Lang 4":
+                            if (current.flags.Length > 3) {
+                                if (current.flags[3] != null) {
+                                    System.Drawing.Image imgL = System.Drawing.Image.FromFile(current.flags[3]);
+                                    float[] sizesL = resizeImage(s.Width, s.Height, imgL.Width, imgL.Height, s.Left, s.Top);
+                                    slide.Shapes.AddPicture(current.flags[3], msoFalse, msoTrue, sizesL[0], sizesL[1], sizesL[2], sizesL[3]);
+                                    s.Delete();
+                                }
+                            } else {
+                                s.Delete();
+                                break;
                             }
                             break;
                         default: break;
@@ -252,5 +314,21 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                 model.flags = flags;
             }
         }
+
+        private void loadProfilePictures() {
+            HashSet<string> pic = new HashSet<string>();
+            foreach (var model in _searchModels) {
+                pic.Add(model.FirstName + " " + model.LastName);
+            }
+            Dictionary<string, string> picList = new Dictionary<string, string>();
+            foreach (string name in pic) {
+                string file = SharepointConnection.downloadLanguageProfilePicture(name);
+                picList[name] = file;
+            }
+            foreach (ProfileModel model in _searchModels) {
+                model.ProfilePicture = picList[model.FirstName + " " + model.LastName];
+            }
+        }
+
     }
 }
