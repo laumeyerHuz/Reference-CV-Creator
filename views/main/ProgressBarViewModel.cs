@@ -60,6 +60,9 @@ namespace ReferenceConfigurator.views {
             } else if (type == "Settings") {
                 StepList = new ObservableCollection<StepIndexModel>(getSettingsStepList());
                 StepIndex = 0;
+            } else if (type == "Logo") {
+                StepList = new ObservableCollection<StepIndexModel>(getLogoStepList());
+                StepIndex = 0;
             }
         }
 
@@ -89,6 +92,14 @@ namespace ReferenceConfigurator.views {
                 new StepIndexModel("SearchProfileConfiguration", "Search Profile Configuration"),
                 new StepIndexModel("SummaryConfiguration", "Summary Configuration"),
                 new StepIndexModel("SavedData", "Saved Data")
+            };
+
+            return tmp;
+        }
+        private List<StepIndexModel> getLogoStepList() {
+            List<StepIndexModel> tmp = new List<StepIndexModel> {
+                new StepIndexModel("SearchLogo", "Search Logo"),
+                
             };
 
             return tmp;

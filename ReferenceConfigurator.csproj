@@ -639,6 +639,7 @@
     <Compile Include="models\ReferenceModel.cs" />
     <Compile Include="models\SearchModel.cs" />
     <Compile Include="models\StepIndexModel.cs" />
+    <Compile Include="powerpointSlideCreator\PowerpointSlideCreatorLogo.cs" />
     <Compile Include="powerpointSlideCreator\PowerpointSlideCreatorProfile.cs" />
     <Compile Include="powerpointSlideCreator\PowerpointSlideCreatorReference.cs" />
     <Compile Include="Propterties\DesignTimeResources.xaml.cs">
@@ -646,6 +647,9 @@
     </Compile>
     <Compile Include="templates\layout\LayoutControl.xaml.cs">
       <DependentUpon>LayoutControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="templates\search\LogoSearchControl.xaml.cs">
+      <DependentUpon>LogoSearchControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="templates\search\ProfileSearchControl.xaml.cs">
       <DependentUpon>ProfileSearchControl.xaml</DependentUpon>
@@ -690,6 +694,7 @@
     <Compile Include="views\main\MainContentViewModel.cs" />
     <Compile Include="views\main\PopUpViewModel.cs" />
     <Compile Include="views\main\ProgressBarViewModel.cs" />
+    <Compile Include="views\search\SearchLogoViewModel.cs" />
     <Compile Include="views\settings\SavedDataViewModel.cs" />
     <Compile Include="views\search\SearchProfileConfigurationViewModel.cs" />
     <Compile Include="views\search\SearchProfileViewModel.cs" />
@@ -776,6 +781,10 @@
     <Page Include="templates\layout\LayoutControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="templates\search\LogoSearchControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="templates\search\ProfileSearchControl.xaml">
       <SubType>Designer</SubType>
@@ -864,6 +873,9 @@
   <PropertyGroup>
     <ManifestCertificateThumbprint>DD85999A4C3DD508544E166C91CB276906333CAF</ManifestCertificateThumbprint>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- Include additional build rules for an Office application add-in. -->
@@ -888,4 +900,8 @@
     <Error Condition="!Exists('packages\CommunityToolkit.Mvvm.8.1.0\build\netstandard2.0\CommunityToolkit.Mvvm.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\CommunityToolkit.Mvvm.8.1.0\build\netstandard2.0\CommunityToolkit.Mvvm.targets'))" />
   </Target>
   <Import Project="packages\CommunityToolkit.Mvvm.8.1.0\build\netstandard2.0\CommunityToolkit.Mvvm.targets" Condition="Exists('packages\CommunityToolkit.Mvvm.8.1.0\build\netstandard2.0\CommunityToolkit.Mvvm.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>

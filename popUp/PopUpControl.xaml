@@ -48,6 +48,9 @@
             <DataTemplate DataType="{x:Type views:SavedDataViewModel}">
                 <templates:SaveDataControl />
             </DataTemplate>
+            <DataTemplate DataType="{x:Type views:SearchLogoViewModel}">
+                <templates:LogoSearchControl />
+            </DataTemplate>
         </ResourceDictionary>
 
     </UserControl.Resources>

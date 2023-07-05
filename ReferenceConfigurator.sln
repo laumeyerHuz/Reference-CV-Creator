@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferenceConfigurator", "ReferenceConfigurator.csproj", "{F9FD4B17-DEE7-4348-8A94-03ED7C86F1D5}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Reference and CV Creator", "..\Reference and CV Creator\Reference and CV Creator.vdproj", "{CF54D162-D592-4FDF-9D75-D1CA7111274A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,9 @@ Global
 		{F9FD4B17-DEE7-4348-8A94-03ED7C86F1D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9FD4B17-DEE7-4348-8A94-03ED7C86F1D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9FD4B17-DEE7-4348-8A94-03ED7C86F1D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF54D162-D592-4FDF-9D75-D1CA7111274A}.Debug|Any CPU.ActiveCfg = Debug
+		{CF54D162-D592-4FDF-9D75-D1CA7111274A}.Release|Any CPU.ActiveCfg = Release
+		{CF54D162-D592-4FDF-9D75-D1CA7111274A}.Release|Any CPU.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

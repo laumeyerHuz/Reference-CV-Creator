@@ -46,7 +46,7 @@ namespace ReferenceConfigurator.views {
                     "pack://application:,,,/ReferenceConfigurator;component/icons/Reference.png"
                     ),
                 new CardModel(
-                    "Logos",
+                    "Logo",
                     "pack://application:,,,/ReferenceConfigurator;component/icons/Tips.png"
                     ),
                 new CardModel(

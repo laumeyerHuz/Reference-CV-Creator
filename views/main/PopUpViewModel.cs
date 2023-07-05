@@ -13,6 +13,7 @@ using HandyControl.Controls;
 using Microsoft.Office.SharePoint.Tools;
 using System.Collections.Generic;
 using System.Linq;
+using ReferenceConfigurator.views;
 
 namespace ReferenceConfigurator.views {
     public class PopUpViewModel : ViewModelBase {
@@ -34,6 +35,7 @@ namespace ReferenceConfigurator.views {
 
         private readonly LuceneInterfaceReference _luceneInterfaceReference;
         private readonly LuceneInterfaceProfile _luceneInterfaceProfile;
+        private readonly LuceneInterfaceLogo _luceneInterfaceLogo;
 
         private readonly StartViewModel Start;
         private readonly SearchReferenceViewModel SearchReference;
@@ -48,10 +50,12 @@ namespace ReferenceConfigurator.views {
         private readonly SummaryProfileConfigurationViewModel SummaryProfileConfiguration;
         private readonly ProgressBarViewModel ProgressBar;
         private readonly SavedDataViewModel SavedData;
+        private readonly SearchLogoViewModel SearchLogo;
 
         public PopUpViewModel() {
             _luceneInterfaceReference = new LuceneInterfaceReference();
             _luceneInterfaceProfile = new LuceneInterfaceProfile();
+            _luceneInterfaceLogo = new LuceneInterfaceLogo();
 
             //Init Views
             Start = new StartViewModel(this);
@@ -67,6 +71,7 @@ namespace ReferenceConfigurator.views {
             SummaryProfileConfiguration = new SummaryProfileConfigurationViewModel(SummaryProfile);
             SavedData = new SavedDataViewModel(this);
             ProgressBar = new ProgressBarViewModel(this);
+            SearchLogo = new SearchLogoViewModel(this,_luceneInterfaceLogo);
             ProgressBar.changeStepList("Profile");
 
             //Starting Views
@@ -93,6 +98,11 @@ namespace ReferenceConfigurator.views {
                 powerpointSlideCreator.addLayoutModel(LayoutReference.Layouts[LayoutReference._layoutIndex]);
                 powerpointSlideCreator.addLanguage(SummaryReferences.getSelectedLanguage());
                 powerpointSlideCreator.createSlide();
+            } else if(ContentViewModel == SearchLogo) {
+                PowerpointSlideCreatorLogo powerpointSlideCreator = new PowerpointSlideCreatorLogo();
+                powerpointSlideCreator.addReferences(SearchLogo.getSelected().Cast<LogoModel>().ToList());
+                powerpointSlideCreator.addLogo();
+                System.Windows.Application.Current.Windows[0].Close();
             }
            
         }
@@ -119,6 +129,7 @@ namespace ReferenceConfigurator.views {
                 "Reference" => LayoutReference,
                 "Settings" => SearchReferenceConfiguration,
                 "Start" => Start,
+                "Logo" => SearchLogo,
                 _ => Start
             };
             ProgressBar.changeStepList(path);
@@ -140,6 +151,7 @@ namespace ReferenceConfigurator.views {
                 "SearchProfileConfiguration" => SearchProfileConfiguration,
                 "SummaryConfiguration" => SummaryReferencesConfiguration,
                 "SavedData" => SavedData,
+                "SearchLogo" => SearchLogo,
                 _ => Start
             };
         }
@@ -170,6 +182,7 @@ namespace ReferenceConfigurator.views {
         public void refreshSearch() {
             _luceneInterfaceProfile.refreshIndex();
             _luceneInterfaceReference.refreshIndex();
+            _luceneInterfaceLogo.refreshIndex();
         }
     }
 }
