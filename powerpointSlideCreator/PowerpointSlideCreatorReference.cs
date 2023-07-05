@@ -100,29 +100,7 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
         }
 
         private void updateSlideContent(Slide slide) {
-            //loadLogos();
-            //System.Diagnostics.Debug.WriteLine(slide.Shapes.Count);
-            //int countDescription = 0;
-            //int countLogo = 0;
-            //foreach (Shape s in slide.Shapes) {
-            //    System.Diagnostics.Debug.WriteLine($"{s.Name}");
-            //    if (s.Name.Contains("Picture") && countLogo < _referenceModels.Count) {
-            //        if (_referenceModels[countLogo].Logo == null) {
-            //            countLogo++;
-            //            continue;
-            //        }
-            //        s.Fill.UserPicture(_referenceModels[countLogo].Logo);
-            //        countLogo++;
-            //    }
-            //    if (s.Name.Contains("TextBox") && countDescription < _referenceModels.Count) {
-            //        s.TextFrame.TextRange.Text = _referenceModels[countDescription].ProjectName;
-            //        countDescription++;
-            //    }
-            //}
-
             loadLogos();
-            List<Shape> tmp = new List<Shape>();
-            //foreach(Shape s in slide.Shapes) {
             for (int i = slide.Shapes.Count; i >= 1; i--) {
                 Shape s = slide.Shapes[i];
                 System.Diagnostics.Debug.WriteLine(s.Name);
