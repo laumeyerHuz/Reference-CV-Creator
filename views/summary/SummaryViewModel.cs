@@ -16,14 +16,14 @@ namespace ReferenceConfigurator.views {
     public class SummaryViewModel : MainContentViewModel {
         PopUpViewModel parent;
 
-        private ICollectionView _selectedReferences;
+        protected ICollectionView _selectedReferences;
 
         public ICollectionView SelectedReferences {
             get => _selectedReferences;
             set => SetProperty(ref _selectedReferences, value);
         }
 
-        private string _selectedLayout;
+        protected string _selectedLayout;
 
         public string SelectedLayout {
             get => _selectedLayout;
@@ -38,7 +38,7 @@ namespace ReferenceConfigurator.views {
 
         public ICommand PrevCommand { get; }
 
-        private ObservableCollection<CheckBoxModel> _columnList;
+        protected ObservableCollection<CheckBoxModel> _columnList;
 
         public ObservableCollection<CheckBoxModel> ColumnList {
             get => _columnList;
@@ -47,7 +47,7 @@ namespace ReferenceConfigurator.views {
             }
         }
 
-        private ObservableCollection<string> _languageList;
+        protected ObservableCollection<string> _languageList;
 
         public ObservableCollection<string> LanguageList {
             get => _languageList;
@@ -56,14 +56,14 @@ namespace ReferenceConfigurator.views {
             }
         }
 
-        private string _selectedLanguage;
+        protected string _selectedLanguage;
 
-        public string SelectedLanguage {
+        public virtual string SelectedLanguage {
             get => _selectedLanguage;
             set => SetProperty(ref _selectedLanguage, value);
         }
 
-        private List<SearchModel> _references;
+        protected List<SearchModel> _references;
 
         public SummaryViewModel(PopUpViewModel parent) {
             this.parent = parent;
@@ -100,7 +100,7 @@ namespace ReferenceConfigurator.views {
             SelectedReferences.Refresh();
         }
 
-        private void createSlide() {
+        protected void createSlide() {
             if(_references.Count < 0) {
                 Growl.Error("No reference slected to be added");
             }
@@ -113,7 +113,7 @@ namespace ReferenceConfigurator.views {
             return _references;
         }
 
-        private void SelectionChanged(SearchModel selected) {
+        protected void SelectionChanged(SearchModel selected) {
             if(selected != null) {
                 removeReference(selected);
             }         

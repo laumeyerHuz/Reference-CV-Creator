@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.SharePoint.Client;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,8 +22,25 @@ namespace ReferenceConfigurator.models {
         public string ProfessionalExperienceDE { get; set; }
         public string EducationAndTrainingEN { get; set; }
         public string EnductionAndTrainingDE { get; set; }
-        public string ProjectExperienceEN { get; set; }
-        public string ProjectExperienceDE { get; set; }
+
+        private string _projectExperienceEN;
+        public string ProjectExperienceEN {
+            get => _projectExperienceEN;
+            set {
+                _projectExperienceEN = value;
+                ProjectExperiencesEN = split(value);
+                changeLanguage("EN");
+            }
+        }
+
+        private string _projectExperienceDE;
+        public string ProjectExperienceDE {
+            get => _projectExperienceDE;
+            set {
+                _projectExperienceDE = value;
+                ProjectExperiencesDE = split(value);
+            }
+        }
         public string IndustryExperienceEN { get; set; }
         public string IndustryExperienceDE { get; set; }
         public string FunctionalExperienceEN { get; set; }
@@ -33,10 +52,45 @@ namespace ReferenceConfigurator.models {
         public string LanguagesDE { get; set; }
         public int YearsWorkExperience { get; set; }
 
-        public string [] flags { get; set; }
+        public string[] flags { get; set; }
 
         public string ProfilePicture { get; set; }
 
+        public List<CheckBoxModel> ProjectExperiencesEN { get; set; }
+
+        public List<CheckBoxModel> ProjectExperiencesDE { get; set; }
+
+        private ObservableCollection<CheckBoxModel> _projectExperiencesDisplay;
+
+        public ObservableCollection<CheckBoxModel> ProjectExperiencesDisplay {
+            get => _projectExperiencesDisplay;
+            set {
+                SetProperty(ref _projectExperiencesDisplay, value);
+            }
+        }
+
         public ProfileModel() { }
+
+        private List<CheckBoxModel> split(string input) {
+            List<CheckBoxModel> tmp = new List<CheckBoxModel>();
+            foreach (string line in input.Split('\n')) {
+                tmp.Add(new CheckBoxModel() {
+                    Name = line,
+                    IsChecked = true,
+                });
+            }
+            return tmp;
+        }
+
+        public void changeLanguage(string language) {
+            switch (language) {
+                case "EN":
+                    ProjectExperiencesDisplay = new ObservableCollection<CheckBoxModel>(ProjectExperiencesEN);
+                    break;
+                case "DE":
+                    ProjectExperiencesDisplay = new ObservableCollection<CheckBoxModel>(ProjectExperiencesEN);
+                    break;
+            }
+        }
     }
 }
