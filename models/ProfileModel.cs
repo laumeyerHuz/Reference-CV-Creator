@@ -69,6 +69,20 @@ namespace ReferenceConfigurator.models {
             }
         }
 
+        private bool partner;
+        public bool IsPartner {
+            get => partner;
+            set => SetProperty(ref partner, value);
+        }
+
+        private bool expert;
+        public bool IsExpert {
+            get => expert;
+            set => SetProperty(ref expert, value);
+        }
+
+
+
         public ProfileModel() { }
 
         private List<CheckBoxModel> split(string input) {

@@ -59,20 +59,33 @@
                   ItemsSource="{Binding SelectedReferences}"
                   Background="Transparent"
                   Grid.Row="2"
-                  IsReadOnly="True"
                   Margin="5"
                   BorderThickness="0"
                   hc:DataGridAttach.ShowRowNumber="True"
                   IsSynchronizedWithCurrentItem="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="Auto"
-                                    Visibility="{Binding Data.ColumnList[0].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                     Binding="{Binding FirstName}"
                                     Header="FirstName" />
                 <DataGridTextColumn Width="Auto"
-                                    Visibility="{Binding Data.ColumnList[1].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                     Binding="{Binding LastName}"
                                     Header="LastName" />
+                <DataGridTemplateColumn Width="Auto"
+                                        Header="Partner">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding Path=IsPartner, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="Auto"
+                                        Header="Expert">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding Path=IsExpert, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
             <DataGrid.RowDetailsTemplate>
                 <DataTemplate>
@@ -82,8 +95,14 @@
                               BorderThickness="0"
                               hc:DataGridAttach.ShowRowNumber="True">
                         <DataGrid.Columns>
-                            <DataGridCheckBoxColumn Binding="{Binding IsChecked}"
-                                                    Header="Selected" />
+                            <DataGridTemplateColumn Width="Auto"
+                                                    Header="Selected">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="{Binding Path=IsChecked, UpdateSourceTrigger=PropertyChanged}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                             <DataGridTextColumn Binding="{Binding Name}"
                                                 Header="ProjectExperience" />
                         </DataGrid.Columns>
