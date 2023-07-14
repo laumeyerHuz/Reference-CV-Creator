@@ -105,22 +105,23 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                     string[] split = placeholder.Split(' ');
                     switch (split[0]) {
                         case "logo":
-                            ProfileModel logo = _searchModels[0];
+                            ProfileModel logo = null;
                             if (split[1] == "core") {
                                 if (split.Count() > 2 && split[2].ToInt32() <= _layout.core && split[2].ToInt32() <= coreList.Count()) {
-                                    logo = coreList[split[2].ToInt32()];
+                                    logo = coreList[split[2].ToInt32() - 1];
                                 }
                             } else if (split[1] == "partner") {
                                 if (split.Count() > 2 && split[2].ToInt32() <= _layout.partner && split[2].ToInt32() <= partnerList.Count()) {
-                                    logo = partnerList[split[2].ToInt32()];
+                                    logo = partnerList[split[2].ToInt32() - 1];
                                 }
                             } else if (split[1] == "expert") {
                                 if (split.Count() > 2 && split[2].ToInt32() <= _layout.expert && split[2].ToInt32() <= expertList.Count()) {
-                                    logo = expertList[split[2].ToInt32()];
+                                    logo = expertList[split[2].ToInt32() - 1];
                                 }
                             }
-
-                            if (logo.ProfilePicture != null) {
+                            if (logo == null) {
+                                break;
+                            } else if (logo.ProfilePicture != null) {
                                 System.Drawing.Image img = System.Drawing.Image.FromFile(logo.ProfilePicture);
                                 float[] sizes = resizeImage(s.Width, s.Height, img.Width, img.Height, s.Left, s.Top);
                                 slide.Shapes.AddPicture(logo.ProfilePicture, msoFalse, msoTrue, sizes[0], sizes[1], sizes[2], sizes[3]);
@@ -128,21 +129,23 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                             }
                             break;
                         case "name":
-                            ProfileModel name = _searchModels[0];
+                            ProfileModel name = null;
                             if (split[1] == "core") {
                                 if (split.Count() > 2 && split[2].ToInt32() <= _layout.core && split[2].ToInt32() <= coreList.Count()) {
-                                    name = coreList[split[2].ToInt32()];
+                                    name = coreList[split[2].ToInt32() - 1];
                                 }
                             } else if (split[1] == "partner") {
                                 if (split.Count() > 2 && split[2].ToInt32() <= _layout.partner && split[2].ToInt32() <= partnerList.Count()) {
-                                    name = partnerList[split[2].ToInt32()];
+                                    name = partnerList[split[2].ToInt32() - 1];
                                 }
                             } else if (split[1] == "expert") {
                                 if (split.Count() > 2 && split[2].ToInt32() <= _layout.expert && split[2].ToInt32() <= expertList.Count()) {
-                                    name = expertList[split[2].ToInt32()];
+                                    name = expertList[split[2].ToInt32() - 1];
                                 }
                             }
-                            if (split[1] == "core") {
+                            if (name == null) {
+                                break;
+                            } else if (split[1] == "core") {
                                 s.TextFrame.TextRange.Text = name.FirstName + " " + name.LastName;
                             } else if (split[1] == "partner") {
                                 s.TextFrame.TextRange.Text = name.FirstName + " " + name.LastName + " – Partner";
@@ -152,12 +155,13 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                             }
                             break;
                         case "experience":
-                            ProfileModel experience = _searchModels[0];
+                            ProfileModel experience = null;
                             if (split.Count() > 1 && split[1].ToInt32() <= _layout.core && split[1].ToInt32() <= coreList.Count()) {
-                                experience = coreList[split[1].ToInt32()];
+                                experience = coreList[split[1].ToInt32() - 1];
                             }
+                            if (experience == null) { break; }
                             string exp = "";
-                            foreach(CheckBoxModel ep in experience.ProjectExperiencesDisplay) {
+                            foreach (CheckBoxModel ep in experience.ProjectExperiencesDisplay) {
                                 exp += ep.Name + "\n";
                             }
                             s.TextFrame.TextRange.Text = exp;
