@@ -162,7 +162,12 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                             if (experience == null) { break; }
                             string exp = "";
                             foreach (CheckBoxModel ep in experience.ProjectExperiencesDisplay) {
-                                exp += ep.Name + "\n";
+                                if (ep.IsChecked) {
+                                    exp += ep.Name + "\n";
+                                }
+                            }
+                            if (exp.Length > 2) {
+                                exp += exp.Remove(exp.Length - 2);
                             }
                             s.TextFrame.TextRange.Text = exp;
                             break;
