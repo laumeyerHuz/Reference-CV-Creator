@@ -130,14 +130,29 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                             break;
                         case "name":
                             ProfileModel name = null;
+                            string additions = "";
                             if (split[1] == "core") {
                                 if (split.Count() > 2 && split[2].ToInt32() <= _layout.core && split[2].ToInt32() <= coreList.Count()) {
                                     name = coreList[split[2].ToInt32() - 1];
+                                    if (_language == "EN") {
+                                        additions = name.RoleEN + "\n" + name.YearsWorkExperience + " years' experience";
+                                    } else if (_language == "DE") {
+                                        additions = name.RoleDE + "\n" + name.YearsWorkExperience + " Jahre Erfahrung";
+                                    }
                                 }
+                                
                             } else if (split[1] == "partner") {
                                 if (split.Count() > 2 && split[2].ToInt32() <= _layout.partner && split[2].ToInt32() <= partnerList.Count()) {
                                     name = partnerList[split[2].ToInt32() - 1];
+                                    foreach (CheckBoxModel ep in name.ProjectExperiencesDisplay) {
+                                        if (ep.IsChecked) {
+                                            additions += ep.Name + ", ";
+                                        }
+                                    }
+                                    additions = additions.Remove(additions.Length - 2);
                                 }
+                                
+
                             } else if (split[1] == "expert") {
                                 if (split.Count() > 2 && split[2].ToInt32() <= _layout.expert && split[2].ToInt32() <= expertList.Count()) {
                                     name = expertList[split[2].ToInt32() - 1];
@@ -146,11 +161,17 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                             if (name == null) {
                                 break;
                             } else if (split[1] == "core") {
-                                s.TextFrame.TextRange.Text = name.FirstName + " " + name.LastName;
+                                s.TextFrame.TextRange.Text = name.FirstName + " " + name.LastName + "\n" + additions;
+                                int l = name.FirstName.Split(' ').Length + name.LastName.Split(' ').Length;
+                                s.TextFrame.TextRange.Words(0, l).Font.Bold = msoTrue;
                             } else if (split[1] == "partner") {
-                                s.TextFrame.TextRange.Text = name.FirstName + " " + name.LastName + " – Partner";
+                                s.TextFrame.TextRange.Text = name.FirstName + " " + name.LastName + " – Partner\n" + additions ;
+                                int l = name.FirstName.Split(' ').Length + name.LastName.Split(' ').Length;
+                                s.TextFrame.TextRange.Words(0,l+2).Font.Bold = msoTrue;
                             } else if (split[1] == "expert") {
                                 s.TextFrame.TextRange.Text = name.FirstName + " " + name.LastName;
+                                int l = name.FirstName.Split(' ').Length + name.LastName.Split(' ').Length;
+                                s.TextFrame.TextRange.Words(0, l).Font.Bold = msoTrue;
 
                             }
                             break;

@@ -155,6 +155,16 @@ namespace ReferenceConfigurator.lucene {
             } else {
                 doc.Add(new TextField("YearsWorkExperience", "0", Lucene.Net.Documents.Field.Store.YES));
             }
+            if (!(listItem["PartnerdescriptionEN"] is null)) {
+                doc.Add(new TextField("PartnerDescriptionEN", listItem["PartnerdescriptionEN"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+            } else {
+                doc.Add(new TextField("PartnerDescriptionEN", "", Lucene.Net.Documents.Field.Store.YES));
+            }
+            if (!(listItem["PartnerdescriptionDE"] is null)) {
+                doc.Add(new TextField("PartnerDescriptionDE", listItem["PartnerdescriptionDE"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+            } else {
+                doc.Add(new TextField("PartnerDescriptionDE", "", Lucene.Net.Documents.Field.Store.YES));
+            }
 
             _writer.AddDocument(doc);
         }
@@ -186,6 +196,8 @@ namespace ReferenceConfigurator.lucene {
                 LanguagesEN = doc.Get("LanguagesEN"),
                 LanguagesDE = doc.Get("LanguagesDE"),
                 YearsWorkExperience = doc.Get("YearsWorkExperience").ToInt32(),
+                ParterDescriptionEN = doc.Get("PartnerDescriptionEN"),
+                ParterDescriptionDE = doc.Get("PartnerDescriptionDE"),
             };
             return _profileModel;
         }

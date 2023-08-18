@@ -57,7 +57,7 @@
                                             Width="160">
                                     <!--Card First-level content-->
                                     <TextBlock TextWrapping="NoWrap"
-                                               Style="{DynamicResource TextBlockDefault}"
+                                               Style="{DynamicResource TextBlockTitle}"
                                                TextTrimming="CharacterEllipsis"
                                                Text="{Binding DataContext.Name,RelativeSource={RelativeSource AncestorType=hc:Card}}"
                                                HorizontalAlignment="Center"

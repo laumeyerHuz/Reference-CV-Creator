@@ -51,6 +51,8 @@ namespace ReferenceConfigurator.models {
         public string LanguagesEN { get; set; }
         public string LanguagesDE { get; set; }
         public int YearsWorkExperience { get; set; }
+        public string ParterDescriptionEN { get; set; }
+        public string ParterDescriptionDE { get; set; }
 
         public string[] flags { get; set; }
 
@@ -72,13 +74,20 @@ namespace ReferenceConfigurator.models {
         private bool partner;
         public bool IsPartner {
             get => partner;
-            set => SetProperty(ref partner, value);
+            set {
+                SetProperty(ref partner, value);
+                changeLanguage(currentLanguage);
+            }
         }
 
         private bool expert;
         public bool IsExpert {
             get => expert;
-            set => SetProperty(ref expert, value);
+            set {
+                SetProperty(ref expert, value);
+                changeLanguage(currentLanguage);
+
+            }
         }
 
 
@@ -97,14 +106,38 @@ namespace ReferenceConfigurator.models {
         }
 
         public void changeLanguage(string language) {
-            switch (language) {
-                case "EN":
-                    ProjectExperiencesDisplay = new ObservableCollection<CheckBoxModel>(ProjectExperiencesEN);
-                    break;
-                case "DE":
-                    ProjectExperiencesDisplay = new ObservableCollection<CheckBoxModel>(ProjectExperiencesEN);
-                    break;
-            }
+            if (partner) {
+                switch (language) {
+                    case "EN":
+                        ProjectExperiencesDisplay = new ObservableCollection<CheckBoxModel>(split(ParterDescriptionEN));
+                        break;
+                    case "DE":
+                        ProjectExperiencesDisplay = new ObservableCollection<CheckBoxModel>(split(ParterDescriptionDE));
+                        break;
+                }
+            } else if (expert) {
+                switch (language) {
+                    case "EN":
+                        ProjectExperiencesDisplay = null;
+                        break;
+                    case "DE":
+                        ProjectExperiencesDisplay = null;
+                        break;
+                }
+            } else {
+                switch (language) {
+                    case "EN":
+                        ProjectExperiencesDisplay = new ObservableCollection<CheckBoxModel>(ProjectExperiencesEN);
+                        currentLanguage = "EN";
+                        break;
+                    case "DE":
+                        ProjectExperiencesDisplay = new ObservableCollection<CheckBoxModel>(ProjectExperiencesEN);
+                        currentLanguage = "DE";
+                        break;
+                }
+            } 
         }
+
+        private string currentLanguage = "EN";
     }
 }
