@@ -31,124 +31,124 @@ namespace ReferenceConfigurator.lucene {
             Document doc = new Document {
                 new TextField("FirstName", listItem["Title"].ToString(), Lucene.Net.Documents.Field.Store.YES)
             };
-            if (!(listItem["field_1"] is null)) {
-                doc.Add(new TextField("LastName", listItem["field_1"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+            if (!(listItem["LastName"] is null)) {
+                doc.Add(new TextField("LastName", listItem["LastName"].ToString(), Lucene.Net.Documents.Field.Store.YES));
             } else {
                 doc.Add(new TextField("LastName", "", Lucene.Net.Documents.Field.Store.YES));
             }
-            if (!(listItem["field_2"] is null)) {
-                doc.Add(new TextField("Initials", listItem["field_2"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+            if (!(listItem["Initials"] is null)) {
+                doc.Add(new TextField("Initials", listItem["Initials"].ToString(), Lucene.Net.Documents.Field.Store.YES));
             } else {
                 doc.Add(new TextField("Initials", "", Lucene.Net.Documents.Field.Store.YES));
             }
-            if (!(listItem["field_3"] is null)) {
-                doc.Add(new TextField("RoleEN", listItem["field_3"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+            if (!(listItem["RoleEN"] is null)) {
+                doc.Add(new TextField("RoleEN", listItem["RoleEN"].ToString(), Lucene.Net.Documents.Field.Store.YES));
             } else {
                 doc.Add(new TextField("RoleEN", "", Lucene.Net.Documents.Field.Store.YES));
             }
-            if (!(listItem["field_4"] is null)) {
-                doc.Add(new TextField("RoleDE", listItem["field_4"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+            if (!(listItem["RoleDE"] is null)) {
+                doc.Add(new TextField("RoleDE", listItem["RoleDE"].ToString(), Lucene.Net.Documents.Field.Store.YES));
             } else {
                 doc.Add(new TextField("RoleDE", "", Lucene.Net.Documents.Field.Store.YES));
             }
-            if (!(listItem["field_5"] is null)) {
-                doc.Add(new TextField("Tribe", listItem["field_5"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+            if (!(listItem["Tribe"] is null)) {
+                doc.Add(new TextField("Tribe", listItem["Tribe"].ToString(), Lucene.Net.Documents.Field.Store.YES));
             } else {
                 doc.Add(new TextField("Tribe", "", Lucene.Net.Documents.Field.Store.YES));
             }
-            if (!(listItem["field_6"] is null)) {
-                doc.Add(new TextField("Squad", listItem["field_6"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+            if (!(listItem["Squad"] is null)) {
+                doc.Add(new TextField("Squad", listItem["Squad"].ToString(), Lucene.Net.Documents.Field.Store.YES));
             } else {
                 doc.Add(new TextField("Squad", "", Lucene.Net.Documents.Field.Store.YES));
             }
-            if (!(listItem["field_7"] is null)) {
-                doc.Add(new TextField("ProductTopicOwner", listItem["field_7"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+            if (!(listItem["ProductTopicOwner"] is null)) {
+                doc.Add(new TextField("ProductTopicOwner", listItem["ProductTopicOwner"].ToString(), Lucene.Net.Documents.Field.Store.YES));
             } else {
                 doc.Add(new TextField("ProductTopicOwner", "", Lucene.Net.Documents.Field.Store.YES));
             }
-            if (!(listItem["field_8"] is null)) {
-                doc.Add(new TextField("InternalResponsibility", listItem["field_8"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+            if (!(listItem["InternalResponsibility"] is null)) {
+                doc.Add(new TextField("InternalResponsibility", listItem["InternalResponsibility"].ToString(), Lucene.Net.Documents.Field.Store.YES));
             } else {
                 doc.Add(new TextField("InternalResponsibility", "", Lucene.Net.Documents.Field.Store.YES));
             }
-            if (!(listItem["field_9"] is null)) {
-                doc.Add(new TextField("ProfessionalExperienceEN", listItem["field_9"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+            if (!(listItem["ProfessionalExperienceEN"] is null)) {
+                doc.Add(new TextField("ProfessionalExperienceEN", listItem["ProfessionalExperienceEN"].ToString(), Lucene.Net.Documents.Field.Store.YES));
             } else {
                 doc.Add(new TextField("ProfessionalExperienceEN", "", Lucene.Net.Documents.Field.Store.YES));
             }
-            if (!(listItem["field_10"] is null)) {
-                doc.Add(new TextField("ProfessionalExperienceDE", listItem["field_10"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+            if (!(listItem["ProfessionalExperienceDE"] is null)) {
+                doc.Add(new TextField("ProfessionalExperienceDE", listItem["ProfessionalExperienceDE"].ToString(), Lucene.Net.Documents.Field.Store.YES));
             } else {
                 doc.Add(new TextField("ProfessionalExperienceDE", "", Lucene.Net.Documents.Field.Store.YES));
             }
-            if (!(listItem["field_11"] is null)) {
-                doc.Add(new TextField("EducationAndTrainingEN", listItem["field_11"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+            if (!(listItem["EducationAndTrainingEN"] is null)) {
+                doc.Add(new TextField("EducationAndTrainingEN", listItem["EducationAndTrainingEN"].ToString(), Lucene.Net.Documents.Field.Store.YES));
             } else {
                 doc.Add(new TextField("EducationAndTrainingEN", "", Lucene.Net.Documents.Field.Store.YES));
             }
-            if (!(listItem["field_12"] is null)) {
-                doc.Add(new TextField("EnductionAndTrainingDE", listItem["field_12"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+            if (!(listItem["EducationAndTrainingDE"] is null)) {
+                doc.Add(new TextField("EnductionAndTrainingDE", listItem["EducationAndTrainingDE"].ToString(), Lucene.Net.Documents.Field.Store.YES));
             } else {
                 doc.Add(new TextField("EnductionAndTrainingDE", "", Lucene.Net.Documents.Field.Store.YES));
             }
-            if (!(listItem["field_13"] is null)) {
-                doc.Add(new TextField("ProjectExperienceEN", listItem["field_13"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+            if (!(listItem["ProjectExperienceEN"] is null)) {
+                doc.Add(new TextField("ProjectExperienceEN", listItem["ProjectExperienceEN"].ToString(), Lucene.Net.Documents.Field.Store.YES));
             } else {
                 doc.Add(new TextField("ProjectExperienceEN", "", Lucene.Net.Documents.Field.Store.YES));
             }
-            if (!(listItem["field_14"] is null)) {
-                doc.Add(new TextField("ProjectExperienceDE", listItem["field_14"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+            if (!(listItem["ProjectExperienceDE"] is null)) {
+                doc.Add(new TextField("ProjectExperienceDE", listItem["ProjectExperienceDE"].ToString(), Lucene.Net.Documents.Field.Store.YES));
             } else {
                 doc.Add(new TextField("ProjectExperienceDE", "", Lucene.Net.Documents.Field.Store.YES));
             }
-            if (!(listItem["field_15"] is null)) {
-                doc.Add(new TextField("IndustryExperienceEN", listItem["field_15"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+            if (!(listItem["IndustryExperienceEN"] is null)) {
+                doc.Add(new TextField("IndustryExperienceEN", listItem["IndustryExperienceEN"].ToString(), Lucene.Net.Documents.Field.Store.YES));
             } else {
                 doc.Add(new TextField("IndustryExperienceEN", "", Lucene.Net.Documents.Field.Store.YES));
             }
-            if (!(listItem["field_16"] is null)) {
-                doc.Add(new TextField("IndustryExperienceDE", listItem["field_16"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+            if (!(listItem["IndustryExperienceDE"] is null)) {
+                doc.Add(new TextField("IndustryExperienceDE", listItem["IndustryExperienceDE"].ToString(), Lucene.Net.Documents.Field.Store.YES));
             } else {
                 doc.Add(new TextField("IndustryExperienceDE", "", Lucene.Net.Documents.Field.Store.YES));
             }
-            if (!(listItem["field_17"] is null)) {
-                doc.Add(new TextField("FunctionalExperienceEN", listItem["field_17"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+            if (!(listItem["FunctionalExperienceEN"] is null)) {
+                doc.Add(new TextField("FunctionalExperienceEN", listItem["FunctionalExperienceEN"].ToString(), Lucene.Net.Documents.Field.Store.YES));
             } else {
                 doc.Add(new TextField("FunctionalExperienceEN", "", Lucene.Net.Documents.Field.Store.YES));
             }
-            if (!(listItem["field_18"] is null)) {
-                doc.Add(new TextField("FunctionalExperienceDE", listItem["field_18"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+            if (!(listItem["FunctionalExperienceDE"] is null)) {
+                doc.Add(new TextField("FunctionalExperienceDE", listItem["FunctionalExperienceDE"].ToString(), Lucene.Net.Documents.Field.Store.YES));
             } else {
                 doc.Add(new TextField("FunctionalExperienceDE", "", Lucene.Net.Documents.Field.Store.YES));
             }
-            if (!(listItem["field_19"] is null)) {
-                doc.Add(new TextField("MethodExpertise", listItem["field_19"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+            if (!(listItem["MethodExpertise"] is null)) {
+                doc.Add(new TextField("MethodExpertise", listItem["MethodExpertise"].ToString(), Lucene.Net.Documents.Field.Store.YES));
             } else {
                 doc.Add(new TextField("MethodExpertise", "", Lucene.Net.Documents.Field.Store.YES));
             }
-            if (!(listItem["field_20"] is null)) {
-                doc.Add(new TextField("ToolExpertise", listItem["field_20"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+            if (!(listItem["ToolExpertise"] is null)) {
+                doc.Add(new TextField("ToolExpertise", listItem["ToolExpertise"].ToString(), Lucene.Net.Documents.Field.Store.YES));
             } else {
                 doc.Add(new TextField("ToolExpertise", "", Lucene.Net.Documents.Field.Store.YES));
             }
-            if (!(listItem["field_21"] is null)) {
-                doc.Add(new TextField("AdditionalQualifications", listItem["field_21"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+            if (!(listItem["AdditionalQualification"] is null)) {
+                doc.Add(new TextField("AdditionalQualifications", listItem["AdditionalQualification"].ToString(), Lucene.Net.Documents.Field.Store.YES));
             } else {
                 doc.Add(new TextField("AdditionalQualifications", "", Lucene.Net.Documents.Field.Store.YES));
             }
-            if (!(listItem["field_22"] is null)) {
-                doc.Add(new TextField("LanguagesEN", listItem["field_22"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+            if (!(listItem["LanguagesEN"] is null)) {
+                doc.Add(new TextField("LanguagesEN", listItem["LanguagesEN"].ToString(), Lucene.Net.Documents.Field.Store.YES));
             } else {
                 doc.Add(new TextField("LanguagesEN", "", Lucene.Net.Documents.Field.Store.YES));
             }
-            if (!(listItem["field_23"] is null)) {
-                doc.Add(new TextField("LanguagesDE", listItem["field_23"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+            if (!(listItem["LanguagesDE"] is null)) {
+                doc.Add(new TextField("LanguagesDE", listItem["LanguagesDE"].ToString(), Lucene.Net.Documents.Field.Store.YES));
             } else {
                 doc.Add(new TextField("LanguagesDE", "", Lucene.Net.Documents.Field.Store.YES));
             }
-            if (!(listItem["field_24"] is null)) {
+            if (!(listItem["YearsWorking"] is null)) {
                 DateTime now = DateTime.Now;
-                int since = listItem["field_24"].ToString().ToInt32();
+                int since = listItem["YearsWorking"].ToString().ToInt32();
                 int ts = now.Year - since;
 
                 doc.Add(new TextField("YearsWorkExperience", ts.ToString(), Lucene.Net.Documents.Field.Store.YES));

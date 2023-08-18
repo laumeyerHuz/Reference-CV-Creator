@@ -167,7 +167,7 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                                 }
                             }
                             if (exp.Length > 2) {
-                                exp += exp.Remove(exp.Length - 2);
+                                exp = exp.Remove(exp.Length - 1);
                             }
                             s.TextFrame.TextRange.Text = exp;
                             break;
@@ -354,7 +354,7 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
         private void loadFlags() {
             HashSet<string> languages = new HashSet<string>();
             foreach (var model in _searchModels) {
-                foreach (string lang in model.LanguagesEN.Split(' '))
+                foreach (string lang in model.LanguagesEN.Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries))
                     languages.Add(lang);
             }
             Dictionary<string, string> languageFlag = new Dictionary<string, string>();
@@ -363,9 +363,9 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                 languageFlag[lang] = file;
             }
             foreach (ProfileModel model in _searchModels) {
-                string[] flags = new string[model.LanguagesEN.Split(' ').Count()];
+                string[] flags = new string[model.LanguagesEN.Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries).Count()];
                 for (int i = 0; i < flags.Length; i++) {
-                    flags[i] = languageFlag[model.LanguagesEN.Split(' ')[i]];
+                    flags[i] = languageFlag[model.LanguagesEN.Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries)[i]];
                 }
                 model.flags = flags;
             }
