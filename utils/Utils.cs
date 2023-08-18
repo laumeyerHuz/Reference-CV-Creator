@@ -10,6 +10,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Interop;
 using Office = Microsoft.Office.Core;
@@ -37,6 +38,9 @@ namespace ReferenceConfigurator.utils
         private static readonly int MAX_CACHE_SIZE = 1024;
         private static readonly LinkedList<KeyValuePair<string, Bitmap?>> IMAGE_CACHE = new LinkedList<KeyValuePair<string, Bitmap?>>();
 
+        public static string RemoveEmptyLines(string s) {
+            return Regex.Replace(s, @"^\s*$\n|\r", string.Empty, RegexOptions.Multiline);
+        }
         private static Bitmap? DoLoadImageResource(string resourceName)
         {
             Assembly asm = Assembly.GetExecutingAssembly();

@@ -123,9 +123,9 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                             break;
                         case "Description":
                             if(_language == "DE") {
-                                s.TextFrame.TextRange.Text = _referenceModels[split[1].ToInt32() - 1].ProjectDescriptionDE;
+                                s.TextFrame.TextRange.Text = Utils.RemoveEmptyLines( _referenceModels[split[1].ToInt32() - 1].ProjectDescriptionDE);
                             } else if(_language == "EN") {
-                                s.TextFrame.TextRange.Text = _referenceModels[split[1].ToInt32() - 1].ProjectDescriptionEN;
+                                s.TextFrame.TextRange.Text = Utils.RemoveEmptyLines( _referenceModels[split[1].ToInt32() - 1].ProjectDescriptionEN);
                             } else {
                                 Growl.Info("No language selected");
                             }
@@ -135,6 +135,8 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                 }
             }
         }
+
+        
 
         private float[] resizeImage(float widthPowerPoint, float heightPowerPoint,int widthImage, int heightImage, float x, float y) {
             int original_width = widthImage;
