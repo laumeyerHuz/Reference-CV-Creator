@@ -34,10 +34,10 @@
     <Nullable>enable</Nullable>
     <LangVersion>8.0</LangVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <PublishUrl>C:\Users\leonhard.laumeyer\Documents\projects\ReferenceConfigurator\executable\v0.10\</PublishUrl>
+    <PublishUrl>C:\Users\leonhard.laumeyer\Documents\projects\ReferenceConfigurator\executable\v0.13\</PublishUrl>
     <InstallUrl />
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>1.0.0.14</ApplicationVersion>
+    <ApplicationVersion>1.0.0.17</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -741,6 +741,10 @@
     <Resource Include="icons\Right.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="icons\CV.png" />
+    <Resource Include="icons\Reference.png" />
+    <Resource Include="icons\Settings.png" />
+    <Resource Include="icons\Logo.png" />
     <Content Include="ReferenceConfiguratorCert.pfx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -836,20 +840,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icons\Profile.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="icons\Reference.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="icons\Language.png" />
     <Resource Include="icons\Search.png" />
     <Resource Include="icons\Layout.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="icons\Settings.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icons\Tips.png" />
@@ -871,7 +864,7 @@
     </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>DD85999A4C3DD508544E166C91CB276906333CAF</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>7E8B5F21FCC3D392D525CAFB480F899FBC7CA9DA</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>

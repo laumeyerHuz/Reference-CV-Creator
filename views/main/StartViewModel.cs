@@ -39,7 +39,7 @@ namespace ReferenceConfigurator.views {
             SelectionList = new ObservableCollection<CardModel>() {
                 new CardModel(
                     "Profile",
-                    "pack://application:,,,/ReferenceConfigurator;component/icons/Profile.png"
+                    "pack://application:,,,/ReferenceConfigurator;component/icons/CV.png"
                     ),
                 new CardModel(
                     "Reference",
@@ -47,7 +47,7 @@ namespace ReferenceConfigurator.views {
                     ),
                 new CardModel(
                     "Logo",
-                    "pack://application:,,,/ReferenceConfigurator;component/icons/Tips.png"
+                    "pack://application:,,,/ReferenceConfigurator;component/icons/Logo.png"
                     ),
                 new CardModel(
                     "Settings",
