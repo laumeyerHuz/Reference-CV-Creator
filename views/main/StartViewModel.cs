@@ -38,18 +38,22 @@ namespace ReferenceConfigurator.views {
         private void populate() {
             SelectionList = new ObservableCollection<CardModel>() {
                 new CardModel(
+                    "CVs\nlong & short",
                     "Profile",
                     "pack://application:,,,/ReferenceConfigurator;component/icons/CV.png"
                     ),
                 new CardModel(
+                    "References\nand One Pager",
                     "Reference",
                     "pack://application:,,,/ReferenceConfigurator;component/icons/Reference.png"
                     ),
                 new CardModel(
+                    "Logos\n",
                     "Logo",
                     "pack://application:,,,/ReferenceConfigurator;component/icons/Logo.png"
                     ),
                 new CardModel(
+                    "Settings\n",
                     "Settings",
                     "pack://application:,,,/ReferenceConfigurator;component/icons/Settings.png"
                     )

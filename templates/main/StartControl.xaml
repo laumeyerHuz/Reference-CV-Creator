@@ -57,10 +57,11 @@
                                             Width="160">
                                     <!--Card First-level content-->
                                     <TextBlock TextWrapping="NoWrap"
-                                               Style="{DynamicResource TextBlockLargeBold}"
+                                               Style="{DynamicResource TextBlockDefault}"
                                                TextTrimming="CharacterEllipsis"
-                                               Text="{Binding DataContext.Footer,RelativeSource={RelativeSource AncestorType=hc:Card}}"
-                                               HorizontalAlignment="Center" />
+                                               Text="{Binding DataContext.Name,RelativeSource={RelativeSource AncestorType=hc:Card}}"
+                                               HorizontalAlignment="Center"
+                                               TextAlignment="Center"/>
                                     <!--Card Secondary content-->
                                     <Button Margin="0,6,0,0"
                                             Style="{StaticResource ButtonPrimary}"

@@ -11,8 +11,10 @@ namespace ReferenceConfigurator.models {
         public string Footer { get; set; }
 
         public string imagePath { get; set; }
+        public string Name { get; set; }
 
-        public CardModel(string footer, string imagePath) {
+        public CardModel(string name, string footer, string imagePath) {
+            this.Name = name;
             this.Footer = footer;
             this.imagePath = imagePath;  
         }
