@@ -18,6 +18,7 @@ namespace ReferenceConfigurator.views {
         public ICommand RefreshSavedTemplates { get; }
 
         public ICommand RefreshSearchCommand { get; }
+        public ICommand DeletProfilePicturesCommand { get; }
 
         private PopUpViewModel parent;
         public SavedDataViewModel(PopUpViewModel parent) {
@@ -26,11 +27,16 @@ namespace ReferenceConfigurator.views {
             DeletOnePagerCommand = new RelayCommand(deletOnePager);
             RefreshSavedTemplates = new RelayCommand(refreshSavedTemplates);
             RefreshSearchCommand = new RelayCommand(refreshSearch);
+            DeletProfilePicturesCommand = new RelayCommand(deletProfilePictures);
         }
 
         public void deletLogos() {
             Utils.removeLogos();
             Growl.Info("Removed Logos successfully");
+        }
+        public void deletProfilePictures() {
+            Utils.removeProfilePictures();
+            Growl.Info("Removed Profile Pictures successfully");
         }
 
         public void deletOnePager() {

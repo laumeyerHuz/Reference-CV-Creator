@@ -14,6 +14,10 @@
                 Margin="10">
         </Button>
         <Button Style="{StaticResource ButtonPrimary}"
+                Command="{Binding DeletProfilePicturesCommand}"
+                Content="Delet Saved Profile Pictures"
+                Margin="10" />
+        <Button Style="{StaticResource ButtonPrimary}"
                 Command="{Binding DeletOnePagerCommand}"
                 Content="Delet Saved OnePagers"
                 Margin="10">

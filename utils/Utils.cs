@@ -161,6 +161,14 @@ namespace ReferenceConfigurator.utils
             }
         }
 
+        public static void removeProfilePictures() {
+            string basePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+            string folderPath = Path.Combine(basePath, "ReferenceConfigurator/ProfilePictures");
+            if (Directory.Exists(folderPath)) {
+                Directory.Delete(folderPath, true);
+            }
+        }
+
         public static void removeTemplates() {
             string basePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
             string folderPath = Path.Combine(basePath, "ReferenceConfigurator/powerpointTemplate");
