@@ -90,7 +90,11 @@ namespace ReferenceConfigurator.models {
             }
         }
 
-
+        private bool leader;
+        public bool IsLeader {
+            get => leader;
+            set => SetProperty(ref leader, value);
+        }
 
         public ProfileModel() { }
 
