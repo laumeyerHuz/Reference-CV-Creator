@@ -48,7 +48,8 @@ namespace ReferenceConfigurator.views {
                     parent.changeLayout(layout);
                     break;
                 }
-            }           
+            }  
+            parent.next();
         }
 
         public void prev() {
