@@ -107,7 +107,7 @@ namespace ReferenceConfigurator.views {
                             _selectedItems.Add(selected);
                             parent.addReference(selected);
                         } else {
-                            Growl.Error("Too many items selcted remove one or change to a bigger layout");
+                            Growl.Error("Too many items selected remove one or change to a bigger layout");
                         }
                     } else {
                         _selectedItems.Add(selected);
@@ -121,7 +121,7 @@ namespace ReferenceConfigurator.views {
 
         protected virtual void AddSelection(SearchModel selected) {
             if (selected != null) {
-                if (_selectedItems.Contains(selected)) {
+                if (!_selectedItems.Contains(selected)) {
                     if (maxReferences > 0) {
                         if (_selectedItems.Count < maxReferences) {
                             _selectedItems.Add(selected);

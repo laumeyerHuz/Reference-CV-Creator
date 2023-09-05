@@ -158,12 +158,12 @@ namespace ReferenceConfigurator.views {
 
         public void changeLayout(LayoutModel model) {
             if (ContentViewModel == LayoutProfile) {
-
+                SearchProfile.maxReferences = model.maxElements;
+                SummaryProfile.SelectedLayout = model.name;
             } else if (ContentViewModel == LayoutReference) {
                 SearchReference.maxReferences = model.maxElements;
-            }
-            SummaryReferences.SelectedLayout = model.name;
-            
+                SummaryReferences.SelectedLayout = model.name;
+            } 
         }
 
         public void prev() {
