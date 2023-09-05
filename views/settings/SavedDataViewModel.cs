@@ -11,48 +11,58 @@ using System.Windows.Input;
 namespace ReferenceConfigurator.views {
     public class SavedDataViewModel :MainContentViewModel {
 
-        public ICommand DeletLogosCommand { get; }
+        public IAsyncRelayCommand DeleteSavedLogosCommand { get; }
 
-        public ICommand DeletOnePagerCommand { get; }
+        public IAsyncRelayCommand DeleteSavedOnePagerCommand { get; }
 
-        public ICommand RefreshSavedTemplates { get; }
+        public IAsyncRelayCommand RefreshSavedTemplatesCommand { get; }
 
-        public ICommand RefreshSearchCommand { get; }
-        public ICommand DeletProfilePicturesCommand { get; }
+        public IAsyncRelayCommand RefreshSavedIndexCommand { get; }
+
+        public IAsyncRelayCommand DeleteSavedProfilePicturesCommand { get; }
+
+        public IAsyncRelayCommand RefreshEverythingCommand { get; }
 
         private PopUpViewModel parent;
         public SavedDataViewModel(PopUpViewModel parent) {
             this.parent = parent;
-            DeletLogosCommand = new RelayCommand(deletLogos);
-            DeletOnePagerCommand = new RelayCommand(deletOnePager);
-            RefreshSavedTemplates = new RelayCommand(refreshSavedTemplates);
-            RefreshSearchCommand = new RelayCommand(refreshSearch);
-            DeletProfilePicturesCommand = new RelayCommand(deletProfilePictures);
+            DeleteSavedLogosCommand = new AsyncRelayCommand(deleteSavedLogos);
+            DeleteSavedOnePagerCommand = new AsyncRelayCommand(deleteSavedOnePager);
+            RefreshSavedTemplatesCommand = new AsyncRelayCommand(refreshSavedTemplates);
+            RefreshSavedIndexCommand = new AsyncRelayCommand(refreshSavedIndex);
+            DeleteSavedProfilePicturesCommand = new AsyncRelayCommand(deleteSavedProfilePictures);
+            RefreshEverythingCommand = new AsyncRelayCommand(refreshEverything);
         }
 
-        public void deletLogos() {
-            Utils.removeLogos();
-            Growl.Info("Removed Logos successfully");
+        public async Task deleteSavedLogos() {
+            await Task.Run(() => Utils.removeLogos());
         }
-        public void deletProfilePictures() {
-            Utils.removeProfilePictures();
-            Growl.Info("Removed Profile Pictures successfully");
+        public async Task deleteSavedProfilePictures() {
+            await Task.Run(() => Utils.removeProfilePictures());
         }
 
-        public void deletOnePager() {
-            Utils.removeOnePager();
-            Growl.Info("Removed One Pager successfully");
+        public async Task deleteSavedOnePager() {
+            await Task.Run(() => Utils.removeOnePager());
         }
 
-        public void refreshSavedTemplates() {
-            Utils.removeTemplates();
-            parent.refreshTemplate();
-            Growl.Info("Refreshed Templates successfully");
+        public async Task refreshSavedTemplates() {
+            await Task.Run(() => Utils.removeTemplates());
+            await Task.Run(() => parent.refreshTemplate());
         }
 
-        public void refreshSearch() {
-            parent.refreshSearch();
-            Growl.Info("Refreshed Search successfully");
+        public async Task refreshSavedIndex() {
+            await Task.Run(() => parent.refreshSearch());
+        }
+
+        public async Task<string> refreshEverything() {
+            var TaskLogos = deleteSavedLogos();
+            var TaskOnePager = deleteSavedOnePager();
+            var TaskSearch = refreshSavedIndex();
+            var TaskTemplates = refreshSavedTemplates();
+            var TaskProfile = deleteSavedProfilePictures();
+
+            await Task.WhenAll(TaskLogos,TaskOnePager, TaskTemplates,TaskSearch,TaskProfile);
+            return "Finished";
         }
     }
 }
