@@ -124,9 +124,11 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                             if (logo == null) {
                                 break;
                             } else if (logo.ProfilePicture != null) {
-                                System.Drawing.Image img = System.Drawing.Image.FromFile(logo.ProfilePicture);
-                                float[] sizes = resizeImage(s.Width, s.Height, img.Width, img.Height, s.Left, s.Top);
-                                slide.Shapes.AddPicture(logo.ProfilePicture, msoFalse, msoTrue, sizes[0], sizes[1], sizes[2], sizes[3]);
+                                //System.Drawing.Image img = System.Drawing.Image.FromFile(logo.ProfilePicture);
+                                //float[] sizes = resizeImage(s.Width, s.Height, img.Width, img.Height, s.Left, s.Top);
+                                //slide.Shapes.AddPicture(logo.ProfilePicture, msoFalse, msoTrue, sizes[0], sizes[1], sizes[2], sizes[3]);
+                                slide.Shapes.AddPicture(logo.ProfilePicture, msoFalse, msoTrue, s.Left, s.Top, s.Width, s.Height);
+
                                 s.Delete();
                             }
                             break;
@@ -352,21 +354,21 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
             int newX = (int)x;
             int newY = (int)y;
 
-            // first check if we need to scale width
-            if (original_width > bound_width) {
-                //scale width to fit
-                new_width = bound_width;
-                //scale height to maintain aspect ratio
-                new_height = (new_width * original_height) / original_width;
-            }
-
-            // then check if we need to scale even with the new height
-            if (new_height > bound_height) {
-                //scale height to fit instead
+            // first check if we need to scale height
+            if (original_height > bound_height) {
+                //scale height to fit
                 new_height = bound_height;
                 //scale width to maintain aspect ratio
                 new_width = (new_height * original_width) / original_height;
             }
+
+            //// then check if we need to scale even with the new height
+            //if (new_height > bound_height) {
+            //    //scale height to fit instead
+            //    new_height = bound_height;
+            //    //scale width to maintain aspect ratio
+            //    new_width = (new_height * original_width) / original_height;
+            //}
 
             newX = middleX - (new_width / 2);
             newY = middleY - (new_height / 2);
