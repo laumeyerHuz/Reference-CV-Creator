@@ -103,6 +103,7 @@
                               Background="Transparent"
                               ScrollViewer.CanContentScroll="False"
                               BorderThickness="0"
+                              MaxHeight="500"
                               hc:DataGridAttach.ShowRowNumber="True">
                         <DataGrid.Columns>
                             <DataGridTemplateColumn Width="Auto"
