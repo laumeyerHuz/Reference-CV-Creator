@@ -124,11 +124,9 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                             if (logo == null) {
                                 break;
                             } else if (logo.ProfilePicture != null) {
-                                //System.Drawing.Image img = System.Drawing.Image.FromFile(logo.ProfilePicture);
-                                //float[] sizes = resizeImage(s.Width, s.Height, img.Width, img.Height, s.Left, s.Top);
-                                //slide.Shapes.AddPicture(logo.ProfilePicture, msoFalse, msoTrue, sizes[0], sizes[1], sizes[2], sizes[3]);
-                                slide.Shapes.AddPicture(logo.ProfilePicture, msoFalse, msoTrue, s.Left, s.Top, s.Width, s.Height);
-
+                                var pic = slide.Shapes.AddPicture(logo.ProfilePicture, msoFalse, msoTrue, s.Left, s.Top);
+                                pic.Width= s.Width; pic.Height= s.Height;
+                                pic.Left = s.Left; pic.Top = s.Top;
                                 s.Delete();
                             }
                             break;
