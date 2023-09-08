@@ -79,7 +79,7 @@ namespace ReferenceConfigurator.lucene {
             if (!(listItem["Thema"] is null)) {
                 doc.Add(new TextField("ProjectDescriptionEN", listItem["Thema"].ToString(), Lucene.Net.Documents.Field.Store.YES));
             } else {
-                doc.Add(new TextField("Subject", "", Lucene.Net.Documents.Field.Store.YES));
+                doc.Add(new TextField("ProjectDescriptionEN", "", Lucene.Net.Documents.Field.Store.YES));
             }
             if (!(listItem["Kunde"] is null)) {
                 doc.Add(new TextField("Client", listItem["Kunde"].ToString(), Lucene.Net.Documents.Field.Store.YES));
@@ -91,7 +91,7 @@ namespace ReferenceConfigurator.lucene {
                 string topics = String.Join(", ", tmp);
                 doc.Add(new TextField("Topic", topics, Lucene.Net.Documents.Field.Store.YES));
             } else {
-                doc.Add(new TextField("Client", "", Lucene.Net.Documents.Field.Store.YES));
+                doc.Add(new TextField("Topic", "", Lucene.Net.Documents.Field.Store.YES));
             }
             if (!(listItem["Projectdescription_x0028_DE_x002"] is null)) {
                 doc.Add(new TextField("ProjectDescriptionDE", listItem["Projectdescription_x0028_DE_x002"].ToString(), Lucene.Net.Documents.Field.Store.YES));

@@ -4,6 +4,7 @@ using Lucene.Net.Index;
 using Lucene.Net.Search;
 using Lucene.Net.Store;
 using Lucene.Net.Util;
+using Lucene.Net.Codecs;
 using Lucene.Net.QueryParsers;
 using System.Diagnostics;
 using FSDirectory = Lucene.Net.Store.FSDirectory;
@@ -12,12 +13,10 @@ using System.IO;
 using Lucene.Net.Analysis;
 using Microsoft.SharePoint.Client;
 using System.Linq;
-using System.Text.RegularExpressions;
 using Lucene.Net.QueryParsers.Classic;
-using Microsoft.Office.Interop.PowerPoint;
 using ReferenceConfigurator.models;
 using System.Collections.Generic;
-using HandyControl.Controls;
+using Lucene.Net.Index.Extensions;
 
 namespace ReferenceConfigurator.lucene {
     public class LuceneInterface {
