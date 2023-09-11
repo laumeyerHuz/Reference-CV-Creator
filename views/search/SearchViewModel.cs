@@ -10,6 +10,7 @@ using HandyControl.Controls;
 using System.Collections.Generic;
 using System.Windows.Data;
 using System.ComponentModel;
+using System.Text.RegularExpressions;
 
 namespace ReferenceConfigurator.views {
     public class SearchViewModel : MainContentViewModel {
@@ -86,6 +87,11 @@ namespace ReferenceConfigurator.views {
         }
 
         protected virtual void searchChanged(string search) {
+            string pattern = "([-+\"~*?:\\/])";
+            string replacement = "\\$1";
+
+            Regex rgx = new Regex(pattern);
+            search = rgx.Replace(search, replacement);
             List<SearchModel> _searchResults = _luceneInterface.getModelByGeneralSearch(search);
             if (_searchResults.Count == 0) {
                 Growl.Info("No result has been found");

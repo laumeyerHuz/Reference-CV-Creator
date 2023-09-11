@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
@@ -15,7 +16,11 @@ namespace ReferenceConfigurator.views {
         }
 
         protected override void searchChanged(string search) {
-            System.Diagnostics.Debug.WriteLine(search);
+            string pattern = "([-+\"~*?:\\/])";
+            string replacement = "\\$1";
+
+            Regex rgx = new Regex(pattern);
+            search = rgx.Replace(search, replacement);
             List<SearchModel> _searchResults = _luceneInterface.getModelByGeneralSearch(search);
             if (_searchResults.Count == 0) {
                 Growl.Info("No result has been found");
