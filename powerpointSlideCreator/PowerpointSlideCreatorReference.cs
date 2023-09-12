@@ -115,10 +115,16 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                     switch (split[0]) {
                         case "Logo":
                             if (_referenceModels[split[1].ToInt32()-1].Logo != null) {
-                                System.Drawing.Image img = System.Drawing.Image.FromFile(_referenceModels[split[1].ToInt32()-1].Logo);
-                                float [] sizes = resizeImage(s.Width, s.Height, img.Width, img.Height, s.Left, s.Top);
-                                slide.Shapes.AddPicture(_referenceModels[split[1].ToInt32()-1].Logo, msoFalse, msoTrue, sizes[0], sizes[1], sizes[2], sizes[3]);
-                                s.Delete();
+                                try {
+                                    using System.Drawing.Image img = System.Drawing.Image.FromFile(_referenceModels[split[1].ToInt32() - 1].Logo);
+                                    float[] sizes = resizeImage(s.Width, s.Height, img.Width, img.Height, s.Left, s.Top);
+                                    slide.Shapes.AddPicture(_referenceModels[split[1].ToInt32() - 1].Logo, msoFalse, msoTrue, sizes[0], sizes[1], sizes[2], sizes[3]);
+                                    s.Delete();
+                                } catch {
+                                    s.TextFrame.TextRange.Text = _referenceModels[split[1].ToInt32() - 1].ProjectName;
+                                }
+                            } else {
+                                s.TextFrame.TextRange.Text = _referenceModels[split[1].ToInt32() - 1].ProjectName;
                             }
                             break;
                         case "Description":
