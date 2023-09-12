@@ -122,9 +122,11 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                                     s.Delete();
                                 } catch {
                                     s.TextFrame.TextRange.Text = _referenceModels[split[1].ToInt32() - 1].ProjectName;
+                                    s.TextFrame.TextRange.Font.Size = 8;
                                 }
                             } else {
                                 s.TextFrame.TextRange.Text = _referenceModels[split[1].ToInt32() - 1].ProjectName;
+                                s.TextFrame.TextRange.Font.Size = 8;
                             }
                             break;
                         case "Description":
