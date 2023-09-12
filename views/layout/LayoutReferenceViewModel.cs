@@ -13,9 +13,12 @@ namespace ReferenceConfigurator.views {
             prepareTemplate();
         }
 
-        public override void prepareTemplate() {
-            Utils.downloadPowerpointTemplate("Reference");
-            Layouts = new ObservableCollection<LayoutModel>(Utils.SlidesToImage("Reference"));
+        public override Task prepareTemplate() {
+            var TaskLayout = Task.Run(() => { Utils.downloadPowerpointTemplate("Reference"); }).ContinueWith(delegate { 
+                Layouts = new ObservableCollection<LayoutModel>(Utils.SlidesToImage("Reference"));
+                
+            }, TaskScheduler.FromCurrentSynchronizationContext());  
+            return TaskLayout;
         }
     }
 }

@@ -14,6 +14,7 @@ using Microsoft.Office.SharePoint.Tools;
 using System.Collections.Generic;
 using System.Linq;
 using ReferenceConfigurator.views;
+using System.Threading.Tasks;
 
 namespace ReferenceConfigurator.views {
     public class PopUpViewModel : ViewModelBase {
@@ -174,9 +175,12 @@ namespace ReferenceConfigurator.views {
             ProgressBar.next();
         }
 
-        public void refreshTemplate() {
-            LayoutReference.prepareTemplate();
-            LayoutProfile.prepareTemplate();
+        public Task refreshTemplateReference() {
+           return LayoutReference.prepareTemplate();
+        }
+
+        public Task refreshTemplateProfile() {
+            return LayoutProfile.prepareTemplate();
         }
 
         public void refreshSearch() {

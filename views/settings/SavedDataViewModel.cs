@@ -47,7 +47,8 @@ namespace ReferenceConfigurator.views {
 
         public async Task refreshSavedTemplates() {
             await Task.Run(() => Utils.removeTemplates());
-            await Task.Run(() => parent.refreshTemplate());
+            _ = parent.refreshTemplateReference();
+            _ = parent.refreshTemplateProfile();
         }
 
         public async Task refreshSavedIndex() {
