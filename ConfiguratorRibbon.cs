@@ -8,6 +8,8 @@ using Office = Microsoft.Office.Core;
 using ReferenceConfigurator.utils;
 using ReferenceConfigurator.mainWindow;
 using System.Windows.Threading;
+using System.Windows.Interop;
+using System.Diagnostics;
 
 // TODO:  Follow these steps to enable the Ribbon (XML) item:
 
@@ -43,18 +45,18 @@ namespace ReferenceConfigurator
 
         public void openPopUp(Office.IRibbonControl control)
         {
-            
+
             // if it's the first time run, initialize an application so the resourcedictionary is loaded by initializeComponent.
-            if (System.Windows.Application.Current == null) {
+            //if (System.Windows.Application.Current == null) {
+            if (_app == null) {
                 // initialize an wpf application and load its resources dictionaries and take control of app's shutdown
                 _app = new App();
                 _app.ShutdownMode = ShutdownMode.OnExplicitShutdown;
             }
-
             // initialize mainwindow if it's the first time to call this
             if (_app.MainWindow == null) {
                 _app.MainWindow = new MainWindow();
-                _app.MainWindow.Closing += (s1, e) => { Dispatcher.ExitAllFrames(); };
+                _app.MainWindow.Closing += (s1, e) => { Dispatcher.ExitAllFrames(); _app.MainWindow.Dispatcher.InvokeShutdown(); };
             }
 
             // bring main window to front 
@@ -62,6 +64,19 @@ namespace ReferenceConfigurator
             _app.MainWindow.Activate();
 
             Dispatcher.Run();
+
+
+            //_app.Run();
+
+            //var window = new MainWindow() {
+            //    ShowInTaskbar = false,
+            //};
+            //new WindowInteropHelper(window) {
+            //    Owner = Process.GetCurrentProcess().MainWindowHandle
+            //};
+
+            //window.Show();
+            //window.Activate();
         }
 
         public Bitmap loadPopUpImage(Office.IRibbonControl control)

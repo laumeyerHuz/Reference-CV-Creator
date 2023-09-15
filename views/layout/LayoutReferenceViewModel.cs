@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ReferenceConfigurator.views {
@@ -14,10 +15,17 @@ namespace ReferenceConfigurator.views {
         }
 
         public override Task prepareTemplate() {
+            TaskScheduler syncContextScheduler;
+            if (SynchronizationContext.Current != null) {
+                syncContextScheduler = TaskScheduler.FromCurrentSynchronizationContext();
+            } else {
+                syncContextScheduler = TaskScheduler.Current;
+            }
+
             var TaskLayout = Task.Run(() => { Utils.downloadPowerpointTemplate("Reference"); }).ContinueWith(delegate { 
                 Layouts = new ObservableCollection<LayoutModel>(Utils.SlidesToImage("Reference"));
                 
-            }, TaskScheduler.FromCurrentSynchronizationContext());  
+            }, syncContextScheduler);  
             return TaskLayout;
         }
     }
