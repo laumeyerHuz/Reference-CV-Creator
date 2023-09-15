@@ -121,11 +121,11 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                                     slide.Shapes.AddPicture(_referenceModels[split[1].ToInt32() - 1].Logo, msoFalse, msoTrue, sizes[0], sizes[1], sizes[2], sizes[3]);
                                     s.Delete();
                                 } catch {
-                                    s.TextFrame.TextRange.Text = _referenceModels[split[1].ToInt32() - 1].ProjectName;
+                                    s.TextFrame.TextRange.Text = _referenceModels[split[1].ToInt32() - 1].ProjectName + " - " + _referenceModels[split[1].ToInt32() - 1].Client;
                                     s.TextFrame.TextRange.Font.Size = 8;
                                 }
                             } else {
-                                s.TextFrame.TextRange.Text = _referenceModels[split[1].ToInt32() - 1].ProjectName;
+                                s.TextFrame.TextRange.Text = _referenceModels[split[1].ToInt32() - 1].ProjectName + " - " + _referenceModels[split[1].ToInt32() - 1].Client;
                                 s.TextFrame.TextRange.Font.Size = 8;
                             }
                             break;

@@ -88,7 +88,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn Width="Auto"
-                                        Header="Project Leader">
+                                        Header="Project Manager">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <CheckBox IsChecked="{Binding Path=IsLeader, UpdateSourceTrigger=PropertyChanged}" />
