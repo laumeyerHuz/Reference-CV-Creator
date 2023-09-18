@@ -88,10 +88,9 @@ namespace ReferenceConfigurator.views {
 
         private List<StepIndexModel> getSettingsStepList() {
             List<StepIndexModel> tmp = new List<StepIndexModel> {
-                new StepIndexModel("SearchReferenceConfiguration", "Search Reference Configuration"),
-                new StepIndexModel("SearchProfileConfiguration", "Search Profile Configuration"),
-                new StepIndexModel("SummaryConfiguration", "Summary Configuration"),
-                new StepIndexModel("SavedData", "Saved Data")
+                new StepIndexModel("SavedData", "Saved Data"),
+                new StepIndexModel("ReferenceConfiguration", "Reference Configuration"),
+                new StepIndexModel("ProfileConfiguration", "Profile Configuration")
             };
 
             return tmp;

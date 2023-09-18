@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="ReferenceConfigurator.templates.ProfileConfigurationControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ReferenceConfigurator.templates"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             mc:Ignorable="d">
+    <Grid MaxWidth="800">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <DataGrid HeadersVisibility="Column"
+                  RowHeaderWidth="60"
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding ColumnList}"
+                  Background="Transparent">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="Auto"
+                                    Binding="{Binding Name}"
+                                    Header="Coloum" />
+                <DataGridTemplateColumn Width="Auto"
+                                        Header="Search">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding Path=IsChecked1, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="Auto"
+                                        Header="Selected">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding Path=IsChecked2, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Grid.Row="1"
+                Style="{StaticResource ButtonPrimary}"
+                Content="Save Configuration"
+                Command="{Binding SaveConfigurationCommand}"
+                Margin="10" />
+    </Grid>
+</UserControl>

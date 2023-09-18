@@ -41,13 +41,11 @@ namespace ReferenceConfigurator.views {
         private readonly SearchReferenceViewModel SearchReference;
         private readonly LayoutReferenceViewModel LayoutReference;
         private readonly SearchProfileViewModel SearchProfile;
-        private readonly SearchProfileConfigurationViewModel SearchProfileConfiguration;
         private readonly LayoutProfileViewModel LayoutProfile;
-        private readonly SearchReferenceConfigurationViewModel SearchReferenceConfiguration;
         private readonly SummaryViewModel SummaryReferences;
-        private readonly SummaryReferencesConfigurationViewModel SummaryReferencesConfiguration;
+        private readonly ReferenceConfigurationViewModel ReferenceConfiguration;
         private readonly SummaryViewModel SummaryProfile;
-        private readonly SummaryProfileConfigurationViewModel SummaryProfileConfiguration;
+        private readonly ProfileConfigurationViewModel ProfileConfiguration;
         private readonly ProgressBarViewModel ProgressBar;
         private readonly SavedDataViewModel SavedData;
         private readonly SearchLogoViewModel SearchLogo;
@@ -65,10 +63,8 @@ namespace ReferenceConfigurator.views {
             LayoutProfile = new LayoutProfileViewModel(this);
             SummaryReferences = new SummaryReferenceViewModel(this);
             SummaryProfile = new SummaryProfileViewModel(this);
-            SearchReferenceConfiguration = new SearchReferenceConfigurationViewModel(SearchReference);
-            SearchProfileConfiguration = new SearchProfileConfigurationViewModel(SearchProfile);
-            SummaryReferencesConfiguration = new SummaryReferencesConfigurationViewModel(SummaryReferences);
-            SummaryProfileConfiguration = new SummaryProfileConfigurationViewModel(SummaryProfile);
+            ReferenceConfiguration = new ReferenceConfigurationViewModel(SearchReference, SummaryReferences);
+            ProfileConfiguration = new ProfileConfigurationViewModel(SearchProfile, SummaryProfile);
             SavedData = new SavedDataViewModel(this);
             ProgressBar = new ProgressBarViewModel(this);
             SearchLogo = new SearchLogoViewModel(this,_luceneInterfaceLogo);
@@ -127,7 +123,7 @@ namespace ReferenceConfigurator.views {
             ContentViewModel = path switch {
                 "Profile" => LayoutProfile,
                 "Reference" => LayoutReference,
-                "Settings" => SearchReferenceConfiguration,
+                "Settings" => SavedData,
                 "Start" => Start,
                 "Logo" => SearchLogo,
                 _ => Start
@@ -147,9 +143,8 @@ namespace ReferenceConfigurator.views {
                 "SearchReferences" => SearchReference,
                 "SummaryProfile" => SummaryProfile,
                 "SummaryReferences" => SummaryReferences,
-                "SearchReferenceConfiguration" => SearchReferenceConfiguration,
-                "SearchProfileConfiguration" => SearchProfileConfiguration,
-                "SummaryConfiguration" => SummaryReferencesConfiguration,
+                "ReferenceConfiguration" => ReferenceConfiguration,
+                "ProfileConfiguration" => ProfileConfiguration,
                 "SavedData" => SavedData,
                 "SearchLogo" => SearchLogo,
                 _ => Start

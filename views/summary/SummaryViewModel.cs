@@ -38,9 +38,9 @@ namespace ReferenceConfigurator.views {
 
         public ICommand PrevCommand { get; }
 
-        protected ObservableCollection<CheckBoxModel> _columnList;
+        protected ObservableCollection<DataGridCheckBoxModel> _columnList;
 
-        public ObservableCollection<CheckBoxModel> ColumnList {
+        public ObservableCollection<DataGridCheckBoxModel> ColumnList {
             get => _columnList;
             set {
                 SetProperty(ref _columnList, value);
@@ -75,7 +75,7 @@ namespace ReferenceConfigurator.views {
             _references = new List<SearchModel>();
             _selectedReferences = CollectionViewSource.GetDefaultView(_references);
             SelectedReferences = _selectedReferences;
-            _columnList = new ObservableCollection<CheckBoxModel>();
+            _columnList = new ObservableCollection<DataGridCheckBoxModel>();
             ColumnList = _columnList;
             _languageList = new ObservableCollection<string>();
             LanguageList = _languageList;

@@ -15,10 +15,10 @@ using System.Windows.Shapes;
 
 namespace ReferenceConfigurator.templates {
     /// <summary>
-    /// Interaction logic for SettingsControl.xaml
+    /// Interaction logic for SelectedReferencesConfiguration.xaml
     /// </summary>
-    public partial class SearchConfigurationControl : UserControl {
-        public SearchConfigurationControl() {
+    public partial class ReferenceConfigurationControl : UserControl {
+        public ReferenceConfigurationControl() {
             InitializeComponent();
         }
     }

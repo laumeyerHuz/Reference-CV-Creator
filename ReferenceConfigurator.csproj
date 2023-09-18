@@ -34,10 +34,10 @@
     <Nullable>enable</Nullable>
     <LangVersion>8.0</LangVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <PublishUrl>C:\Users\leonhard.laumeyer\Documents\projects\ReferenceConfigurator\executable\v0.16\</PublishUrl>
+    <PublishUrl>C:\Users\leonhard.laumeyer\Documents\projects\ReferenceConfigurator\executable\v0.17\</PublishUrl>
     <InstallUrl />
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>1.0.0.20</ApplicationVersion>
+    <ApplicationVersion>1.0.0.21</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -631,6 +631,7 @@
     </Compile>
     <Compile Include="models\CardModel.cs" />
     <Compile Include="models\CheckBoxModel.cs" />
+    <Compile Include="models\DataGridCheckBoxModel.cs" />
     <Compile Include="models\LayoutModel.cs" />
     <Compile Include="models\LogoModel.cs" />
     <Compile Include="models\ProfileLayoutModel.cs" />
@@ -657,14 +658,17 @@
     <Compile Include="templates\main\ProgressBarControl.xaml.cs">
       <DependentUpon>ProgressBarControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="templates\settings\ProfileConfigurationControl.xaml.cs">
+      <DependentUpon>ProfileConfigurationControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="templates\settings\SaveDataControl.xaml.cs">
       <DependentUpon>SaveDataControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="templates\search\SearchControl.xaml.cs">
       <DependentUpon>SearchControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="templates\summary\SummaryReferenceConfiguration.xaml.cs">
-      <DependentUpon>SummaryReferenceConfiguration.xaml</DependentUpon>
+    <Compile Include="templates\settings\ReferenceConfigurationControl.xaml.cs">
+      <DependentUpon>ReferenceConfigurationControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="templates\summary\SummaryProfileControl.xaml.cs">
       <DependentUpon>SummaryProfileControl.xaml</DependentUpon>
@@ -672,11 +676,8 @@
     <Compile Include="templates\summary\SummaryReferenceControl.xaml.cs">
       <DependentUpon>SummaryReferenceControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="templates\search\SearchConfigurationControl.xaml.cs">
-      <DependentUpon>SearchConfigurationControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="lucene\LuceneInterfaceReference.cs" />
-    <Compile Include="popUp\PopUpControl.xaml.cs">
+    <Compile Include="templates\main\PopUpControl.xaml.cs">
       <DependentUpon>PopUpControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -696,17 +697,15 @@
     <Compile Include="views\main\ProgressBarViewModel.cs" />
     <Compile Include="views\search\SearchLogoViewModel.cs" />
     <Compile Include="views\settings\SavedDataViewModel.cs" />
-    <Compile Include="views\search\SearchProfileConfigurationViewModel.cs" />
     <Compile Include="views\search\SearchProfileViewModel.cs" />
-    <Compile Include="views\search\SearchReferenceConfigurationViewModel.cs" />
     <Compile Include="views\search\SearchReferenceViewModel.cs" />
     <Compile Include="views\search\SearchViewModel.cs" />
-    <Compile Include="views\summary\SummaryProfileConfigurationViewModel.cs" />
+    <Compile Include="views\settings\ConfigurationViewModel.cs" />
+    <Compile Include="views\settings\ProfileConfigurationViewModel.cs" />
     <Compile Include="views\summary\SummaryProfileViewModel.cs" />
-    <Compile Include="views\summary\SummaryReferencesConfigurationViewModel.cs" />
+    <Compile Include="views\settings\ReferenceConfigurationViewModel.cs" />
     <Compile Include="views\summary\SummaryReferenceViewModel.cs" />
     <Compile Include="views\summary\SummaryViewModel.cs" />
-    <Compile Include="views\search\SearchConfigurationViewModel.cs" />
     <Compile Include="views\main\StartViewModel.cs" />
     <Compile Include="views\utils\BindingProxy.cs" />
     <Compile Include="views\ViewModelBase.cs" />
@@ -798,6 +797,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="templates\settings\ProfileConfigurationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="templates\settings\SaveDataControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -806,7 +809,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="templates\summary\SummaryReferenceConfiguration.xaml">
+    <Page Include="templates\settings\ReferenceConfigurationControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -818,11 +821,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="templates\search\SearchConfigurationControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="popUp\PopUpControl.xaml">
+    <Page Include="templates\main\PopUpControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

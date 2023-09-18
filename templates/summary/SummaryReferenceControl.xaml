@@ -1,8 +1,8 @@
 ﻿<UserControl x:Class="ReferenceConfigurator.templates.SummaryReferenceControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ReferenceConfigurator.templates"
              xmlns:proxy="clr-namespace:ReferenceConfigurator.views.utils"
              mc:Ignorable="d"
@@ -11,17 +11,19 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <hc:ThemeResources />
-                <ResourceDictionary Source="pack://application:,,,/Handycontrol;component/Themes/Basic/Colors/Light.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Handycontrol;component/Themes/Basic/Colors/Light.xaml" />
                 <hc:Theme />
-                <ResourceDictionary Source="pack://application:,,,/Handycontrol;component/Themes/Theme.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Handycontrol;component/Themes/Theme.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
-            <proxy:BindingProxy x:Key="ColumnListProxy" Data="{Binding}"/>
-            <Style x:Key="{ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}" TargetType="{x:Type Button}">
+            <proxy:BindingProxy x:Key="ColumnListProxy"
+                                Data="{Binding}" />
+            <Style x:Key="{ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}"
+                   TargetType="{x:Type Button}">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
-                            <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Tips.png"/>
+                            <Image Source="pack://application:,,,/ReferenceConfigurator;component/icons/Tips.png" />
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
@@ -31,32 +33,29 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TextBox 
-            Style="{StaticResource TextBoxExtend}" 
-            hc:InfoElement.TitlePlacement="Left" 
-            hc:InfoElement.Title="Selected Layout:" 
-            IsReadOnly="True"
-            Grid.Row="0"
-            Margin="5"
-            Text="{Binding SelectedLayout}"
-            VerticalAlignment="Center"/>
-        <ComboBox 
-            ItemsSource="{Binding LanguageList}" 
-            hc:InfoElement.TitlePlacement="Left" 
-            hc:InfoElement.Title="Select Description Language:" 
-            Style="{StaticResource ComboBoxExtend}"
-            Grid.Row="1"
-            Margin="5,0,5,0"
-            SelectedValue="{Binding SelectedLanguage}"
-            />
-        <DataGrid HeadersVisibility="All" 
-                  RowHeaderWidth="60" 
-                  AutoGenerateColumns="False" 
+        <TextBox Style="{StaticResource TextBoxExtend}"
+                 hc:InfoElement.TitlePlacement="Left"
+                 hc:InfoElement.Title="Selected Layout:"
+                 IsReadOnly="True"
+                 Grid.Row="0"
+                 Margin="5"
+                 Text="{Binding SelectedLayout}"
+                 VerticalAlignment="Center" />
+        <ComboBox ItemsSource="{Binding LanguageList}"
+                  hc:InfoElement.TitlePlacement="Left"
+                  hc:InfoElement.Title="Select Description Language:"
+                  Style="{StaticResource ComboBoxExtend}"
+                  Grid.Row="1"
+                  Margin="5,0,5,0"
+                  SelectedValue="{Binding SelectedLanguage}" />
+        <DataGrid HeadersVisibility="All"
+                  RowHeaderWidth="60"
+                  AutoGenerateColumns="False"
                   ItemsSource="{Binding SelectedReferences}"
                   Background="Transparent"
                   Grid.Row="2"
@@ -64,84 +63,85 @@
                   Margin="5"
                   BorderThickness="0"
                   hc:DataGridAttach.ShowRowNumber="True"
-                  IsSynchronizedWithCurrentItem="True"
-                  >
+                  IsSynchronizedWithCurrentItem="True">
             <DataGrid.InputBindings>
-                <MouseBinding
-                    MouseAction="LeftDoubleClick"
-                    Command="{Binding SelectionChangedCommand}"
-                    CommandParameter="{Binding SelectedReferences/}">
+                <MouseBinding MouseAction="LeftDoubleClick"
+                              Command="{Binding SelectionChangedCommand}"
+                              CommandParameter="{Binding SelectedReferences/}">
                 </MouseBinding>
             </DataGrid.InputBindings>
             <DataGrid.Columns>
-                <DataGridTextColumn 
-                    Width="Auto" 
-                    Visibility="{Binding Data.ColumnList[0].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
-                    Binding="{Binding ProjectId}" 
-                    Header="ProjectID"/>
-                <DataGridTextColumn 
-                    Width="1*" 
-                    Visibility="{Binding Data.ColumnList[1].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
-                    Binding="{Binding Partner}" 
-                    Header="Partner"/>
-                <DataGridTextColumn 
-                    Width="1*"
-                    Visibility="{Binding Data.ColumnList[2].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
-                    Binding="{Binding ProjectName}" 
-                    Header="Project Name"/>
-                <DataGridTextColumn 
-                    Width="1*" 
-                    Visibility="{Binding Data.ColumnList[3].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
-                    Binding="{Binding Start}" 
-                    Header="Start"/>
-                <DataGridTextColumn 
-                    Width="1*" 
-                    Visibility="{Binding Data.ColumnList[4].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
-                    Binding="{Binding End}" 
-                    Header="End"/>
-                <DataGridTextColumn 
-                    Width="1*" 
-                    Visibility="{Binding Data.ColumnList[5].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
-                    Binding="{Binding Data}" 
-                    Header="Data"/>
-                <DataGridTextColumn 
-                    Width="1*" 
-                    Visibility="{Binding Data.ColumnList[6].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
-                    Binding="{Binding Branch}" 
-                    Header="Branch"/>
-                <DataGridTextColumn 
-                    Width="1*" 
-                    Visibility="{Binding Data.ColumnList[7].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
-                    Binding="{Binding Team}" 
-                    Header="Team"/>
-                <DataGridTextColumn 
-                    Width="1*" 
-                    Visibility="{Binding Data.ColumnList[8].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
-                    Binding="{Binding ProjectDescriptionEN}" 
-                    Header="ProjectDescriptionEN"/>
-                <DataGridTextColumn 
-                    Width="1*" 
-                    Visibility="{Binding Data.ColumnList[9].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
-                    Binding="{Binding Client}" 
-                    Header="Client"/>
-                <DataGridTextColumn 
-                    Width="1*"
-                    Visibility="{Binding Data.ColumnList[10].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
-                    Binding="{Binding Topic}" 
-                    Header="Topic"/>
-                <DataGridTextColumn 
-                    Width="1*" 
-                    Visibility="{Binding Data.ColumnList[11].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}" 
-                    Binding="{Binding ProjectDescritpionDE}" 
-                    Header="ProjectDescriptionDE"/>
+                <DataGridTextColumn Width="Auto"
+                                    Visibility="{Binding Data.ColumnList[0].IsChecked3, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                    Binding="{Binding ProjectId}"
+                                    Header="ProjectID" />
+                <DataGridTextColumn Width="1*"
+                                    Visibility="{Binding Data.ColumnList[1].IsChecked3, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                    Binding="{Binding Partner}"
+                                    Header="Partner" />
+                <DataGridTextColumn Width="1*"
+                                    Visibility="{Binding Data.ColumnList[2].IsChecked3, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                    Binding="{Binding ProjectName}"
+                                    Header="Project Name" />
+                <DataGridTextColumn Width="1*"
+                                    Visibility="{Binding Data.ColumnList[3].IsChecked3, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                    Binding="{Binding Start}"
+                                    Header="Start" />
+                <DataGridTextColumn Width="1*"
+                                    Visibility="{Binding Data.ColumnList[4].IsChecked3, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                    Binding="{Binding End}"
+                                    Header="End" />
+                <DataGridTextColumn Width="1*"
+                                    Visibility="{Binding Data.ColumnList[5].IsChecked3, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                    Binding="{Binding Data}"
+                                    Header="Data" />
+                <DataGridTextColumn Width="1*"
+                                    Visibility="{Binding Data.ColumnList[6].IsChecked3, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                    Binding="{Binding Branch}"
+                                    Header="Branch" />
+                <DataGridTextColumn Width="1*"
+                                    Visibility="{Binding Data.ColumnList[7].IsChecked3, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                    Binding="{Binding Team}"
+                                    Header="Team" />
+                <DataGridTextColumn Width="1*"
+                                    Visibility="{Binding Data.ColumnList[8].IsChecked3, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                    Binding="{Binding ProjectDescriptionEN}"
+                                    Header="ProjectDescriptionEN" />
+                <DataGridTextColumn Width="1*"
+                                    Visibility="{Binding Data.ColumnList[9].IsChecked3, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                    Binding="{Binding Client}"
+                                    Header="Client" />
+                <DataGridTextColumn Width="1*"
+                                    Visibility="{Binding Data.ColumnList[10].IsChecked3, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                    Binding="{Binding Topic}"
+                                    Header="Topic" />
+                <DataGridTextColumn Width="1*"
+                                    Visibility="{Binding Data.ColumnList[11].IsChecked3, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                    Binding="{Binding ProjectDescritpionDE}"
+                                    Header="ProjectDescriptionDE" />
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Orientation="Horizontal" Margin="10" HorizontalAlignment="Right" Grid.Row="3">
-            <Button Style="{StaticResource ButtonPrimary}" Command="{Binding PrevCommand}" Content="Prev" Margin="10,0,0,0" hc:BorderElement.CornerRadius="15"/>
-            <Button Style="{StaticResource ButtonPrimary}" Command="{Binding CreateSlideCommand}" Content="Create Slide" Margin="10,0,0,0" hc:BorderElement.CornerRadius="15"/>
+        <StackPanel Orientation="Horizontal"
+                    Margin="10"
+                    HorizontalAlignment="Right"
+                    Grid.Row="3">
+            <Button Style="{StaticResource ButtonPrimary}"
+                    Command="{Binding PrevCommand}"
+                    Content="Prev"
+                    Margin="10,0,0,0"
+                    hc:BorderElement.CornerRadius="15" />
+            <Button Style="{StaticResource ButtonPrimary}"
+                    Command="{Binding CreateSlideCommand}"
+                    Content="Create Slide"
+                    Margin="10,0,0,0"
+                    hc:BorderElement.CornerRadius="15" />
         </StackPanel>
-        <ScrollViewer Grid.RowSpan="4" VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Right">
-            <StackPanel hc:Growl.GrowlParent="True" VerticalAlignment="Top" Margin="0,10,10,10"/>
+        <ScrollViewer Grid.RowSpan="4"
+                      VerticalScrollBarVisibility="Hidden"
+                      HorizontalAlignment="Right">
+            <StackPanel hc:Growl.GrowlParent="True"
+                        VerticalAlignment="Top"
+                        Margin="0,10,10,10" />
         </ScrollViewer>
     </Grid>
 

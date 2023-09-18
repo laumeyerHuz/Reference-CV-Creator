@@ -17,8 +17,8 @@ using System.Windows.Shapes;
 using ReferenceConfigurator.models;
 
 namespace ReferenceConfigurator.templates {
-    public partial class SearchControl : UserControl {
-        public SearchControl() {
+    public partial class ReferenceSearchControl : UserControl {
+        public ReferenceSearchControl() {
             InitializeComponent();
         }
         

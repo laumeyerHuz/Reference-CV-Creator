@@ -15,10 +15,10 @@ using System.Windows.Shapes;
 
 namespace ReferenceConfigurator.templates {
     /// <summary>
-    /// Interaction logic for SelectedReferencesConfiguration.xaml
+    /// Interaction logic for ProfileConfigurationControl.xaml
     /// </summary>
-    public partial class SummaryReferenceConfiguration : UserControl {
-        public SummaryReferenceConfiguration() {
+    public partial class ProfileConfigurationControl : UserControl {
+        public ProfileConfigurationControl() {
             InitializeComponent();
         }
     }

@@ -31,9 +31,9 @@ namespace ReferenceConfigurator.views {
             set => SetProperty(ref _selectedList, value);
         }
 
-        protected ObservableCollection<CheckBoxModel> _columnList;
+        protected ObservableCollection<DataGridCheckBoxModel> _columnList;
 
-        public ObservableCollection<CheckBoxModel> ColumnList {
+        public ObservableCollection<DataGridCheckBoxModel> ColumnList {
             get => _columnList;
             set {
                 SetProperty(ref _columnList, value);
@@ -73,7 +73,7 @@ namespace ReferenceConfigurator.views {
             _selectedList = CollectionViewSource.GetDefaultView(_selectedItems);
             SelectedList = _selectedList;
 
-            _columnList = new ObservableCollection<CheckBoxModel>();
+            _columnList = new ObservableCollection<DataGridCheckBoxModel>();
             ColumnList = _columnList;
 
             SearchChangedCommand = new RelayCommand<string>(searchChanged);

@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ReferenceConfigurator.mainWindow"
-             xmlns:popup="clr-namespace:ReferenceConfigurator.popUp"
+             xmlns:popup="clr-namespace:ReferenceConfigurator.templates"
             xmlns:utils="clr-namespace:ReferenceConfigurator.utils"
              xmlns:hc="https://handyorg.github.io/handycontrol"
              Height="{Binding Source={x:Static SystemParameters.MaximizedPrimaryScreenHeight}, Converter={utils:RatioConverter}, ConverterParameter='0.95' }" 

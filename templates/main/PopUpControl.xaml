@@ -1,9 +1,8 @@
-﻿<UserControl x:Class="ReferenceConfigurator.popUp.PopUpControl"
+﻿<UserControl x:Class="ReferenceConfigurator.templates.PopUpControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ReferenceConfigurator.popUp"
              xmlns:hc="https://handyorg.github.io/handycontrol"
              xmlns:templates="clr-namespace:ReferenceConfigurator.templates"
              xmlns:views="clr-namespace:ReferenceConfigurator.views"
@@ -19,7 +18,7 @@
                 <templates:ProgressBarControl />
             </DataTemplate>
             <DataTemplate DataType="{x:Type views:SearchReferenceViewModel}">
-                <templates:SearchControl />
+                <templates:ReferenceSearchControl />
             </DataTemplate>
             <DataTemplate DataType="{x:Type views:SearchProfileViewModel}">
                 <templates:ProfileSearchControl />
@@ -36,15 +35,12 @@
             <DataTemplate DataType="{x:Type views:SummaryProfileViewModel}">
                 <templates:SummaryProfileControl />
             </DataTemplate>
-            <DataTemplate DataType="{x:Type views:SearchConfigurationViewModel}">
-                <templates:SearchConfigurationControl />
+            <DataTemplate DataType="{x:Type views:ProfileConfigurationViewModel}">
+                <templates:ProfileConfigurationControl />
             </DataTemplate>
-            <DataTemplate DataType="{x:Type views:SummaryReferencesConfigurationViewModel}">
-                <templates:SummaryReferenceConfiguration />
+            <DataTemplate DataType="{x:Type views:ReferenceConfigurationViewModel}">
+                <templates:ReferenceConfigurationControl />
             </DataTemplate>
-            <!--<DataTemplate DataType="{x:Type views:SummaryProfileConfigurationViewModel}">
-                <templates:SummaryProfileConfiguration />
-            </DataTemplate>-->
             <DataTemplate DataType="{x:Type views:SavedDataViewModel}">
                 <templates:SaveDataControl />
             </DataTemplate>

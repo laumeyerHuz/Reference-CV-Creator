@@ -63,99 +63,103 @@
                 </DataGrid.InputBindings>
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="Auto"
-                                        Visibility="{Binding Data.ColumnList[0].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[0].IsChecked1, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding FirstName}"
                                         Header="FirstName" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[1].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[1].IsChecked1, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding LastName}"
                                         Header="LastName" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[2].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[2].IsChecked1, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding Initials}"
                                         Header="Initials" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[3].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[3].IsChecked1, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding RoleEN}"
                                         Header="RoleEN" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[4].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[4].IsChecked1, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding RoleDE}"
                                         Header="RoleDE" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[5].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[5].IsChecked1, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding Tribe}"
                                         Header="Tribe" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[6].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[6].IsChecked1, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding Squad}"
                                         Header="Squad" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[7].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[7].IsChecked1, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding ProductTopicOwner}"
                                         Header="ProductTopicOwner" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[8].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[8].IsChecked1, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding InternalResponsibility}"
                                         Header="InternalResponsibility" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[9].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[9].IsChecked1, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding ProfessionalExperienceEN}"
                                         Header="ProfessionalExperienceEN" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[10].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[10].IsChecked1, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding ProfessionalExperienceDE}"
                                         Header="ProfessionalExperienceDE" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[11].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[11].IsChecked1, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding EducationAndTrainingEN}"
                                         Header="EducationAndTrainingEN" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[12].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[12].IsChecked1, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Binding="{Binding EducationAndTrainingEN}"
+                                        Header="EducationAndTrainingEN" />
+                    <DataGridTextColumn Width="1*"
+                                        Visibility="{Binding Data.ColumnList[13].IsChecked1, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding ProjectExperienceEN}"
                                         Header="ProjectExperienceEN" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[13].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[14].IsChecked1, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding ProjectExperienceDE}"
                                         Header="ProjectExperienceDE" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[14].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[15].IsChecked1, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding IndustryExperienceEN}"
                                         Header="IndustryExperienceEN" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[15].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[16].IsChecked1, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding IndustryExperienceDE}"
                                         Header="IndustryExperienceDE" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[16].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[17].IsChecked1, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding FunctionalExperienceEN}"
                                         Header="FunctionalExperienceEN" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[17].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[18].IsChecked1, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding FunctionalExperienceDE}"
                                         Header="FunctionalExperienceDE" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[18].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[19].IsChecked1, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding MethodExpertise}"
                                         Header="MethodExpertise" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[19].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[20].IsChecked1, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding ToolExpertise}"
                                         Header="ToolExpertise" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[20].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[21].IsChecked1, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding AdditionalQualifications}"
                                         Header="AdditionalQualifications" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[21].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[22].IsChecked1, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding LanguagesEN}"
                                         Header="LanguagesEn" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[22].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[23].IsChecked1, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding LanguagesDE}"
                                         Header="LanguagesDE" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[23].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[24].IsChecked1, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding YearsWorkExperience}"
                                         Header="YearsWorkExperience" />
                 </DataGrid.Columns>
@@ -211,99 +215,103 @@
                 </DataGrid.InputBindings>
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="Auto"
-                                        Visibility="{Binding Data.ColumnList[0].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[0].IsChecked2, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding FirstName}"
                                         Header="FirstName" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[1].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[1].IsChecked2, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding LastName}"
                                         Header="LastName" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[2].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[2].IsChecked2, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding Initials}"
                                         Header="Initials" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[3].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[3].IsChecked2, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding RoleEN}"
                                         Header="RoleEN" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[4].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[4].IsChecked2, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding RoleDE}"
                                         Header="RoleDE" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[5].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[5].IsChecked2, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding Tribe}"
                                         Header="Tribe" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[6].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[6].IsChecked2, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding Squad}"
                                         Header="Squad" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[7].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[7].IsChecked2, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding ProductTopicOwner}"
                                         Header="ProductTopicOwner" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[8].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[8].IsChecked2, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding InternalResponsibility}"
                                         Header="InternalResponsibility" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[9].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[9].IsChecked2, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding ProfessionalExperienceEN}"
                                         Header="ProfessionalExperienceEN" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[10].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[10].IsChecked2, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding ProfessionalExperienceDE}"
                                         Header="ProfessionalExperienceDE" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[11].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[11].IsChecked2, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding EducationAndTrainingEN}"
                                         Header="EducationAndTrainingEN" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[12].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[12].IsChecked2, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Binding="{Binding EducationAndTrainingEN}"
+                                        Header="EducationAndTrainingEN" />
+                    <DataGridTextColumn Width="1*"
+                                        Visibility="{Binding Data.ColumnList[13].IsChecked2, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding ProjectExperienceEN}"
                                         Header="ProjectExperienceEN" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[13].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[14].IsChecked2, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding ProjectExperienceDE}"
                                         Header="ProjectExperienceDE" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[14].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[15].IsChecked2, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding IndustryExperienceEN}"
                                         Header="IndustryExperienceEN" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[15].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[16].IsChecked2, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding IndustryExperienceDE}"
                                         Header="IndustryExperienceDE" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[16].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[17].IsChecked2, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding FunctionalExperienceEN}"
                                         Header="FunctionalExperienceEN" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[17].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[18].IsChecked2, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding FunctionalExperienceDE}"
                                         Header="FunctionalExperienceDE" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[18].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[19].IsChecked2, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding MethodExpertise}"
                                         Header="MethodExpertise" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[19].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[20].IsChecked2, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding ToolExpertise}"
                                         Header="ToolExpertise" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[20].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[21].IsChecked2, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding AdditionalQualifications}"
                                         Header="AdditionalQualifications" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[21].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[22].IsChecked2, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding LanguagesEN}"
                                         Header="LanguagesEn" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[22].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[23].IsChecked2, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding LanguagesDE}"
                                         Header="LanguagesDE" />
                     <DataGridTextColumn Width="1*"
-                                        Visibility="{Binding Data.ColumnList[23].IsChecked, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
+                                        Visibility="{Binding Data.ColumnList[24].IsChecked2, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                         Binding="{Binding YearsWorkExperience}"
                                         Header="YearsWorkExperience" />
                 </DataGrid.Columns>

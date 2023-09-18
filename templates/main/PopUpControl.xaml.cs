@@ -10,7 +10,7 @@ using ReferenceConfigurator.views;
 using Lucene.Net.Util.Automaton;
 using CommunityToolkit.Mvvm.Input;
 
-namespace ReferenceConfigurator.popUp {
+namespace ReferenceConfigurator.templates {
     /// <summary>
     /// Interaction logic for PopUpControl.xaml
     /// </summary>
