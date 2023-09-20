@@ -85,16 +85,24 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
             List<ProfileModel> partnerList = new List<ProfileModel>();
             List<ProfileModel> coreList = new List<ProfileModel>();
             List<ProfileModel> expertList = new List<ProfileModel>();
+            ProfileModel projectManger = null;
             foreach (ProfileModel model in _searchModels) {
                 if (model.IsPartner) {
                     partnerList.Add(model);
                 } else if (model.IsExpert) {
                     expertList.Add(model);
                 } else if (model.IsLeader) {
-                    coreList.Insert(0, model);
+                    projectManger = model;
                 } else {
                     coreList.Add(model);
                 }
+            }
+            partnerList = Utils.sortProfile(partnerList);
+            expertList = Utils.sortProfile(expertList);
+            coreList = Utils.sortProfile(coreList);
+            if (projectManger != null) {
+                coreList.Insert(0, projectManger);
+
             }
             loadProfilePictures();
             for (int i = slide.Shapes.Count; i >= 1; i--) {
@@ -125,7 +133,7 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                                 break;
                             } else if (logo.ProfilePicture != null) {
                                 var pic = slide.Shapes.AddPicture(logo.ProfilePicture, msoFalse, msoTrue, s.Left, s.Top);
-                                pic.Width= s.Width; pic.Height= s.Height;
+                                pic.Width = s.Width; pic.Height = s.Height;
                                 pic.Left = s.Left; pic.Top = s.Top;
                                 s.Delete();
                             }

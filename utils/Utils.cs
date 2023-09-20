@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using HandyControl.Controls;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 using ReferenceConfigurator.models;
@@ -16,19 +17,15 @@ using System.Windows.Interop;
 using Office = Microsoft.Office.Core;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 
-namespace ReferenceConfigurator.utils
-{
-    public static class Utils
-    {
-        public static PowerPoint.DocumentWindow? GetActiveWindow()
-        {
+namespace ReferenceConfigurator.utils {
+    public static class Utils {
+        public static PowerPoint.DocumentWindow? GetActiveWindow() {
             var application = Globals.ThisAddIn.Application;
             if (application.Windows.Count == 0) { return null; }
             return application.ActiveWindow;
         }
 
-        public static PowerPoint.Slide? GetActiveSlide()
-        {
+        public static PowerPoint.Slide? GetActiveSlide() {
             var window = GetActiveWindow();
             if (window == null) { return null; }
             if (window.Presentation.Slides.Count == 0) { return null; }
@@ -41,20 +38,14 @@ namespace ReferenceConfigurator.utils
         public static string RemoveEmptyLines(string s) {
             return Regex.Replace(s, @"^\s*$\n|\r", string.Empty, RegexOptions.Multiline);
         }
-        private static Bitmap? DoLoadImageResource(string resourceName)
-        {
+        private static Bitmap? DoLoadImageResource(string resourceName) {
             Assembly asm = Assembly.GetExecutingAssembly();
             string[] resourceNames = asm.GetManifestResourceNames();
-            for (int i = 0; i < resourceNames.Length; ++i)
-            {
-                if (string.Compare(resourceName, resourceNames[i], StringComparison.OrdinalIgnoreCase) == 0)
-                {
-                    try
-                    {
+            for (int i = 0; i < resourceNames.Length; ++i) {
+                if (string.Compare(resourceName, resourceNames[i], StringComparison.OrdinalIgnoreCase) == 0) {
+                    try {
                         return new Bitmap(Image.FromStream(asm.GetManifestResourceStream(resourceNames[i])));
-                    }
-                    catch (ArgumentException ex)
-                    {
+                    } catch (ArgumentException ex) {
                         Debug.WriteLine($"Resource {resourceName} is not an image: {ex.Message}");
                     }
                 }
@@ -62,25 +53,19 @@ namespace ReferenceConfigurator.utils
             return null;
         }
 
-        public static Bitmap? LoadImageResource(string resourceName)
-        {
+        public static Bitmap? LoadImageResource(string resourceName) {
             var node = IMAGE_CACHE.First;
-            while (node != null && (node.Value.Key != resourceName))
-            {
+            while (node != null && (node.Value.Key != resourceName)) {
                 node = node.Next;
             }
-            if (node == null)
-            {
+            if (node == null) {
                 node = new LinkedListNode<KeyValuePair<string, Bitmap?>>(new KeyValuePair<string, Bitmap?>(
                     resourceName, DoLoadImageResource(resourceName)
                     ));
-                while (IMAGE_CACHE.Count > MAX_CACHE_SIZE - 1)
-                {
+                while (IMAGE_CACHE.Count > MAX_CACHE_SIZE - 1) {
                     IMAGE_CACHE.RemoveLast();
                 }
-            }
-            else
-            {
+            } else {
                 IMAGE_CACHE.Remove(node);
             }
             IMAGE_CACHE.AddFirst(node);
@@ -97,15 +82,15 @@ namespace ReferenceConfigurator.utils
             } else if (type == "Reference") {
                 folderName = "reference";
             }
-            string filePath = Path.Combine(basePath,baseFolderName, folderName);
-            string indexPath = Path.Combine(basePath, "ReferenceConfigurator/slides/",folderName);
+            string filePath = Path.Combine(basePath, baseFolderName, folderName);
+            string indexPath = Path.Combine(basePath, "ReferenceConfigurator/slides/", folderName);
 
             DirectoryInfo d = new DirectoryInfo(filePath);
             System.IO.Directory.CreateDirectory(indexPath);
 
 
             foreach (FileInfo file in d.GetFiles("*.pptx")) {
-                string imagePath = indexPath +"/" + Path.GetFileNameWithoutExtension(file.Name) + ".png";
+                string imagePath = indexPath + "/" + Path.GetFileNameWithoutExtension(file.Name) + ".png";
 
                 if (File.Exists(imagePath)) {
                     if (type == "Profile") {
@@ -113,7 +98,7 @@ namespace ReferenceConfigurator.utils
                     } else if (type == "Reference") {
                         layoutModels.Add(new ReferenceLayoutModel(file.FullName, imagePath, Path.GetFileNameWithoutExtension(file.Name)));
                     }
-                    
+
                 } else {
                     try {
                         Application pptApplication = new Application();
@@ -148,7 +133,7 @@ namespace ReferenceConfigurator.utils
         public static void removeOnePager() {
             string basePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
             string folderPath = Path.Combine(basePath, "ReferenceConfigurator/onePager");
-            if(Directory.Exists(folderPath)) {
+            if (Directory.Exists(folderPath)) {
                 Directory.Delete(folderPath, true);
             }
         }
@@ -180,6 +165,29 @@ namespace ReferenceConfigurator.utils
                 Directory.Delete(folderPath, true);
             }
 
+        }
+
+        public static List<ProfileModel> sortProfile(List<ProfileModel> list) {
+            int lenght = list.Count;
+            if (lenght == 0) { return new List<ProfileModel>(); }
+            ProfileModel[] tmp = new ProfileModel[lenght];
+            foreach (ProfileModel model in list) {
+                if (model.Position != 0 && model.Position <= lenght) {
+                    if (tmp[model.Position - 1] == null) {
+                        tmp[model.Position - 1] = model;
+                    } else {
+                        model.Position = 0;
+                    }
+                }
+
+            }
+            foreach (ProfileModel model in list) {
+                if (model.Position == 0) {
+                    int index = Array.FindIndex(tmp, i => i == null);
+                    tmp[index] = model;
+                }
+            }
+            return new List<ProfileModel>(tmp);
         }
     }
 }

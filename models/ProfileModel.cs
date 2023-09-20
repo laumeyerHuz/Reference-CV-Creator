@@ -96,7 +96,13 @@ namespace ReferenceConfigurator.models {
             set => SetProperty(ref leader, value);
         }
 
-        public ProfileModel() { }
+        private int position = 0;
+        public int Position {
+            get => position;
+            set => SetProperty(ref position, value);
+        }
+
+        public ProfileModel() {}
 
         private List<CheckBoxModel> split(string input) {
             List<CheckBoxModel> tmp = new List<CheckBoxModel>();
