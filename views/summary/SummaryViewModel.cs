@@ -63,7 +63,7 @@ namespace ReferenceConfigurator.views {
             set => SetProperty(ref _selectedLanguage, value);
         }
 
-        protected List<SearchModel> _references;
+        protected IList<SearchModel> _references;
 
         public SummaryViewModel(PopUpViewModel parent) {
             this.parent = parent;
@@ -109,7 +109,7 @@ namespace ReferenceConfigurator.views {
             System.Windows.Application.Current.Windows[0].Close();
         }
 
-        public List<SearchModel> getReferenceList() {
+        public IList<SearchModel> getReferenceList() {
             return _references;
         }
 

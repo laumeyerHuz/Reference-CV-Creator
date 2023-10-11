@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace ReferenceConfigurator.views {
-    public class SavedDataViewModel :MainContentViewModel {
+    public class SavedDataViewModel : MainContentViewModel {
 
         public IAsyncRelayCommand DeleteSavedLogosCommand { get; }
 
@@ -46,9 +46,11 @@ namespace ReferenceConfigurator.views {
         }
 
         public async Task refreshSavedTemplates() {
-            await Task.Run(() => Utils.removeTemplates());
-                _ = parent.refreshTemplateReference();
-                _ = parent.refreshTemplateProfile();
+            await Task.Run(() => Utils.removeTemplates()).ContinueWith(t => {
+                parent.refreshTemplateProfile();
+            }, TaskContinuationOptions.OnlyOnRanToCompletion).ContinueWith(t => {
+                parent.refreshTemplateReference();
+            }, TaskContinuationOptions.OnlyOnRanToCompletion);
         }
 
         public async Task refreshSavedIndex() {
@@ -62,7 +64,7 @@ namespace ReferenceConfigurator.views {
             var TaskTemplates = refreshSavedTemplates();
             var TaskProfile = deleteSavedProfilePictures();
 
-            await Task.WhenAll(TaskLogos,TaskOnePager, TaskTemplates,TaskSearch,TaskProfile);
+            await Task.WhenAll(TaskLogos, TaskOnePager, TaskTemplates, TaskSearch, TaskProfile);
             return "Finished";
         }
     }

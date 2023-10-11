@@ -61,9 +61,8 @@ namespace ReferenceConfigurator.views {
             //Init Views
             Start = new StartViewModel(this);
             SearchReference = new SearchReferenceViewModel(this, _luceneInterfaceReference);
-            LayoutReference = new LayoutReferenceViewModel(this);
             SearchProfile = new SearchProfileViewModel(this, _luceneInterfaceProfile);
-            LayoutProfile = new LayoutProfileViewModel(this);
+            
             SummaryReferences = new SummaryReferenceViewModel(this);
             SummaryProfile = new SummaryProfileViewModel(this);
             SearchReferenceConfiguration = new SearchReferenceConfigurationViewModel(SearchReference);
@@ -73,6 +72,8 @@ namespace ReferenceConfigurator.views {
             SavedData = new SavedDataViewModel(this);
             ProgressBar = new ProgressBarViewModel(this);
             SearchLogo = new SearchLogoViewModel(this,_luceneInterfaceLogo);
+            LayoutProfile = new LayoutProfileViewModel(this);
+            LayoutReference = new LayoutReferenceViewModel(this);
             ProgressBar.changeStepList("Profile");
 
             //Starting Views
@@ -80,7 +81,8 @@ namespace ReferenceConfigurator.views {
             ContentViewModel = Start;
             _stepBar = null;
 
-            
+           
+
         }
 
 
