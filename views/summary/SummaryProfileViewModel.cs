@@ -13,15 +13,17 @@ namespace ReferenceConfigurator.views {
             set {
                 SetProperty(ref _selectedLanguage, value);
                 changeLanguage(value);
-                    }
+            }
         }
 
         public SummaryProfileViewModel(PopUpViewModel parent) : base(parent) {
         }
 
         private void changeLanguage(string language) {
-            foreach(ProfileModel model in SelectedReferences) {
-                model.changeLanguage(language);
+            if (SelectedReferences != null) {
+                foreach (ProfileModel model in SelectedReferences) {
+                    model.changeLanguage(language);
+                }
             }
         }
     }

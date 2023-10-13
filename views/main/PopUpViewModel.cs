@@ -14,6 +14,7 @@ using Microsoft.Office.SharePoint.Tools;
 using System.Collections.Generic;
 using System.Linq;
 using ReferenceConfigurator.views;
+using System.Threading.Tasks;
 
 namespace ReferenceConfigurator.views {
     public class PopUpViewModel : ViewModelBase {
@@ -58,9 +59,8 @@ namespace ReferenceConfigurator.views {
             //Init Views
             Start = new StartViewModel(this);
             SearchReference = new SearchReferenceViewModel(this, _luceneInterfaceReference);
-            LayoutReference = new LayoutReferenceViewModel(this);
             SearchProfile = new SearchProfileViewModel(this, _luceneInterfaceProfile);
-            LayoutProfile = new LayoutProfileViewModel(this);
+            
             SummaryReferences = new SummaryReferenceViewModel(this);
             SummaryProfile = new SummaryProfileViewModel(this);
             ReferenceConfiguration = new ReferenceConfigurationViewModel(SearchReference, SummaryReferences);
@@ -68,6 +68,8 @@ namespace ReferenceConfigurator.views {
             SavedData = new SavedDataViewModel(this);
             ProgressBar = new ProgressBarViewModel(this);
             SearchLogo = new SearchLogoViewModel(this,_luceneInterfaceLogo);
+            LayoutProfile = new LayoutProfileViewModel(this);
+            LayoutReference = new LayoutReferenceViewModel(this);
             ProgressBar.changeStepList("Profile");
 
             //Starting Views
@@ -75,7 +77,8 @@ namespace ReferenceConfigurator.views {
             ContentViewModel = Start;
             _stepBar = null;
 
-            
+           
+
         }
 
 
@@ -169,9 +172,12 @@ namespace ReferenceConfigurator.views {
             ProgressBar.next();
         }
 
-        public void refreshTemplate() {
-            LayoutReference.prepareTemplate();
-            LayoutProfile.prepareTemplate();
+        public Task refreshTemplateReference() {
+           return LayoutReference.prepareTemplate();
+        }
+
+        public Task refreshTemplateProfile() {
+            return LayoutProfile.prepareTemplate();
         }
 
         public void refreshSearch() {

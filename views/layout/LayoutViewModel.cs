@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using ReferenceConfigurator.utils;
+using System.Threading.Tasks;
 
 namespace ReferenceConfigurator.views {
     public class LayoutViewModel : MainContentViewModel {
@@ -37,7 +38,9 @@ namespace ReferenceConfigurator.views {
             this.parent = parent;
         }
 
-        public virtual void prepareTemplate() { }
+        public virtual Task prepareTemplate() {
+            throw new NotImplementedException();
+        }
 
 
         protected void SelectLayout(string layoutPath) {

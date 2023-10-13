@@ -47,7 +47,7 @@
                          Grid.Row="1"
                          Text="{Binding DeleteSavedLogosCommand.ExecutionTask.Status, Mode=OneWay}" />
                 <Button Grid.Column="2"
-                        Width="130"
+                        Width="140"
                         Grid.Row="1"
                         DockPanel.Dock="Right"
                         Command="{Binding DeleteSavedLogosCommand}"
@@ -101,7 +101,7 @@
                          Grid.Row="1"
                          Text="{Binding DeleteSavedProfilePicturesCommand.ExecutionTask.Status, Mode=OneWay}" />
                 <Button Grid.Column="2"
-                        Width="130"
+                        Width="140"
                         Grid.Row="1"
                         DockPanel.Dock="Right"
                         Command="{Binding DeleteSavedProfilePicturesCommand}"
@@ -155,7 +155,7 @@
                          Grid.Row="1"
                          Text="{Binding DeleteSavedOnePagerCommand.ExecutionTask.Status, Mode=OneWay}" />
                 <Button Grid.Column="2"
-                        Width="130"
+                        Width="140"
                         Grid.Row="1"
                         DockPanel.Dock="Right"
                         Command="{Binding DeleteSavedOnePagerCommand}"
@@ -209,7 +209,7 @@
                          Grid.Row="1"
                          Text="{Binding RefreshSavedTemplatesCommand.ExecutionTask.Status, Mode=OneWay}" />
                 <Button Grid.Column="2"
-                        Width="130"
+                        Width="140"
                         Grid.Row="1"
                         DockPanel.Dock="Right"
                         Command="{Binding RefreshSavedTemplatesCommand}"
@@ -263,7 +263,7 @@
                          Grid.Row="1"
                          Text="{Binding RefreshSavedIndexCommand.ExecutionTask.Status, Mode=OneWay}" />
                 <Button Grid.Column="2"
-                        Width="130"
+                        Width="140"
                         Grid.Row="1"
                         DockPanel.Dock="Right"
                         Command="{Binding RefreshSavedIndexCommand}"
@@ -317,7 +317,7 @@
                          Grid.Row="1"
                          Text="{Binding RefreshEverythingCommand.ExecutionTask.Status, Mode=OneWay}" />
                 <Button Grid.Column="2"
-                        Width="130"
+                        Width="140"
                         Grid.Row="1"
                         DockPanel.Dock="Right"
                         Command="{Binding RefreshEverythingCommand}"
