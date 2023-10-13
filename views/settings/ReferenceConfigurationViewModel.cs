@@ -27,9 +27,9 @@ namespace ReferenceConfigurator.views {
             ColumnList.Add(new DataGridCheckBoxModel("Start", false));
             ColumnList.Add(new DataGridCheckBoxModel("End", false));
             ColumnList.Add(new DataGridCheckBoxModel("Data", false));
-            ColumnList.Add(new DataGridCheckBoxModel("Branch", false));
+            ColumnList.Add(new DataGridCheckBoxModel("Industry", false));
             ColumnList.Add(new DataGridCheckBoxModel("Team", false));
-            ColumnList.Add(new DataGridCheckBoxModel("ProjectDescriptionEN", false));
+            ColumnList.Add(new DataGridCheckBoxModel("ProjectDescriptionEN", true));
             ColumnList.Add(new DataGridCheckBoxModel("Client", true));
             ColumnList.Add(new DataGridCheckBoxModel("Topic", false));
             ColumnList.Add(new DataGridCheckBoxModel("ProjectDescriptionDE", false));

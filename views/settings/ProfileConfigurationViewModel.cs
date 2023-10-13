@@ -30,28 +30,28 @@ namespace ReferenceConfigurator.views {
             ColumnList.Add(new DataGridCheckBoxModel("FirstName", true));
             ColumnList.Add(new DataGridCheckBoxModel("LastName",true ));
             ColumnList.Add(new DataGridCheckBoxModel("Initials", true));
-            ColumnList.Add(new DataGridCheckBoxModel("RoleEN", false));
+            ColumnList.Add(new DataGridCheckBoxModel("RoleEN", true));
             ColumnList.Add(new DataGridCheckBoxModel("RoleDE", false));
-            ColumnList.Add(new DataGridCheckBoxModel("Tribe", false));
-            ColumnList.Add(new DataGridCheckBoxModel("Squad", false));
+            ColumnList.Add(new DataGridCheckBoxModel("Tribe", true));
+            ColumnList.Add(new DataGridCheckBoxModel("Squad", true));
             ColumnList.Add(new DataGridCheckBoxModel("ProductTopicOwner", false));
             ColumnList.Add(new DataGridCheckBoxModel("InternalResponsibility", false));
-            ColumnList.Add(new DataGridCheckBoxModel("ProfessionalExperienceEN", true));
+            ColumnList.Add(new DataGridCheckBoxModel("ProfessionalExperienceEN", false));
             ColumnList.Add(new DataGridCheckBoxModel("ProfessionalExperienceDE", false));
-            ColumnList.Add(new DataGridCheckBoxModel("EducationAndTrainingEN", true));
+            ColumnList.Add(new DataGridCheckBoxModel("EducationAndTrainingEN", false));
             ColumnList.Add(new DataGridCheckBoxModel("EnductionAndTrainingDE", false));
-            ColumnList.Add(new DataGridCheckBoxModel("ProjectExperienceEN", true));
+            ColumnList.Add(new DataGridCheckBoxModel("ProjectExperienceEN", false));
             ColumnList.Add(new DataGridCheckBoxModel("ProjectExperienceDE", false));
-            ColumnList.Add(new DataGridCheckBoxModel("IndustryExperienceEN", true));
+            ColumnList.Add(new DataGridCheckBoxModel("IndustryExperienceEN", false));
             ColumnList.Add(new DataGridCheckBoxModel("IndustryExperienceDE", false));
-            ColumnList.Add(new DataGridCheckBoxModel("FunctionalExperienceEN", true));
+            ColumnList.Add(new DataGridCheckBoxModel("FunctionalExperienceEN", false));
             ColumnList.Add(new DataGridCheckBoxModel("FunctionalExperienceDE", false));
-            ColumnList.Add(new DataGridCheckBoxModel("MethodExpertise", true));
-            ColumnList.Add(new DataGridCheckBoxModel("ToolExpertise", true));
-            ColumnList.Add(new DataGridCheckBoxModel("AdditionalQualifications", true));
-            ColumnList.Add(new DataGridCheckBoxModel("LanguagesEn", true));
+            ColumnList.Add(new DataGridCheckBoxModel("MethodExpertise", false));
+            ColumnList.Add(new DataGridCheckBoxModel("ToolExpertise", false));
+            ColumnList.Add(new DataGridCheckBoxModel("AdditionalQualifications", false));
+            ColumnList.Add(new DataGridCheckBoxModel("LanguagesEn", false));
             ColumnList.Add(new DataGridCheckBoxModel("LanguagesDE", false));
-            ColumnList.Add(new DataGridCheckBoxModel("YearsWorkExperience", true));
+            ColumnList.Add(new DataGridCheckBoxModel("YearsWorkExperience", false));
 
         }
     }
