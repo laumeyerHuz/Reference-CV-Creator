@@ -12,7 +12,7 @@ namespace ReferenceConfigurator.models {
         public string Start { get; set; }
         public string End { get; set; }
         public string Data { get; set; }
-        public string Branch { get; set; }
+        public string Industry { get; set; }
         public string Team { get; set; }
         public string ProjectDescriptionEN { get; set; }
         public string Client { get; set; }

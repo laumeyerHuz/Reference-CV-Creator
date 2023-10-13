@@ -97,8 +97,8 @@
                                     Header="Data" />
                 <DataGridTextColumn Width="1*"
                                     Visibility="{Binding Data.ColumnList[6].IsChecked3, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
-                                    Binding="{Binding Branch}"
-                                    Header="Branch" />
+                                    Binding="{Binding Industry}"
+                                    Header="Industry" />
                 <DataGridTextColumn Width="1*"
                                     Visibility="{Binding Data.ColumnList[7].IsChecked3, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ColumnListProxy}}"
                                     Binding="{Binding Team}"

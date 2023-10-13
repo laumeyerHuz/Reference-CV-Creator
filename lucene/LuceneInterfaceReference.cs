@@ -66,9 +66,9 @@ namespace ReferenceConfigurator.lucene {
                 doc.Add(new TextField("Data", "", Lucene.Net.Documents.Field.Store.YES));
             }
             if (!(listItem["Branche"] is null)) {
-                doc.Add(new TextField("Branch", listItem["Branche"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+                doc.Add(new TextField("Industry", listItem["Branche"].ToString(), Lucene.Net.Documents.Field.Store.YES));
             } else {
-                doc.Add(new TextField("Branch", "", Lucene.Net.Documents.Field.Store.YES));
+                doc.Add(new TextField("Industry", "", Lucene.Net.Documents.Field.Store.YES));
             }
             if (!(listItem["Team"] is null)) {
                 String teamNames = Regex.Replace(listItem["Team"].ToString(), "([a-z])([A-Z])", "$1 $2");
@@ -118,7 +118,7 @@ namespace ReferenceConfigurator.lucene {
                 Start = doc.Get("Start"),
                 End = doc.Get("End"),
                 Data = doc.Get("Data"),
-                Branch = doc.Get("Branch"),
+                Industry = doc.Get("Industry"),
                 Team = doc.Get("Team"),
                 ProjectDescriptionEN = doc.Get("ProjectDescriptionEN"),
                 Client = doc.Get("Client"),
@@ -134,7 +134,7 @@ namespace ReferenceConfigurator.lucene {
             List<SearchModel> _referenceModelList = new List<SearchModel>();
             MultiFieldQueryParser queryParser = new MultiFieldQueryParser(
                 AppLuceneVersion,
-                new String[] { "ProjectID", "Partner", "ProjectName", "Branch", "Team", "Subject", "Client", "Topic", "ProjectDescriptionDE", "ProjectDescriptionEN", "OnePager" },
+                new String[] { "ProjectID", "Partner", "ProjectName", "Industry", "Team", "Subject", "Client", "Topic", "ProjectDescriptionDE", "ProjectDescriptionEN", "OnePager" },
                 new StandardAnalyzer(AppLuceneVersion));
             search = search + "~0.8";
             Query q = queryParser.Parse(search);

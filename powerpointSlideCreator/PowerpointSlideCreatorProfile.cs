@@ -230,7 +230,7 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                             break;
                         case "years":
                             if (_language == "EN") {
-                                s.TextFrame.TextRange.Text = current.YearsWorkExperience + " years experience\n in consulting/\n industry";
+                                s.TextFrame.TextRange.Text = current.YearsWorkExperience + " years of experience\n in consulting/\n industry";
                             } else if (_language == "DE") {
                                 s.TextFrame.TextRange.Text = current.YearsWorkExperience + " Jahre Erfahrung\n in der Beratung/\n der Industrie";
                             } else {
@@ -286,7 +286,9 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                             if (current.ProfilePicture != null) {
                                 System.Drawing.Image img = System.Drawing.Image.FromFile(current.ProfilePicture);
                                 float[] sizes = resizeImage(s.Width, s.Height, img.Width, img.Height, s.Left, s.Top);
-                                slide.Shapes.AddPicture(current.ProfilePicture, msoFalse, msoTrue, sizes[0], sizes[1], sizes[2], sizes[3]);
+                                var pic = slide.Shapes.AddPicture(current.ProfilePicture, msoFalse, msoTrue, sizes[0], sizes[1], sizes[2], sizes[3]);
+                                pic.Width = sizes[2]; pic.Height = sizes[3];
+                                pic.Left = s.Left; pic.Top = s.Top;
                                 s.Delete();
                             }
                             break;
@@ -295,7 +297,9 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                                 if (current.flags[0] != null) {
                                     System.Drawing.Image imgL = System.Drawing.Image.FromFile(current.flags[0]);
                                     float[] sizesL = resizeImage(s.Width, s.Height, imgL.Width, imgL.Height, s.Left, s.Top);
-                                    slide.Shapes.AddPicture(current.flags[0], msoFalse, msoTrue, sizesL[0], sizesL[1], sizesL[2], sizesL[3]);
+                                    var pic =slide.Shapes.AddPicture(current.flags[0], msoFalse, msoTrue, sizesL[0], sizesL[1], sizesL[2], sizesL[3]);
+                                    pic.Width = sizesL[2]; pic.Height = sizesL[3];
+                                    pic.Left = s.Left; pic.Top = s.Top;
                                     s.Delete();
                                 }
                             } else {
@@ -308,7 +312,9 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                                 if (current.flags[1] != null) {
                                     System.Drawing.Image imgL = System.Drawing.Image.FromFile(current.flags[1]);
                                     float[] sizesL = resizeImage(s.Width, s.Height, imgL.Width, imgL.Height, s.Left, s.Top);
-                                    slide.Shapes.AddPicture(current.flags[1], msoFalse, msoTrue, sizesL[0], sizesL[1], sizesL[2], sizesL[3]);
+                                    var pic = slide.Shapes.AddPicture(current.flags[1], msoFalse, msoTrue, sizesL[0], sizesL[1], sizesL[2], sizesL[3]);
+                                    pic.Width = sizesL[2]; pic.Height = sizesL[3];
+                                    pic.Left = s.Left; pic.Top = s.Top;
                                     s.Delete();
                                 }
                             } else {
@@ -321,7 +327,9 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                                 if (current.flags[2] != null) {
                                     System.Drawing.Image imgL = System.Drawing.Image.FromFile(current.flags[2]);
                                     float[] sizesL = resizeImage(s.Width, s.Height, imgL.Width, imgL.Height, s.Left, s.Top);
-                                    slide.Shapes.AddPicture(current.flags[2], msoFalse, msoTrue, sizesL[0], sizesL[1], sizesL[2], sizesL[3]);
+                                    var pic = slide.Shapes.AddPicture(current.flags[2], msoFalse, msoTrue, sizesL[0], sizesL[1], sizesL[2], sizesL[3]);
+                                    pic.Width = sizesL[2]; pic.Height = sizesL[3];
+                                    pic.Left = s.Left; pic.Top = s.Top;
                                     s.Delete();
                                 }
                             } else {
@@ -334,7 +342,9 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                                 if (current.flags[3] != null) {
                                     System.Drawing.Image imgL = System.Drawing.Image.FromFile(current.flags[3]);
                                     float[] sizesL = resizeImage(s.Width, s.Height, imgL.Width, imgL.Height, s.Left, s.Top);
-                                    slide.Shapes.AddPicture(current.flags[3], msoFalse, msoTrue, sizesL[0], sizesL[1], sizesL[2], sizesL[3]);
+                                    var pic = slide.Shapes.AddPicture(current.flags[3], msoFalse, msoTrue, sizesL[0], sizesL[1], sizesL[2], sizesL[3]);
+                                    pic.Width = sizesL[2]; pic.Height = sizesL[3];
+                                    pic.Left = s.Left; pic.Top = s.Top;
                                     s.Delete();
                                 }
                             } else {
