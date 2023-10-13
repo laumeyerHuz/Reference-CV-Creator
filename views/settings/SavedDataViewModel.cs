@@ -3,6 +3,7 @@ using HandyControl.Controls;
 using ReferenceConfigurator.utils;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,7 +58,16 @@ namespace ReferenceConfigurator.views {
             await Task.Run(() => parent.refreshSearch());
         }
 
+        public void RefreshConfiguration() {
+            string basePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+            string folderPath = Path.Combine(basePath, "ReferenceConfigurator/config");
+            if(Directory.Exists(folderPath)) {
+                Directory.Delete(folderPath, true);
+            }
+        }
+
         public async Task<string> refreshEverything() {
+            RefreshConfiguration();
             var TaskLogos = deleteSavedLogos();
             var TaskOnePager = deleteSavedOnePager();
             var TaskSearch = refreshSavedIndex();
