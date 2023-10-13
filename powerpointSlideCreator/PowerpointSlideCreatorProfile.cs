@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using static Microsoft.Office.Core.MsoTriState;
 using System.Text.RegularExpressions;
 using HandyControl.Controls;
+using PnP.Framework.Diagnostics;
 
 namespace ReferenceConfigurator.powerpointSlideCreator {
     public class PowerpointSlideCreatorProfile {
@@ -33,7 +34,12 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
 
         public void createSlide() {
             if (_layout.onePager) {
-                addOnePagers();
+                if (_layout.name == "Profile One Pager") {
+                    addOnePagers();
+                } else {
+                    addTwoPagers();
+                }
+
             } else {
                 var presentation = Globals.ThisAddIn.Application.ActivePresentation;
                 var selectedSlidesNumbers = this.GetSelectedSlideNumbers(presentation);
@@ -47,7 +53,12 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                 // slide gets inserted after selected slide, so add 1 to slide index
                 // to target new slide for theme.
                 presentation.Slides[firstSelectedSlide + 1].ApplyTheme(_layout.powerpointPath);
-                updateSlideContent(presentation.Slides[firstSelectedSlide + 1]);
+                if (_layout.name == "Profile Template 0_5_0") {
+                    updateSlideContentSpecial(presentation.Slides[firstSelectedSlide + 1]);
+                } else {
+                    updateSlideContent(presentation.Slides[firstSelectedSlide + 1]);
+
+                }
             }
         }
 
@@ -69,6 +80,29 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
             }
         }
 
+        private void addTwoPagers() {
+            for (int i = 0; i < _searchModels.Count; i = i + 2) {
+                var presentation = Globals.ThisAddIn.Application.ActivePresentation;
+                var selectedSlidesNumbers = this.GetSelectedSlideNumbers(presentation);
+                var firstSelectedSlide = selectedSlidesNumbers[0];
+
+                // Insert slide from file.  Note that this step will NOT bring the theme
+                // from the slide file, only it's text.
+                presentation.Slides.InsertFromFile(_layout.powerpointPath, firstSelectedSlide, 1, 1);
+
+                // Apply the theme of the newly inserted slide file.  Note that the new 
+                // slide gets inserted after selected slide, so add 1 to slide index
+                // to target new slide for theme.
+                presentation.Slides[firstSelectedSlide + 1].ApplyTheme(_layout.powerpointPath);
+                ProfileModel one = _searchModels[i];
+                ProfileModel two = null;
+                if (i < _searchModels.Count) {
+                    two = _searchModels[i + 1];
+                }
+                updateTwoPagerContent(presentation.Slides[firstSelectedSlide + 1], one, two);
+            }
+        }
+
         private int[] GetSelectedSlideNumbers(Presentation presentation) {
             var selectedSlides = new List<int>();
 
@@ -79,6 +113,50 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
             selectedSlides = selectedSlides.OrderByDescending(x => x).ToList();
 
             return selectedSlides.ToArray();
+        }
+
+        private void updateSlideContentSpecial(Slide slide) {
+            loadProfilePictures();
+            for (int i = slide.Shapes.Count; i >= 1; i--) {
+                Shape s = slide.Shapes[i];
+                if (s.Name.Contains("TextBox") || s.Name.Contains("Textplatzhalter") || s.Name.Contains("Text") || s.Name.Contains("Title") || s.Name.Contains("Titel") || s.Name.Contains("Rechteck") || s.Name.Contains("Rectangle")) {
+                    string placeholder = s.TextFrame.TextRange.Text;
+                    string[] split = placeholder.Split(' ');
+                    switch (split[0]) {
+                        case "role":
+                            int p = split[1].ToInt32() - 1;
+                            if (p < _searchModels.Count()) {
+                                if (_language == "DE") {
+                                    s.TextFrame.TextRange.Text = _searchModels[p].RoleDE;
+                                } else if (_language == "EN") {
+                                    s.TextFrame.TextRange.Text = _searchModels[p].RoleEN;
+                                } else {
+                                    Growl.Info("No language selected");
+                                }
+                            }
+                            break;
+                        case "Name":
+                            p = split[1].ToInt32() - 1;
+                            if (p < _searchModels.Count()) {
+                                s.TextFrame.TextRange.Text = _searchModels[p].FirstName + "\n" + _searchModels[p].LastName;
+                            }
+                            break;
+                        case "Profile":
+                            p = split[1].ToInt32() - 1;
+                            if (p<_searchModels.Count() && _searchModels[p].ProfilePicture != null) {
+                                System.Drawing.Image img = System.Drawing.Image.FromFile(_searchModels[p].ProfilePicture);
+                                float[] sizes = resizeImage(s.Width, s.Height, img.Width, img.Height, s.Left, s.Top);
+                                var pic = slide.Shapes.AddPicture(_searchModels[p].ProfilePicture, msoFalse, msoTrue, sizes[0], sizes[1], sizes[2], sizes[3]);
+                                pic.Width = sizes[2]; pic.Height = sizes[3];
+                                pic.Left = s.Left; pic.Top = s.Top;
+                                s.Delete();
+                            } else { 
+                                s.Delete(); 
+                            }
+                            break;
+                    }
+                }
+            }
         }
 
         private void updateSlideContent(Slide slide) {
@@ -297,7 +375,7 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                                 if (current.flags[0] != null) {
                                     System.Drawing.Image imgL = System.Drawing.Image.FromFile(current.flags[0]);
                                     float[] sizesL = resizeImage(s.Width, s.Height, imgL.Width, imgL.Height, s.Left, s.Top);
-                                    var pic =slide.Shapes.AddPicture(current.flags[0], msoFalse, msoTrue, sizesL[0], sizesL[1], sizesL[2], sizesL[3]);
+                                    var pic = slide.Shapes.AddPicture(current.flags[0], msoFalse, msoTrue, sizesL[0], sizesL[1], sizesL[2], sizesL[3]);
                                     pic.Width = sizesL[2]; pic.Height = sizesL[3];
                                     pic.Left = s.Left; pic.Top = s.Top;
                                     s.Delete();
@@ -350,6 +428,169 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                             } else {
                                 s.Delete();
                                 break;
+                            }
+                            break;
+                        default: break;
+                    }
+                }
+            }
+        }
+
+        private void updateTwoPagerContent(Slide slide, ProfileModel current1, ProfileModel current2) {
+            loadFlags();
+            loadProfilePictures();
+            for (int i = slide.Shapes.Count; i >= 1; i--) {
+                Shape s = slide.Shapes[i];
+                if (s.Name.Contains("TextBox") || s.Name.Contains("Textplatzhalter") || s.Name.Contains("Text") || s.Name.Contains("Title") || s.Name.Contains("Titel")) {
+                    string placeholder = s.TextFrame.TextRange.Text;
+                    string[] split = placeholder.Split(' ');
+                    switch (split[0]) {
+                        case "role":
+                            if (_language == "DE") {
+                                if (split[1] == "1") {
+                                    s.TextFrame.TextRange.Text = current1.RoleDE;
+                                } else if (split[1] == "2") {
+                                    s.TextFrame.TextRange.Text = current2.RoleDE;
+                                }
+                            } else if (_language == "EN") {
+                                if (split[1] == "1") {
+                                    s.TextFrame.TextRange.Text = current1.RoleEN;
+                                } else if (split[1] == "2") {
+                                    s.TextFrame.TextRange.Text = current2.RoleEN;
+                                }
+                            } else {
+                                Growl.Info("No language selected");
+                            }
+                            break;
+                        case "Name":
+                            if (split[1] == "1") {
+                                s.TextFrame.TextRange.Text = current1.FirstName + " " + current1.LastName;
+                            } else if (split[1] == "2") {
+                                s.TextFrame.TextRange.Text = current2.FirstName + " " + current2.LastName;
+                            }
+                            break;
+                        case "years":
+                            if (_language == "EN") {
+                                if (split[1] == "1") {
+                                    s.TextFrame.TextRange.Text = current1.YearsWorkExperience + " years of experience";
+                                } else if (split[1] == "2") {
+                                    s.TextFrame.TextRange.Text = current2.YearsWorkExperience + " years of experience";
+                                }
+                            } else if (_language == "DE") {
+                                if (split[1] == "1") {
+                                    s.TextFrame.TextRange.Text = current1.YearsWorkExperience + " Jahre Erfahrung";
+                                } else if (split[1] == "2") {
+                                    s.TextFrame.TextRange.Text = current2.YearsWorkExperience + " Jahre Erfahrung";
+                                }
+                            } else {
+                                Growl.Info("No language selected");
+                            }
+                            break;
+                        case "project":
+                            if (_language == "EN") {
+                                if (split[1] == "1") {
+                                    s.TextFrame.TextRange.Text = current1.ProjectExperienceEN;
+                                } else if (split[1] == "2") {
+                                    s.TextFrame.TextRange.Text = current2.ProjectExperienceEN;
+                                }
+                            } else if (_language == "DE") {
+                                if (split[1] == "1") {
+                                    s.TextFrame.TextRange.Text = current1.ProjectExperienceDE;
+                                } else if (split[1] == "2") {
+                                    s.TextFrame.TextRange.Text = current2.ProjectExperienceDE;
+                                }
+                            } else {
+                                Growl.Info("No language selected");
+                            }
+                            break;
+                        case "industry":
+                            if (_language == "EN") {
+                                if (split[1] == "1") {
+                                    s.TextFrame.TextRange.Text = current1.IndustryExperienceEN;
+                                } else if (split[1] == "2") {
+                                    s.TextFrame.TextRange.Text = current2.IndustryExperienceEN;
+                                }
+                            } else if (_language == "DE") {
+                                if (split[1] == "1") {
+                                    s.TextFrame.TextRange.Text = current1.IndustryExperienceDE;
+                                } else if (split[1] == "2") {
+                                    s.TextFrame.TextRange.Text = current2.IndustryExperienceDE;
+                                }
+                            } else {
+                                Growl.Info("No language selected");
+                            }
+                            break;
+                        case "functional":
+                            if (_language == "EN") {
+                                if (split[1] == "1") {
+                                    s.TextFrame.TextRange.Text = current1.FunctionalExperienceEN;
+                                } else if (split[1] == "2") {
+                                    s.TextFrame.TextRange.Text = current2.FunctionalExperienceEN;
+                                }
+                            } else if (_language == "DE") {
+                                if (split[1] == "1") {
+                                    s.TextFrame.TextRange.Text = current1.FunctionalExperienceDE;
+                                } else if (split[1] == "2") {
+                                    s.TextFrame.TextRange.Text = current2.FunctionalExperienceDE;
+                                }
+                            } else {
+                                Growl.Info("No language selected");
+                            }
+                            break;
+                        case "Profile":
+                            if (split[1] == "1") {
+                                if (current1.ProfilePicture != null) {
+                                    System.Drawing.Image img = System.Drawing.Image.FromFile(current1.ProfilePicture);
+                                    float[] sizes = resizeImage(s.Width, s.Height, img.Width, img.Height, s.Left, s.Top);
+                                    var pic = slide.Shapes.AddPicture(current1.ProfilePicture, msoFalse, msoTrue, sizes[0], sizes[1], sizes[2], sizes[3]);
+                                    pic.Width = sizes[2]; pic.Height = sizes[3];
+                                    pic.Left = s.Left; pic.Top = s.Top;
+                                    s.Delete();
+                                }
+                            } else if (split[1] == "2") {
+                                if (current2.ProfilePicture != null) {
+                                    System.Drawing.Image img = System.Drawing.Image.FromFile(current2.ProfilePicture);
+                                    float[] sizes = resizeImage(s.Width, s.Height, img.Width, img.Height, s.Left, s.Top);
+                                    var pic = slide.Shapes.AddPicture(current2.ProfilePicture, msoFalse, msoTrue, sizes[0], sizes[1], sizes[2], sizes[3]);
+                                    pic.Width = sizes[2]; pic.Height = sizes[3];
+                                    pic.Left = s.Left; pic.Top = s.Top;
+                                    s.Delete();
+                                }
+                            }
+                            break;
+                        case "Lang":
+                            string p = split[1].Split('_')[0];
+                            int n = split[1].Split('_')[1].ToInt32();
+                            if (p == "1") {
+                                if (current1.flags.Length > 0) {
+                                    if (n <= current1.flags.Length && current1.flags[n - 1] != null) {
+                                        System.Drawing.Image imgL = System.Drawing.Image.FromFile(current1.flags[n - 1]);
+                                        float[] sizesL = resizeImage(s.Width, s.Height, imgL.Width, imgL.Height, s.Left, s.Top);
+                                        var pic = slide.Shapes.AddPicture(current1.flags[n - 1], msoFalse, msoTrue, sizesL[0], sizesL[1], sizesL[2], sizesL[3]);
+                                        pic.Width = sizesL[2]; pic.Height = sizesL[3];
+                                        pic.Left = s.Left; pic.Top = s.Top;
+                                        s.Delete();
+                                    } else {
+                                        s.Delete();
+                                    }
+                                } else {
+                                    s.Delete();
+                                }
+                            } else if (p == "2") {
+                                if (current2.flags.Length > 0) {
+                                    if (n <= current2.flags.Length && current2.flags[n - 1] != null) {
+                                        System.Drawing.Image imgL = System.Drawing.Image.FromFile(current2.flags[n - 1]);
+                                        float[] sizesL = resizeImage(s.Width, s.Height, imgL.Width, imgL.Height, s.Left, s.Top);
+                                        var pic = slide.Shapes.AddPicture(current2.flags[n - 1], msoFalse, msoTrue, sizesL[0], sizesL[1], sizesL[2], sizesL[3]);
+                                        pic.Width = sizesL[2]; pic.Height = sizesL[3];
+                                        pic.Left = s.Left; pic.Top = s.Top;
+                                        s.Delete();
+                                    } else {
+                                        s.Delete();
+                                    }
+                                } else {
+                                    s.Delete();
+                                }
                             }
                             break;
                         default: break;

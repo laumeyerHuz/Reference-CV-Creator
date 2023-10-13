@@ -14,7 +14,7 @@ namespace ReferenceConfigurator.models {
         public int expert { get; set; } = 0;
 
         public ProfileLayoutModel(string powerpointPath, string imagePath, string name) : base(powerpointPath, imagePath, name) {
-            if (name == "Profile One Pager") {
+            if (name == "Profile One Pager" || name == "Profile Two Pager") {
                 maxElements = -1;
                 onePager = true;
             } else {
