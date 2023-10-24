@@ -317,45 +317,45 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                             break;
                         case "professional":
                             if (_language == "EN") {
-                                s.TextFrame.TextRange.Text = current.ProfessionalExperienceEN;
+                                s.TextFrame.TextRange.Text = Utils.RemoveEmptyLines(current.ProfessionalExperienceEN);
                             } else if (_language == "DE") {
-                                s.TextFrame.TextRange.Text = current.ProfessionalExperienceDE;
+                                s.TextFrame.TextRange.Text = Utils.RemoveEmptyLines(current.ProfessionalExperienceDE);
                             } else {
                                 Growl.Info("No language selected");
                             }
                             break;
                         case "project":
                             if (_language == "EN") {
-                                s.TextFrame.TextRange.Text = current.ProjectExperienceEN;
+                                s.TextFrame.TextRange.Text = Utils.RemoveEmptyLines(current.ProjectExperienceEN);
                             } else if (_language == "DE") {
-                                s.TextFrame.TextRange.Text = current.ProjectExperienceDE;
+                                s.TextFrame.TextRange.Text = Utils.RemoveEmptyLines(current.ProjectExperienceDE);
                             } else {
                                 Growl.Info("No language selected");
                             }
                             break;
                         case "industry":
                             if (_language == "EN") {
-                                s.TextFrame.TextRange.Text = current.IndustryExperienceEN;
+                                s.TextFrame.TextRange.Text = Utils.RemoveEmptyLines(current.IndustryExperienceEN);
                             } else if (_language == "DE") {
-                                s.TextFrame.TextRange.Text = "Industrie Erfahrung:\n" + current.IndustryExperienceDE;
+                                s.TextFrame.TextRange.Text = "Industrie Erfahrung:\n" + Utils.RemoveEmptyLines(current.IndustryExperienceDE);
                             } else {
                                 Growl.Info("No language selected");
                             }
                             break;
                         case "functional":
                             if (_language == "EN") {
-                                s.TextFrame.TextRange.Text = current.FunctionalExperienceEN;
+                                s.TextFrame.TextRange.Text = Utils.RemoveEmptyLines(current.FunctionalExperienceEN);
                             } else if (_language == "DE") {
-                                s.TextFrame.TextRange.Text = "Funktionale Erfahrung:\n" + current.FunctionalExperienceDE;
+                                s.TextFrame.TextRange.Text = "Funktionale Erfahrung:\n" + Utils.RemoveEmptyLines(current.FunctionalExperienceDE);
                             } else {
                                 Growl.Info("No language selected");
                             }
                             break;
                         case "education":
                             if (_language == "EN") {
-                                s.TextFrame.TextRange.Text = current.EducationAndTrainingEN;
+                                s.TextFrame.TextRange.Text = Utils.RemoveEmptyLines(current.EducationAndTrainingEN);
                             } else if (_language == "DE") {
-                                s.TextFrame.TextRange.Text = current.EnductionAndTrainingDE;
+                                s.TextFrame.TextRange.Text = Utils.RemoveEmptyLines(current.EnductionAndTrainingDE);
                             } else {
                                 Growl.Info("No language selected");
                             }
@@ -489,15 +489,15 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                         case "project":
                             if (_language == "EN") {
                                 if (split[1] == "1") {
-                                    s.TextFrame.TextRange.Text = current1.ProjectExperienceEN;
+                                    s.TextFrame.TextRange.Text = Utils.RemoveEmptyLines(current1.ProjectExperienceEN);
                                 } else if (split[1] == "2") {
-                                    s.TextFrame.TextRange.Text = current2.ProjectExperienceEN;
+                                    s.TextFrame.TextRange.Text = Utils.RemoveEmptyLines(current2.ProjectExperienceEN);
                                 }
                             } else if (_language == "DE") {
                                 if (split[1] == "1") {
-                                    s.TextFrame.TextRange.Text = current1.ProjectExperienceDE;
+                                    s.TextFrame.TextRange.Text = Utils.RemoveEmptyLines(current1.ProjectExperienceDE);
                                 } else if (split[1] == "2") {
-                                    s.TextFrame.TextRange.Text = current2.ProjectExperienceDE;
+                                    s.TextFrame.TextRange.Text = Utils.RemoveEmptyLines(current2.ProjectExperienceDE);
                                 }
                             } else {
                                 Growl.Info("No language selected");
@@ -506,15 +506,15 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                         case "industry":
                             if (_language == "EN") {
                                 if (split[1] == "1") {
-                                    s.TextFrame.TextRange.Text = current1.IndustryExperienceEN;
+                                    s.TextFrame.TextRange.Text = Utils.RemoveEmptyLines(current1.IndustryExperienceEN);
                                 } else if (split[1] == "2") {
-                                    s.TextFrame.TextRange.Text = current2.IndustryExperienceEN;
+                                    s.TextFrame.TextRange.Text = Utils.RemoveEmptyLines(current2.IndustryExperienceEN);
                                 }
                             } else if (_language == "DE") {
                                 if (split[1] == "1") {
-                                    s.TextFrame.TextRange.Text = current1.IndustryExperienceDE;
+                                    s.TextFrame.TextRange.Text = Utils.RemoveEmptyLines(current1.IndustryExperienceDE);
                                 } else if (split[1] == "2") {
-                                    s.TextFrame.TextRange.Text = current2.IndustryExperienceDE;
+                                    s.TextFrame.TextRange.Text = Utils.RemoveEmptyLines(current2.IndustryExperienceDE);
                                 }
                             } else {
                                 Growl.Info("No language selected");
@@ -523,15 +523,15 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                         case "functional":
                             if (_language == "EN") {
                                 if (split[1] == "1") {
-                                    s.TextFrame.TextRange.Text = current1.FunctionalExperienceEN;
+                                    s.TextFrame.TextRange.Text = Utils.RemoveEmptyLines(current1.FunctionalExperienceEN);
                                 } else if (split[1] == "2") {
-                                    s.TextFrame.TextRange.Text = current2.FunctionalExperienceEN;
+                                    s.TextFrame.TextRange.Text = Utils.RemoveEmptyLines(current2.FunctionalExperienceEN);
                                 }
                             } else if (_language == "DE") {
                                 if (split[1] == "1") {
-                                    s.TextFrame.TextRange.Text = current1.FunctionalExperienceDE;
+                                    s.TextFrame.TextRange.Text = Utils.RemoveEmptyLines(current1.FunctionalExperienceDE);
                                 } else if (split[1] == "2") {
-                                    s.TextFrame.TextRange.Text = current2.FunctionalExperienceDE;
+                                    s.TextFrame.TextRange.Text = Utils.RemoveEmptyLines(current2.FunctionalExperienceDE);
                                 }
                             } else {
                                 Growl.Info("No language selected");

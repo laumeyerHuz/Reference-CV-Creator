@@ -107,10 +107,12 @@ namespace ReferenceConfigurator.models {
         private List<CheckBoxModel> split(string input) {
             List<CheckBoxModel> tmp = new List<CheckBoxModel>();
             foreach (string line in input.Split('\n')) {
-                tmp.Add(new CheckBoxModel() {
-                    Name = line,
-                    IsChecked = true,
-                });
+                if (line.Length > 0) {
+                    tmp.Add(new CheckBoxModel() {
+                        Name = line,
+                        IsChecked = true,
+                    });
+                }
             }
             return tmp;
         }
