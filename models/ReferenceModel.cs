@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ReferenceConfigurator.models {
     public class ReferenceModel :SearchModel {
-        public int ProjectId { get; set; }
+        public string ProjectId { get; set; }
         public string Partner { get; set; }
         public string ProjectName { get; set; }
         public string Start { get; set; }

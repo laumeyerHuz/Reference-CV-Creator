@@ -125,7 +125,7 @@ namespace ReferenceConfigurator.utils {
             SharepointConnection.downloadPowerpointTemplates(type);
         }
 
-        public static string getOnePager(int id) {
+        public static string getOnePager(string id) {
             string fileName = SharepointConnection.downloadOnePager(id);
             return fileName;
         }

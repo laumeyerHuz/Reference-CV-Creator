@@ -133,6 +133,7 @@ namespace ReferenceConfigurator {
 
             name = name.Replace("/", "_");
             name = name.Replace(":", "_");
+            name = name.Replace("&", "_");
 
 
             string basePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
@@ -213,7 +214,7 @@ namespace ReferenceConfigurator {
             await fs.WriteAsync(taskDownloadFile, 0, taskDownloadFile.Length);
         }
 
-        public static string downloadOnePager(int id) {
+        public static string downloadOnePager(string id) {
            
             string basePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
             string folderPath = Path.Combine(basePath, "ReferenceConfigurator/onePager");
