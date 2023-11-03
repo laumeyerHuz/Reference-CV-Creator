@@ -112,7 +112,7 @@ namespace ReferenceConfigurator.lucene {
 
         private ReferenceModel getModelFromDoc(Document doc) {
             ReferenceModel _referenceModel = new ReferenceModel {
-                ProjectId = doc.Get("ProjectID").ToInt32(),
+                ProjectId = doc.Get("ProjectID"),
                 Partner = doc.Get("Partner"),
                 ProjectName = doc.Get("ProjectName"),
                 Start = doc.Get("Start"),
@@ -135,7 +135,7 @@ namespace ReferenceConfigurator.lucene {
             MultiFieldQueryParser queryParser = new MultiFieldQueryParser(
                 AppLuceneVersion,
                 new String[] { "ProjectID", "Partner", "ProjectName", "Industry", "Team", "Subject", "Client", "Topic", "ProjectDescriptionDE", "ProjectDescriptionEN", "OnePager" },
-                new StandardAnalyzer(AppLuceneVersion));
+                new TokenAnalyzer(AppLuceneVersion));
             search = search + "~0.8";
             Query q = queryParser.Parse(search);
             TopDocs _results = _searcher.Search(q, _reader.NumDocs);

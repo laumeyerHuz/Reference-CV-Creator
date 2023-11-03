@@ -9,7 +9,7 @@ using Microsoft.SharePoint.Client;
 using Lucene.Net.QueryParsers.Classic;
 using ReferenceConfigurator.models;
 using System.Collections.Generic;
-
+using Lucene.Net.Analysis;
 
 namespace ReferenceConfigurator.lucene {
     public class LuceneInterfaceProfile : LuceneInterface {
@@ -207,7 +207,7 @@ namespace ReferenceConfigurator.lucene {
             MultiFieldQueryParser queryParser = new MultiFieldQueryParser(
                 AppLuceneVersion,
                 new String[] { "FirstName", "LastName", "Initials", "RoleEN", "RoleDE", "Tribe", "Squad", "ProductTopicOwner", "InternalResponsibility", "ProfessionalExperienceEN", "ProfessionalExperienceDE", "EducationAndTrainingEN", "EnductionAndTrainingDE", "ProjectExperienceEN", "ProjectExperienceDE", "IndustryExperienceEN", "IndustryExperienceDE", "FunctionalExperienceEN", "FunctionalExperienceDE", "MethodExpertise", "ToolExpertise", "AdditionalQualifications", "LanguagesEN", "LanguagesDE", "YearsWorkExperience" },
-                new StandardAnalyzer(AppLuceneVersion));
+                new TokenAnalyzer(AppLuceneVersion));
             search = search + "~0.95";
             Query q = queryParser.Parse(search);
             TopDocs _results = _searcher.Search(q, _reader.NumDocs);
