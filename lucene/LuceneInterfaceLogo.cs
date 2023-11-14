@@ -35,7 +35,7 @@ namespace ReferenceConfigurator.lucene {
             DateTime now = DateTime.Now;
             if (!DirectoryReader.IndexExists(dir)) {
 
-                _analyzer = new StandardAnalyzer(AppLuceneVersion);
+                _analyzer = new TokenAnalyzer(AppLuceneVersion);
                 IndexWriterConfig indexConfig = new IndexWriterConfig(AppLuceneVersion, _analyzer);
                 _writer = new IndexWriter(dir, indexConfig);
 
@@ -111,7 +111,7 @@ namespace ReferenceConfigurator.lucene {
 
         public override void refreshIndex() {
             if (DirectoryReader.IndexExists(dir)) {
-                _analyzer = new StandardAnalyzer(AppLuceneVersion);
+                _analyzer = new TokenAnalyzer(AppLuceneVersion);
                 IndexWriterConfig indexConfig = new IndexWriterConfig(AppLuceneVersion, _analyzer);
                 _writer = new IndexWriter(dir, indexConfig);
                 _writer.DeleteAll();
