@@ -131,9 +131,9 @@ namespace ReferenceConfigurator {
 
         public static string downloadCompanyLogo(string name) {
 
-            name = name.Replace("/", "_");
-            name = name.Replace(":", "_");
-            name = name.Replace("&", "_");
+            //name = name.Replace("/", "_");
+            //name = name.Replace(":", "_");
+            //name = name.Replace("&", "_");
 
 
             string basePath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
