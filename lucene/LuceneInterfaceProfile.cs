@@ -42,12 +42,20 @@ namespace ReferenceConfigurator.lucene {
                 doc.Add(new TextField("Initials", "", Lucene.Net.Documents.Field.Store.YES));
             }
             if (!(listItem["RoleEN"] is null)) {
-                doc.Add(new TextField("RoleEN", listItem["RoleEN"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+                string role = listItem["RoleEN"].ToString();
+                if (role.Split('(').Length > 1) {
+                    role = role.Split('(')[0].Trim();
+                }
+                doc.Add(new TextField("RoleEN",role , Lucene.Net.Documents.Field.Store.YES));
             } else {
                 doc.Add(new TextField("RoleEN", "", Lucene.Net.Documents.Field.Store.YES));
             }
             if (!(listItem["RoleDE"] is null)) {
-                doc.Add(new TextField("RoleDE", listItem["RoleDE"].ToString(), Lucene.Net.Documents.Field.Store.YES));
+                string role = listItem["RoleDE"].ToString();
+                if (role.Split('(').Length > 1) {
+                    role = role.Split('(')[0].Trim();
+                }
+                doc.Add(new TextField("RoleDE", role, Lucene.Net.Documents.Field.Store.YES));
             } else {
                 doc.Add(new TextField("RoleDE", "", Lucene.Net.Documents.Field.Store.YES));
             }
