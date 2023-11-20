@@ -223,7 +223,7 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                                 if (split.Count() > 2 && split[2].ToInt32() <= _layout.core && split[2].ToInt32() <= coreList.Count()) {
                                     name = coreList[split[2].ToInt32() - 1];
                                     if (_language == "EN") {
-                                        additions = name.RoleEN + "\n" + name.YearsWorkExperience + " years of experience";
+                                        additions = name.RoleEN + "\n" + name.YearsWorkExperience + " years' experience";
                                     } else if (_language == "DE") {
                                         additions = name.RoleDE + "\n" + name.YearsWorkExperience + " Jahre Erfahrung";
                                     }
@@ -237,7 +237,9 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                                             additions += ep.Name + ", ";
                                         }
                                     }
-                                    additions = additions.Remove(additions.Length - 2);
+                                    if (additions.Length >= 2) {
+                                        additions = additions.Remove(additions.Length - 2);
+                                    }
                                 }
 
 
@@ -255,7 +257,7 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                             } else if (split[1] == "partner") {
                                 s.TextFrame.TextRange.Text = name.FirstName + " " + name.LastName + " – Partner\n" + additions;
                                 int l = name.FirstName.Split(' ').Length + name.LastName.Split(' ').Length;
-                                s.TextFrame.TextRange.Words(0, l + 2).Font.Bold = msoTrue;
+                                s.TextFrame.TextRange.Words(0, l).Font.Bold = msoTrue;
                             } else if (split[1] == "expert") {
                                 s.TextFrame.TextRange.Text = name.FirstName + " " + name.LastName;
                                 int l = name.FirstName.Split(' ').Length + name.LastName.Split(' ').Length;
@@ -308,9 +310,9 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                             break;
                         case "years":
                             if (_language == "EN") {
-                                s.TextFrame.TextRange.Text = current.YearsWorkExperience + " years of experience\n in consulting/\n industry";
+                                s.TextFrame.TextRange.Text = current.YearsWorkExperience + " years' experience\nin consulting/\nindustry";
                             } else if (_language == "DE") {
-                                s.TextFrame.TextRange.Text = current.YearsWorkExperience + " Jahre Erfahrung\n in der Beratung/\n der Industrie";
+                                s.TextFrame.TextRange.Text = current.YearsWorkExperience + " Jahre Erfahrung\nin der Beratung/\nder Industrie";
                             } else {
                                 Growl.Info("No language selected");
                             }
@@ -472,9 +474,9 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                         case "years":
                             if (_language == "EN") {
                                 if (split[1] == "1") {
-                                    s.TextFrame.TextRange.Text = current1.YearsWorkExperience + " years of experience";
+                                    s.TextFrame.TextRange.Text = current1.YearsWorkExperience + " years' experience";
                                 } else if (split[1] == "2") {
-                                    s.TextFrame.TextRange.Text = current2.YearsWorkExperience + " years of experience";
+                                    s.TextFrame.TextRange.Text = current2.YearsWorkExperience + " years' experience";
                                 }
                             } else if (_language == "DE") {
                                 if (split[1] == "1") {
