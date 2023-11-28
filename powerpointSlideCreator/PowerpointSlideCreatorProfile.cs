@@ -223,7 +223,7 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                                 if (split.Count() > 2 && split[2].ToInt32() <= _layout.core && split[2].ToInt32() <= coreList.Count()) {
                                     name = coreList[split[2].ToInt32() - 1];
                                     if (_language == "EN") {
-                                        additions = name.RoleEN + "\n" + name.YearsWorkExperience + " years' experience";
+                                        additions = name.RoleEN + "\n" + name.YearsWorkExperience + " yrs. experience";
                                     } else if (_language == "DE") {
                                         additions = name.RoleDE + "\n" + name.YearsWorkExperience + " Jahre Erfahrung";
                                     }
@@ -310,7 +310,7 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                             break;
                         case "years":
                             if (_language == "EN") {
-                                s.TextFrame.TextRange.Text = current.YearsWorkExperience + " years' experience\nin consulting/\nindustry";
+                                s.TextFrame.TextRange.Text = current.YearsWorkExperience + " yrs. experience\nin consulting/\nindustry";
                             } else if (_language == "DE") {
                                 s.TextFrame.TextRange.Text = current.YearsWorkExperience + " Jahre Erfahrung\nin der Beratung/\nder Industrie";
                             } else {
@@ -474,9 +474,9 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                         case "years":
                             if (_language == "EN") {
                                 if (split[1] == "1") {
-                                    s.TextFrame.TextRange.Text = current1.YearsWorkExperience + " years' experience";
+                                    s.TextFrame.TextRange.Text = current1.YearsWorkExperience + " yrs. experience";
                                 } else if (split[1] == "2") {
-                                    s.TextFrame.TextRange.Text = current2.YearsWorkExperience + " years' experience";
+                                    s.TextFrame.TextRange.Text = current2.YearsWorkExperience + " yrs. experience";
                                 }
                             } else if (_language == "DE") {
                                 if (split[1] == "1") {
