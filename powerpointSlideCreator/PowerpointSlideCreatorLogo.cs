@@ -19,18 +19,25 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
         public void addLogo() {
             loadLogos();
             int counter = 10;
+            int col = 20;
             var presentation = Globals.ThisAddIn.Application.ActivePresentation;
             var selectedSlidesNumbers = this.GetSelectedSlideNumbers(presentation);
             var firstSelectedSlide = selectedSlidesNumbers[0];
             foreach (LogoModel model in _searchModels) {
-                
+                try {
+                    Slide slide = presentation.Slides[firstSelectedSlide];
+                    using System.Drawing.Image img = System.Drawing.Image.FromFile(model.LogoFile);
+                    float[] sizes = resizeImage(100, 100, img.Width, img.Height, col, counter);
 
-                Slide slide = presentation.Slides[firstSelectedSlide];
-                System.Drawing.Image img = System.Drawing.Image.FromFile(model.LogoFile);
-                float[] sizes = resizeImage(100, 100, img.Width, img.Height, 20, counter);
-
-                slide.Shapes.AddPicture(model.LogoFile, msoFalse, msoTrue, sizes[0], sizes[1], sizes[2], sizes[3]);
-                counter += 100;
+                    Shape s = slide.Shapes.AddPicture(model.LogoFile, msoFalse, msoTrue, sizes[0], sizes[1], sizes[2], sizes[3]);
+                    s.Left = col; s.Top = counter;
+                    counter += 100;
+                    if (counter > 400) {
+                        counter = 10;
+                        col += 120;
+                    }
+                } catch (Exception ex) {
+                }
             }
         }
         private int[] GetSelectedSlideNumbers(Presentation presentation) {

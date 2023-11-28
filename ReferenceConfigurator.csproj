@@ -34,10 +34,10 @@
     <Nullable>enable</Nullable>
     <LangVersion>8.0</LangVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <PublishUrl>C:\Users\leonhard.laumeyer\Documents\projects\ReferenceConfigurator\executable\v0.20\</PublishUrl>
+    <PublishUrl>C:\Users\leonhard.laumeyer\Documents\projects\ReferenceConfigurator\executable\v.021\</PublishUrl>
     <InstallUrl />
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>1.0.0.24</ApplicationVersion>
+    <ApplicationVersion>1.0.0.25</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
