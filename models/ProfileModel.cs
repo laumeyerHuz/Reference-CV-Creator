@@ -143,7 +143,7 @@ namespace ReferenceConfigurator.models {
                         currentLanguage = "EN";
                         break;
                     case "DE":
-                        ProjectExperiencesDisplay = new ObservableCollection<CheckBoxModel>(ProjectExperiencesEN);
+                        ProjectExperiencesDisplay = new ObservableCollection<CheckBoxModel>(ProjectExperiencesDE);
                         currentLanguage = "DE";
                         break;
                 }
