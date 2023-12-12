@@ -63,6 +63,26 @@ namespace ReferenceConfigurator.views {
             set => SetProperty(ref _selectedLanguage, value);
         }
 
+        protected List<string> _titleListDE = new List<string>();
+
+        protected List<string> _titleListEN = new List<string>();
+
+        protected ObservableCollection<string> _titleList;
+
+        public ObservableCollection<string> TitleList {
+            get => _titleList;
+            set {
+                SetProperty(ref _titleList, value);
+            }
+        }
+
+        protected string _selectedTitle;
+
+        public virtual string SelectedTitle {
+            get => _selectedTitle;
+            set => SetProperty(ref _selectedTitle, value);
+        }
+
         protected IList<SearchModel> _references;
 
         public SummaryViewModel(PopUpViewModel parent) {
@@ -82,9 +102,17 @@ namespace ReferenceConfigurator.views {
             LanguageList.Add("DE");
             LanguageList.Add("EN");
 
+            populateTitle();
+            _titleList = new ObservableCollection<string>(_titleListEN);
+            TitleList = _titleList;
+            SelectedTitle = _titleListEN[0];
 
             SelectedLayout = "No Layout Selected";
             SelectedLanguage = "EN";
+        }
+
+        protected virtual void populateTitle() {
+            throw new NotImplementedException();
         }
 
         public void addReference(SearchModel reference) {
@@ -122,6 +150,8 @@ namespace ReferenceConfigurator.views {
         public string getSelectedLanguage() {
             return SelectedLanguage;
         }
+
+        public string getSelectedTitle() { return SelectedTitle; }
 
         public void next() {
             parent.next();

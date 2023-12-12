@@ -17,6 +17,7 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
         private List<ReferenceModel> _referenceModels;
         private LayoutModel _layout;
         private string _language;
+        private string _title;
 
         public PowerpointSlideCreatorReference() {
         }
@@ -31,6 +32,10 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
 
         public void addLanguage(string language) {
             this._language = language;
+        }
+
+        public void addTitle(string title) {
+            this._title = title;
         }
 
         public void createSlide() {
@@ -104,12 +109,12 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
             for (int i = slide.Shapes.Count; i >= 1; i--) {
                 Shape s = slide.Shapes[i];
                 System.Diagnostics.Debug.WriteLine(s.Name);
-                if (s.Name.Contains("TextBox") || s.Name.Contains("Textplatzhalter")) {
+                if (s.Name.Contains("TextBox") || s.Name.Contains("Textplatzhalter") || s.Name.Contains("Text") || s.Name.Contains("Title") || s.Name.Contains("Titel") || s.Name.Contains("Rechteck") || s.Name.Contains("Rectangle")) {
                     string placeholder = s.TextFrame.TextRange.Text;
                     Regex rgx = new Regex("[^a-zA-Z0-9 -]");
                     placeholder = rgx.Replace(placeholder, "");
                     string[] split = placeholder.Split(' ');
-                    if (split[1].ToInt32() >_referenceModels.Count) {
+                    if (split.Length>1 && split[1].ToInt32() >_referenceModels.Count) {
                         continue;
                     }
                     switch (split[0]) {
@@ -137,6 +142,9 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                             } else {
                                 Growl.Info("No language selected");
                             }
+                            break;
+                        case "We":
+                            s.TextFrame.TextRange.Text = _title;
                             break;
                         default: break;
                     }

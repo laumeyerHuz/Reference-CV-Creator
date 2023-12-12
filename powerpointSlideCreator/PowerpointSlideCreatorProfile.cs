@@ -18,6 +18,7 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
         private List<ProfileModel> _searchModels;
         private ProfileLayoutModel _layout;
         private string _language;
+        private string _title;
 
         public PowerpointSlideCreatorProfile() { }
         public void addReferences(List<ProfileModel> referenceModels) {
@@ -30,6 +31,10 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
 
         public void addLanguage(string language) {
             this._language = language;
+        }
+
+        public void addTitle(string  title) { 
+            this._title = title; 
         }
 
         public void createSlide() {
@@ -119,7 +124,7 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
             loadProfilePictures();
             for (int i = slide.Shapes.Count; i >= 1; i--) {
                 Shape s = slide.Shapes[i];
-                if (s.Name.Contains("TextBox") || s.Name.Contains("Textplatzhalter") || s.Name.Contains("Text") || s.Name.Contains("Title") || s.Name.Contains("Titel") || s.Name.Contains("Rechteck") || s.Name.Contains("Rectangle")) {
+                if (Utils.istObjectOfInterest(s.Name)) {
                     string placeholder = s.TextFrame.TextRange.Text;
                     string[] split = placeholder.Split(' ');
                     switch (split[0]) {
@@ -154,6 +159,9 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                                 s.Delete(); 
                             }
                             break;
+                        case "Your":
+                            s.TextFrame.TextRange.Text = _title; 
+                            break;
                     }
                 }
             }
@@ -186,7 +194,7 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
             for (int i = slide.Shapes.Count; i >= 1; i--) {
                 Shape s = slide.Shapes[i];
                 System.Diagnostics.Debug.WriteLine(s.Name);
-                if (s.Name.Contains("TextBox") || s.Name.Contains("Textplatzhalter") || s.Name.Contains("Text") || s.Name.Contains("Title") || s.Name.Contains("Titel")) {
+                if (Utils.istObjectOfInterest(s.Name)) {
                     string placeholder = s.TextFrame.TextRange.Text;
                     Regex rgx = new Regex("[^a-zA-Z0-9 -]");
                     placeholder = rgx.Replace(placeholder, "");
@@ -282,6 +290,16 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                             }
                             s.TextFrame.TextRange.Text = exp;
                             break;
+                        case "We":
+                            s.TextFrame.TextRange.Text = _title;
+                            break;
+                        case "HZ":
+                            if(_language == "EN") {
+                                s.TextFrame.TextRange.Text = "H&Z team – selection of possible profiles";
+                            } else if (_language == "DE") {
+                                s.TextFrame.TextRange.Text = "H&Z Team - Auswahl der möglichen Profile";
+                            }
+                            break;
                         default: break;
                     }
                 }
@@ -293,7 +311,7 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
             loadProfilePictures();
             for (int i = slide.Shapes.Count; i >= 1; i--) {
                 Shape s = slide.Shapes[i];
-                if (s.Name.Contains("TextBox") || s.Name.Contains("Textplatzhalter") || s.Name.Contains("Text") || s.Name.Contains("Title") || s.Name.Contains("Titel")) {
+                if (Utils.istObjectOfInterest(s.Name)) {
                     string placeholder = s.TextFrame.TextRange.Text;
                     switch (placeholder) {
                         case "Role":
@@ -430,6 +448,41 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                             } else {
                                 s.Delete();
                                 break;
+                            }
+                            break;
+                        case "Project experience:":
+                            if (_language == "EN") {
+                                s.TextFrame.TextRange.Text = "Project experience:";
+                            } else if (_language == "DE") {
+                                s.TextFrame.TextRange.Text = "Projekt Erfahrung:";
+                            }
+                            break;
+                        case "Industry experience:":
+                            if (_language == "EN") {
+                                s.TextFrame.TextRange.Text = "Industry experience:";
+                            } else if (_language == "DE") {
+                                s.TextFrame.TextRange.Text = "Industrie Erfahrung:";
+                            }
+                            break;
+                        case "Functional experience:":
+                            if (_language == "EN") {
+                                s.TextFrame.TextRange.Text = "Functional experience:";
+                            } else if (_language == "DE") {
+                                s.TextFrame.TextRange.Text = "Funktionale Erfahrung:";
+                            }
+                            break;
+                        case "Education and training:":
+                            if (_language == "EN") {
+                                s.TextFrame.TextRange.Text = "Education and training:";
+                            } else if (_language == "DE") {
+                                s.TextFrame.TextRange.Text = "Bildung und Fortbildung:";
+                            }
+                            break;
+                        case "Professional experience:":
+                            if (_language == "EN") {
+                                s.TextFrame.TextRange.Text = "Professional experience:";
+                            } else if (_language == "DE") {
+                                s.TextFrame.TextRange.Text = "Berufserfahrung:";
                             }
                             break;
                         default: break;
@@ -593,6 +646,27 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                                 } else {
                                     s.Delete();
                                 }
+                            }
+                            break;
+                        case "Project":
+                            if (_language == "EN") {
+                                s.TextFrame.TextRange.Text = "Project experience:";
+                            } else if (_language == "DE") {
+                                s.TextFrame.TextRange.Text = "Projekt Erfahrung:";
+                            }
+                            break;
+                        case "Industry":
+                            if (_language == "EN") {
+                                s.TextFrame.TextRange.Text = "Industry experience:";
+                            } else if (_language == "DE") {
+                                s.TextFrame.TextRange.Text = "Industrie Erfahrung:";
+                            }
+                            break;
+                        case "Functional":
+                            if (_language == "EN") {
+                                s.TextFrame.TextRange.Text = "Functional experience:";
+                            } else if (_language == "DE") {
+                                s.TextFrame.TextRange.Text = "Funktionale Erfahrung:";
                             }
                             break;
                         default: break;

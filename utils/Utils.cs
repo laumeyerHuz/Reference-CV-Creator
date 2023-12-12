@@ -18,11 +18,16 @@ using Office = Microsoft.Office.Core;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 
 namespace ReferenceConfigurator.utils {
+
     public static class Utils {
         public static PowerPoint.DocumentWindow? GetActiveWindow() {
             var application = Globals.ThisAddIn.Application;
             if (application.Windows.Count == 0) { return null; }
             return application.ActiveWindow;
+        }
+
+        public static Boolean istObjectOfInterest(string type) {
+            return type.Contains("TextBox") || type.Contains("Textplatzhalter") || type.Contains("Text") || type.Contains("Title") || type.Contains("Titel") || type.Contains("Rectangle");
         }
 
         public static PowerPoint.Slide? GetActiveSlide() {

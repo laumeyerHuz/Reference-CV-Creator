@@ -89,6 +89,7 @@ namespace ReferenceConfigurator.views {
                 powerpointSlideCreator.addReferences(SummaryProfile.getReferenceList().Cast<ProfileModel>().ToList());
                 powerpointSlideCreator.addLayoutModel((ProfileLayoutModel)LayoutProfile.Layouts[LayoutProfile._layoutIndex]);
                 powerpointSlideCreator.addLanguage(SummaryProfile.getSelectedLanguage());
+                powerpointSlideCreator.addTitle(SummaryProfile.getSelectedTitle());
                 powerpointSlideCreator.createSlide();
 
             } else if (ContentViewModel == SummaryReferences) {
@@ -96,6 +97,7 @@ namespace ReferenceConfigurator.views {
                 powerpointSlideCreator.addReferences(SummaryReferences.getReferenceList().Cast<ReferenceModel>().ToList());
                 powerpointSlideCreator.addLayoutModel(LayoutReference.Layouts[LayoutReference._layoutIndex]);
                 powerpointSlideCreator.addLanguage(SummaryReferences.getSelectedLanguage());
+                powerpointSlideCreator.addTitle(SummaryProfile.getSelectedTitle());
                 powerpointSlideCreator.createSlide();
             } else if(ContentViewModel == SearchLogo) {
                 PowerpointSlideCreatorLogo powerpointSlideCreator = new PowerpointSlideCreatorLogo();
