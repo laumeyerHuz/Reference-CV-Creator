@@ -26,8 +26,8 @@ namespace ReferenceConfigurator.utils {
             return application.ActiveWindow;
         }
 
-        public static Boolean istObjectOfInterest(string type) {
-            return type.Contains("TextBox") || type.Contains("Textplatzhalter") || type.Contains("Text") || type.Contains("Title") || type.Contains("Titel") || type.Contains("Rectangle");
+        public static bool istObjectOfInterest(string type) {
+            return type.Contains("TextBox") || type.Contains("Textplatzhalter") || type.Contains("Text") || type.Contains("Title") || type.Contains("Titel") || type.Contains("Rectangle") || type.Contains("Rechteck");
         }
 
         public static PowerPoint.Slide? GetActiveSlide() {

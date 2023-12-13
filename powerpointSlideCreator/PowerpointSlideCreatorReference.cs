@@ -109,17 +109,17 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
             for (int i = slide.Shapes.Count; i >= 1; i--) {
                 Shape s = slide.Shapes[i];
                 System.Diagnostics.Debug.WriteLine(s.Name);
-                if (s.Name.Contains("TextBox") || s.Name.Contains("Textplatzhalter") || s.Name.Contains("Text") || s.Name.Contains("Title") || s.Name.Contains("Titel") || s.Name.Contains("Rechteck") || s.Name.Contains("Rectangle")) {
+                if (Utils.istObjectOfInterest(s.Name)) {
                     string placeholder = s.TextFrame.TextRange.Text;
                     Regex rgx = new Regex("[^a-zA-Z0-9 -]");
                     placeholder = rgx.Replace(placeholder, "");
                     string[] split = placeholder.Split(' ');
-                    if (split.Length>1 && split[1].ToInt32() >_referenceModels.Count) {
+                    if (split.Length > 1 && split[1].ToInt32() > _referenceModels.Count) {
                         continue;
                     }
                     switch (split[0]) {
                         case "Logo":
-                            if (_referenceModels[split[1].ToInt32()-1].Logo != null) {
+                            if (_referenceModels[split[1].ToInt32() - 1].Logo != null) {
                                 try {
                                     using System.Drawing.Image img = System.Drawing.Image.FromFile(_referenceModels[split[1].ToInt32() - 1].Logo);
                                     float[] sizes = resizeImage(s.Width, s.Height, img.Width, img.Height, s.Left, s.Top);
@@ -135,10 +135,10 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                             }
                             break;
                         case "Description":
-                            if(_language == "DE") {
-                                s.TextFrame.TextRange.Text = Utils.RemoveEmptyLines( _referenceModels[split[1].ToInt32() - 1].ProjectDescriptionDE);
-                            } else if(_language == "EN") {
-                                s.TextFrame.TextRange.Text = Utils.RemoveEmptyLines( _referenceModels[split[1].ToInt32() - 1].ProjectDescriptionEN);
+                            if (_language == "DE") {
+                                s.TextFrame.TextRange.Text = Utils.RemoveEmptyLines(_referenceModels[split[1].ToInt32() - 1].ProjectDescriptionDE);
+                            } else if (_language == "EN") {
+                                s.TextFrame.TextRange.Text = Utils.RemoveEmptyLines(_referenceModels[split[1].ToInt32() - 1].ProjectDescriptionEN);
                             } else {
                                 Growl.Info("No language selected");
                             }
@@ -152,17 +152,17 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
             }
         }
 
-        
 
-        private float[] resizeImage(float widthPowerPoint, float heightPowerPoint,int widthImage, int heightImage, float x, float y) {
+
+        private float[] resizeImage(float widthPowerPoint, float heightPowerPoint, int widthImage, int heightImage, float x, float y) {
             int original_width = widthImage;
             int original_height = heightImage;
             int bound_width = (int)widthPowerPoint;
-            int bound_height = (int) heightPowerPoint;
+            int bound_height = (int)heightPowerPoint;
             int new_width = original_width;
             int new_height = original_height;
-            int middleX = (int)(x+ (widthPowerPoint/2));
-            int middleY = (int)(y+ (heightPowerPoint/2));
+            int middleX = (int)(x + (widthPowerPoint / 2));
+            int middleY = (int)(y + (heightPowerPoint / 2));
             int newX = (int)x;
             int newY = (int)y;
 
@@ -181,9 +181,9 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                 //scale width to maintain aspect ratio
                 new_width = (new_height * original_width) / original_height;
             }
-            
-            newX = middleX - (new_width/2);
-            newY = middleY - (new_height/2);
+
+            newX = middleX - (new_width / 2);
+            newY = middleY - (new_height / 2);
 
             return new float[] { newX, newY, new_width, new_height };
         }
@@ -193,8 +193,8 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
             foreach (var model in _referenceModels) {
                 clients.Add(model.Client);
             }
-            Dictionary<string,string> clientLogo = new Dictionary<string,string>();
-            foreach (string client in clients) { 
+            Dictionary<string, string> clientLogo = new Dictionary<string, string>();
+            foreach (string client in clients) {
                 string file = SharepointConnection.downloadCompanyLogo(client);
                 clientLogo[client] = file;
             }
