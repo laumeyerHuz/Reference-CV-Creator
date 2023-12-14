@@ -148,7 +148,7 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                             break;
                         case "References":
                             if (_language == "DE") {
-                                s.TextFrame.TextRange.Text = "Projektrefrenzen (Auswahl)";
+                                s.TextFrame.TextRange.Text = "Projektreferenzen (Auswahl)";
                             }
                             break;
                         default: break;
