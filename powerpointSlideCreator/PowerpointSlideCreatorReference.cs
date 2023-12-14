@@ -146,13 +146,16 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                         case "We":
                             s.TextFrame.TextRange.Text = _title;
                             break;
+                        case "References":
+                            if (_language == "DE") {
+                                s.TextFrame.TextRange.Text = "Projektrefrenzen (Auswahl)";
+                            }
+                            break;
                         default: break;
                     }
                 }
             }
         }
-
-
 
         private float[] resizeImage(float widthPowerPoint, float heightPowerPoint, int widthImage, int heightImage, float x, float y) {
             int original_width = widthImage;

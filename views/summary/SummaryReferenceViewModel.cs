@@ -30,16 +30,21 @@ namespace ReferenceConfigurator.views {
         }
 
         protected override void populateTitle() {
-            _titleListDE.Add("Wir setzen auf ein bewährtes und erfahrenes Projektteam");
-            _titleListDE.Add("Wir bieten FIRMA ein seniores Team mit langjähriger Erfahrung im Bereich BEREICH");
+            _titleListDE.Add("H&Z hat umfassende Erfahrung mit Optimierungsprogrammen für METHODE- und FUNKTIONSBEREICHE bei INDUSTRIE-Lieferanten");
 
-            _titleListEN.Add("We offer a practiced and experienced team with broad and long-lasting expertise in TOPIC");
-            _titleListEN.Add("We provied a senior and experienced team with in-depth expertise in TOPIC and " +
-                "value creationn combined with industry expertise and SPECIFIC knowledge");
-            _titleListEN.Add("We offer a senior and experienced team with in-depth expertise in TOPIC for SIZE-sized companies");
-            _titleListEN.Add("We offer a practiced team with long-lasting expertise in CATEGORY supported by dedicated Category experts");
-            _titleListEN.Add("We rely on a proven and experienced project team");
-            _titleListEN.Add("We offer a senior team with many years of experience in the area of TOPIC");
+            _titleListDE.Add("Wir bringen sowohl fundiertes Fachwissen zum THEMA als auch Branchenkenntnisse in der INDUSTRIE mit");
+            _titleListDE.Add("Wir haben zahlreiche Wertschöpfungsprojekte in der INDUSTRIE durchgeführt und dabei Benchmarks, Kostenkalkulationen und Quick-Wins realisiert");
+            _titleListDE.Add("Wir sind Experten für METHODE und Implementierung für FUNKTIONSBEREICHS-Organisationen");
+            _titleListDE.Add("Mit einer Erfolgsbilanz von mehr als 500 Projekten betrachten wir Kostenreduzierung als unser Steckenpferd");
+
+            _titleListEN.Add("H&Z has in depth experience in METHOD and FUNCTIONAL AREA optimization programs at INDUSTRY suppliers");
+
+            _titleListEN.Add("We have a strong footprint in all project-relevant industries");
+            _titleListEN.Add("We bring both in-depth expertise on TOPIC as well as INDUSTRY industry knowledge to the table");
+            _titleListEN.Add("We conducted numerous value creation projects in INDUSTRY providing benchmarks, should costings and quick-wins realization");
+            _titleListEN.Add("We are experts in METHOD and implementation for FUNCTIONAL AREA organizations");
+
+            _titleListEN.Add("With a track record of 500+ projects, we regard cost reduction our home turf");
         }
     }
 }

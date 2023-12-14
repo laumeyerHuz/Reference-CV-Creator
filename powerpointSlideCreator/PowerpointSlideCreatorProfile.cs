@@ -300,6 +300,13 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                                 s.TextFrame.TextRange.Text = "H&Z Team - Auswahl der möglichen Profile";
                             }
                             break;
+                        case "Category":
+                            if (_language == "EN") {
+                                s.TextFrame.TextRange.Text = "Category experts";
+                            } else if (_language == "DE") {
+                                s.TextFrame.TextRange.Text = "Experten auf Anfrage";
+                            }
+                            break;
                         default: break;
                     }
                 }
@@ -454,35 +461,35 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                             if (_language == "EN") {
                                 s.TextFrame.TextRange.Text = "Project experience:";
                             } else if (_language == "DE") {
-                                s.TextFrame.TextRange.Text = "Projekt Erfahrung:";
+                                s.TextFrame.TextRange.Text = "Projekterfahrung:";
                             }
                             break;
                         case "Industry experience:":
                             if (_language == "EN") {
                                 s.TextFrame.TextRange.Text = "Industry experience:";
                             } else if (_language == "DE") {
-                                s.TextFrame.TextRange.Text = "Industrie Erfahrung:";
+                                s.TextFrame.TextRange.Text = "Branchenkompetenz:";
                             }
                             break;
                         case "Functional experience:":
                             if (_language == "EN") {
                                 s.TextFrame.TextRange.Text = "Functional experience:";
                             } else if (_language == "DE") {
-                                s.TextFrame.TextRange.Text = "Funktionale Erfahrung:";
+                                s.TextFrame.TextRange.Text = "Funktionale Expertise:";
                             }
                             break;
                         case "Education and training:":
                             if (_language == "EN") {
                                 s.TextFrame.TextRange.Text = "Education and training:";
                             } else if (_language == "DE") {
-                                s.TextFrame.TextRange.Text = "Bildung und Fortbildung:";
+                                s.TextFrame.TextRange.Text = "Ausbildung:";
                             }
                             break;
                         case "Professional experience:":
                             if (_language == "EN") {
                                 s.TextFrame.TextRange.Text = "Professional experience:";
                             } else if (_language == "DE") {
-                                s.TextFrame.TextRange.Text = "Berufserfahrung:";
+                                s.TextFrame.TextRange.Text = "Berufliche Erfahrung:";
                             }
                             break;
                         default: break;
@@ -652,21 +659,21 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                             if (_language == "EN") {
                                 s.TextFrame.TextRange.Text = "Project experience:";
                             } else if (_language == "DE") {
-                                s.TextFrame.TextRange.Text = "Projekt Erfahrung:";
+                                s.TextFrame.TextRange.Text = "Projekterfahrung:";
                             }
                             break;
                         case "Industry":
                             if (_language == "EN") {
                                 s.TextFrame.TextRange.Text = "Industry experience:";
                             } else if (_language == "DE") {
-                                s.TextFrame.TextRange.Text = "Industrie Erfahrung:";
+                                s.TextFrame.TextRange.Text = "Branchenkompetenz:";
                             }
                             break;
                         case "Functional":
                             if (_language == "EN") {
                                 s.TextFrame.TextRange.Text = "Functional experience:";
                             } else if (_language == "DE") {
-                                s.TextFrame.TextRange.Text = "Funktionale Erfahrung:";
+                                s.TextFrame.TextRange.Text = "Funktionale Expertise:";
                             }
                             break;
                         default: break;
