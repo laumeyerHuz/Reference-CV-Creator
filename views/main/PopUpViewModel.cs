@@ -97,7 +97,7 @@ namespace ReferenceConfigurator.views {
                 powerpointSlideCreator.addReferences(SummaryReferences.getReferenceList().Cast<ReferenceModel>().ToList());
                 powerpointSlideCreator.addLayoutModel(LayoutReference.Layouts[LayoutReference._layoutIndex]);
                 powerpointSlideCreator.addLanguage(SummaryReferences.getSelectedLanguage());
-                powerpointSlideCreator.addTitle(SummaryProfile.getSelectedTitle());
+                powerpointSlideCreator.addTitle(SummaryReferences.getSelectedTitle());
                 powerpointSlideCreator.createSlide();
             } else if(ContentViewModel == SearchLogo) {
                 PowerpointSlideCreatorLogo powerpointSlideCreator = new PowerpointSlideCreatorLogo();
