@@ -160,7 +160,10 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                             }
                             break;
                         case "Your":
-                            s.TextFrame.TextRange.Text = _title; 
+                            if(_language == "DE") {
+                                s.TextFrame.TextRange.Text = "Ihr H&Z Pitch Team";
+                            }
+                            
                             break;
                     }
                 }
@@ -295,9 +298,9 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                             break;
                         case "HZ":
                             if(_language == "EN") {
-                                s.TextFrame.TextRange.Text = "H&Z team – selection of possible profiles";
+                                s.TextFrame.TextRange.Text = "H&Z team";
                             } else if (_language == "DE") {
-                                s.TextFrame.TextRange.Text = "H&Z Team - Auswahl der möglichen Profile";
+                                s.TextFrame.TextRange.Text = "H&Z Team";
                             }
                             break;
                         case "Category":
@@ -305,6 +308,16 @@ namespace ReferenceConfigurator.powerpointSlideCreator {
                                 s.TextFrame.TextRange.Text = "Category experts";
                             } else if (_language == "DE") {
                                 s.TextFrame.TextRange.Text = "Experten auf Anfrage";
+                            }
+                            break;
+                        case "Experts":
+                            if (_language == "DE") {
+                                s.TextFrame.TextRange.Text = "Experten auf Anfrage";
+                            }
+                            break;
+                        case "Additional":
+                            if (_language == "DE") {
+                                s.TextFrame.TextRange.Text = "Zusätzliche Experten für relevante Warengruppen verfügbar";
                             }
                             break;
                         default: break;
