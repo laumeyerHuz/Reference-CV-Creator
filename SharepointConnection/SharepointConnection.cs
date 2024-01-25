@@ -130,7 +130,7 @@ namespace ReferenceConfigurator {
         }
 
         public static string downloadCompanyLogo(string name) {
-
+            string ogName = name;
             name = name.Replace("/", "_");
             name = name.Replace(":", "_");
             name = name.Replace("&", "_");
@@ -166,7 +166,8 @@ namespace ReferenceConfigurator {
                             FileCollection fileCol = f2.Files;
 
                             foreach (Microsoft.SharePoint.Client.File file in fileCol) {
-                                if (string.Equals(name, Path.GetFileNameWithoutExtension(file.Name), StringComparison.OrdinalIgnoreCase)) {
+                                if (string.Equals(name, Path.GetFileNameWithoutExtension(file.Name), StringComparison.OrdinalIgnoreCase)
+                                    || string.Equals(ogName, Path.GetFileNameWithoutExtension(file.Name), StringComparison.OrdinalIgnoreCase)) {
                                     var fileName = Path.Combine(basePath, "ReferenceConfigurator/CompanyLogo", (string)file.Name);
 
                                     downloadFileHttp(Settings.Default.template, fileName, file);
