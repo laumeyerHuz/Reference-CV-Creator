@@ -34,10 +34,10 @@
     <Nullable>enable</Nullable>
     <LangVersion>8.0</LangVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <PublishUrl>C:\Users\leonhard.laumeyer\Documents\projects\executable\v0.23\</PublishUrl>
+    <PublishUrl>C:\Users\leonhard.laumeyer\Documents\projects\executable\v0.24\</PublishUrl>
     <InstallUrl />
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>1.0.0.27</ApplicationVersion>
+    <ApplicationVersion>1.0.0.28</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -748,6 +748,7 @@
     <Content Include="ReferenceConfiguratorCert.pfx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="ReferenceConfigurator_1_TemporaryKey.pfx" />
     <None Include="ReferenceConfigurator_TemporaryKey.pfx" />
     <Resource Include="icons\Germany.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -860,11 +861,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>
-    </ManifestKeyFile>
+    <ManifestKeyFile>ReferenceConfigurator_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>7E8B5F21FCC3D392D525CAFB480F899FBC7CA9DA</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>233D746706B3E9E5F3E86635DB1B1B571ED83B01</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
